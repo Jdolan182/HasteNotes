@@ -14,6 +14,7 @@ C:\Users\jorda\source\repos\HasteNotes\HasteNotes\obj\Debug\net8.0-windows\Haste
 C:\Users\jorda\source\repos\HasteNotes\HasteNotes\obj\Debug\net8.0-windows\HasteNotes.genruntimeconfig.cache
 C:\Users\jorda\source\repos\HasteNotes\HasteNotes\obj\Debug\net8.0-windows\ref\HasteNotes.dll
 C:\Users\jorda\source\repos\HasteNotes\HasteNotes\obj\Debug\net8.0-windows\HasteNotes.Properties.Resources.resources
-C:\Users\jorda\source\repos\HasteNotes\HasteNotes\obj\Debug\net8.0-windows\HasteNotes.forms.FF9.FF9.resources
 C:\Users\jorda\source\repos\HasteNotes\HasteNotes\obj\Debug\net8.0-windows\HasteNotes.GameSelection.resources
-C:\Users\jorda\source\repos\HasteNotes\HasteNotes\obj\Debug\net8.0-windows\HasteNotes.forms.BaseForm.resources
+C:\Users\jorda\source\repos\HasteNotes\HasteNotes\obj\Debug\net8.0-windows\HasteNotes.sourcelink.json
+C:\Users\jorda\source\repos\HasteNotes\HasteNotes\obj\Debug\net8.0-windows\HasteNotes.forms.Notes.AddNote.resources
+C:\Users\jorda\source\repos\HasteNotes\HasteNotes\obj\Debug\net8.0-windows\HasteNotes.Forms.NotesForm.resources
