@@ -1,0 +1,62 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="350"
+		   Width="800" Height="350"
+        MinWidth="800" MinHeight="350"
+        x:Class="HasteNotes.MainWindow"
+        Title="HasteNotes">
+	
+	<ScrollViewer>
+		<WrapPanel Margin="15">
+			<!-- Example buttons -->
+			<Button Classes="transparent" x:Name="ff1" Width="143" Height="93" IsEnabled="False" Content="FF1" Margin="5">
+				<Image Source="avares://HasteNotes/Assets/Icons/ff1.png" />
+			</Button>
+			<Button Classes="transparent" x:Name="ff2" Width="143" Height="93" IsEnabled="False" Content="FF2" Margin="5">
+				<Image Source="avares://HasteNotes/Assets/Icons/ff2.png" />
+			</Button>
+			<Button Classes="transparent" x:Name="ff3" Width="143" Height="93" IsEnabled="False" Content="FF3" Margin="5">
+				<Image Source="avares://HasteNotes/Assets/Icons/ff3.png" />
+			</Button>
+			<Button Classes="transparent" x:Name="ff4" Width="143" Height="93" IsEnabled="False" Content="FF4" Margin="5">
+				<Image Source="avares://HasteNotes/Assets/Icons/ff4.png" />
+			</Button>
+			<Button Classes="transparent" x:Name="ff5" Width="143" Height="93" IsEnabled="False" Content="FF5" Margin="5">
+				<Image Source="avares://HasteNotes/Assets/Icons/ff5.png" />
+			</Button>
+			<Button Classes="transparent" x:Name="ff6" Width="143" Height="93" IsEnabled="False" Content="FF6" Margin="5">
+				<Image Source="avares://HasteNotes/Assets/Icons/ff6.png" />
+			</Button>
+			<Button Classes="transparent" x:Name="ff7" Width="143" Height="93" IsEnabled="False" Content="FF7" Margin="5">
+				<Image Source="avares://HasteNotes/Assets/Icons/ff7.png" />
+			</Button>
+			<Button Classes="transparent" x:Name="ff8" Width="143" Height="93" IsEnabled="False" Content="FF8" Margin="5">
+				<Image Source="avares://HasteNotes/Assets/Icons/ff8.png" />
+			</Button>
+			<Button Classes="transparent" x:Name="ff9" Width="143" Height="93" Content="FF9"  Click="Ff9_Click" Margin="5">
+				<Image Source="avares://HasteNotes/Assets/Icons/ff9.png" />
+			</Button>
+			<Button Classes="transparent" x:Name="ff10" Width="143" Height="93" IsEnabled="False" Content="FF10" Margin="5">
+				<Image Source="avares://HasteNotes/Assets/Icons/ff10.png" />
+			</Button>
+			<Button Classes="transparent" x:Name="ff102" Width="143" Height="93" IsEnabled="False" Content="FF102" Margin="5">
+				<Image Source="avares://HasteNotes/Assets/Icons/ff10-2.png" />
+			</Button>
+			<Button Classes="transparent" x:Name="ff12" Width="143" Height="93" IsEnabled="False" Content="FF12" Margin="5">
+				<Image Source="avares://HasteNotes/Assets/Icons/ff12.png" />
+			</Button>
+			<Button Classes="transparent" x:Name="ff13" Width="143" Height="93" IsEnabled="False" Content="FF13" Margin="5">
+				<Image Source="avares://HasteNotes/Assets/Icons/ff13.png" />
+			</Button>
+			<Button Classes="transparent" x:Name="ff15" Width="143" Height="93" IsEnabled="False" Content="FF15" Margin="5">
+				<Image Source="avares://HasteNotes/Assets/Icons/ff15.png" />
+			</Button>
+			<Button Classes="transparent" x:Name="ff16" Width="143" Height="93" IsEnabled="False" Content="FF16" Margin="5">
+				<Image Source="avares://HasteNotes/Assets/Icons/ff16.png" />
+			</Button>
+		</WrapPanel>
+	</ScrollViewer>
+
+</Window>
