@@ -1,5 +1,7 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using HasteNotes.ViewModels;
+using HasteNotes.Views;
 
 namespace HasteNotes
 {
@@ -10,17 +12,23 @@ namespace HasteNotes
             InitializeComponent();
         }
 
-        private void Ff9_Click(object? sender, RoutedEventArgs e)
+        private void OpenNotes(string gameTitle)
         {
-            var dialog = new Window
-            {
-                Title = "FF9 Selected",
-                Width = 300,
-                Height = 200,
-                Content = new TextBlock { Text = "You selected FF9!" }
+            var notes = new Notes
+            { 
+                DataContext = new NotesViewModel(gameTitle),
+                WindowStartupLocation = WindowStartupLocation.CenterOwner
             };
-            dialog.ShowDialog(this);
+
+            notes.Closed += (_, __) => { this.Show(); this.Activate(); };
+
+            this.Hide();
+            notes.Show();
+
         }
+
+        private void Ff9_Click(object? sender, RoutedEventArgs e)
+                => OpenNotes("Final Fantasy IX");
     }
 
 }

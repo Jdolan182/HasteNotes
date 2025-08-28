@@ -70,6 +70,10 @@
             "Avalonia.Themes.Fluent": {
               "target": "Package",
               "version": "[11.3.4, )"
+            },
+            "CommunityToolkit.Mvvm": {
+              "target": "Package",
+              "version": "[8.4.0, )"
             }
           },
           "imports": [

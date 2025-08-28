@@ -14,10 +14,13 @@
 		</Style>
 
 		<Style Selector="Button.transparent:pointerover">
+			<Setter Property="BorderBrush" Value="Black"/>
 			<Setter Property="Background" Value="#40FFFFFF"/>
+
 		</Style>
 
 		<Style Selector="Button.transparent:pressed">
+			<Setter Property="BorderBrush" Value="Black"/>
 			<Setter Property="Background" Value="#80FFFFFF"/>
 		</Style>
     </Application.Styles>
