@@ -19,6 +19,7 @@
       <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
     </PackageReference>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+    <PackageReference Include="MouseKeyHook" Version="5.7.1" />
   </ItemGroup>
 	
   <ItemGroup>
@@ -29,5 +30,11 @@
     <Compile Update="Views\Notes.axaml.cs">
       <DependentUpon>Notes.axaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Notes\addNote.axaml.cs">
+      <DependentUpon>addNote.axaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.WindowsDesktop.App.WindowsForms" />
   </ItemGroup>
 </Project>

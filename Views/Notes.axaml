@@ -1,10 +1,11 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-		xmlns:vm="clr-namespace:HasteNotes.ViewModels"
+        xmlns:vm="clr-namespace:HasteNotes.ViewModels"
         x:Class="HasteNotes.Views.Notes"
-		x:DataType="vm:NotesViewModel"
+        x:DataType="vm:NotesViewModel"
         Width="800" Height="600"
         Title="{Binding Title}">
+
 	<Grid ColumnDefinitions="*,300" RowDefinitions="Auto,Auto,*,Auto">
 
 		<!-- Menu -->
@@ -18,54 +19,43 @@
 			</MenuItem>
 		</Menu>
 
-		<!-- Toolbar (Add / Edit + Boss toggle + Boss select) -->
+		<!-- Toolbar -->
 		<Grid Grid.Row="1" Grid.ColumnSpan="2" Margin="12,8,12,8"
-              ColumnDefinitions="Auto,8,Auto,*,Auto,8,Auto">
-			<Button Content="Add"  Command="{Binding AddCommand}" />
+              ColumnDefinitions="Auto,8,Auto">
+			<Button Content="Add" Command="{Binding AddCommand}" />
 			<Rectangle Grid.Column="1" Width="8"/>
 			<Button Grid.Column="2" Content="Edit" Command="{Binding EditCommand}" />
-
-			<StackPanel Grid.Column="4" Orientation="Horizontal" Spacing="8">
-				<CheckBox Content="Boss note" IsChecked="{Binding IsBossNote}"/>
-				<ComboBox Width="220"
-                          ItemsSource="{Binding Bosses}"
-                          SelectedItem="{Binding SelectedBoss}"
-                          IsEnabled="{Binding IsBossNote}"
-                          PlaceholderText="Select boss"/>
-			</StackPanel>
 		</Grid>
 
-		<!-- LEFT: content area (notes + boss info when applicable) -->
-		<Grid Grid.Row="2" Grid.Column="0" Margin="12"
-              RowDefinitions="Auto,Auto,*">
-			<!-- Boss info panel: simply disable when not a boss note -->
-			<Grid IsEnabled="{Binding IsBossNote}">
-				<Grid ColumnDefinitions="*,*,*" Margin="0,0,0,8">
-					<TextBlock Text="boss info"  FontWeight="Bold"/>
-					<TextBlock Text="steals"     Grid.Column="1" FontWeight="Bold"/>
-					<TextBlock Text="items"      Grid.Column="2" FontWeight="Bold"/>
+		<!-- LEFT: content area -->
+		<StackPanel Grid.Row="2" Grid.Column="0" Margin="12" Spacing="8">
 
-					<Separator Grid.ColumnSpan="3" Margin="0,18,0,0"/>
+			<!-- Note Title -->
+			<TextBlock Text="{Binding SelectedNote.Title}" FontSize="18" FontWeight="Bold"/>
+
+			<!-- Boss info: only visible if boss note -->
+			<Grid IsVisible="{Binding IsBossNoteVisible}" Margin="0,4,0,8">
+				<Grid ColumnDefinitions="*,*,*" Margin="0,0,0,8">
+					<TextBlock Text="Boss HP" FontWeight="Bold"/>
+					<TextBlock Text="Steals" Grid.Column="1" FontWeight="Bold"/>
+					<TextBlock Text="Items" Grid.Column="2" FontWeight="Bold"/>
 				</Grid>
 
-				<Grid Margin="0,26,0,12" ColumnDefinitions="*,*,*">
-					<TextBlock Text="{Binding BossInfo}"  TextWrapping="Wrap"/>
-					<TextBlock Text="{Binding BossSteals}" Grid.Column="1" TextWrapping="Wrap"/>
-					<TextBlock Text="{Binding BossItems}"  Grid.Column="2" TextWrapping="Wrap"/>
+				<Grid ColumnDefinitions="*,*,*" Margin="0,0,0,0">
+					<TextBlock Text="{Binding SelectedNote.SelectedBoss.Hp}" />
+					<TextBlock Text="{Binding SelectedNote.SelectedBoss.Steals}" Grid.Column="1"/>
+					<TextBlock Text="{Binding SelectedNote.SelectedBoss.Items}" Grid.Column="2"/>
 				</Grid>
 			</Grid>
 
-			<!-- Notes area -->
+			<!-- Note Content -->
 			<Border BorderBrush="Gray" BorderThickness="1" CornerRadius="4">
 				<ScrollViewer HorizontalScrollBarVisibility="Auto"
-							  VerticalScrollBarVisibility="Auto">
-					<TextBox AcceptsReturn="True"
-							 TextWrapping="Wrap"
-							 Padding="10" FontSize="14"
-							 Text="{Binding NotesText}"/>
+                              VerticalScrollBarVisibility="Auto">
+					<TextBlock Text="{Binding SelectedNote.Content}" TextWrapping="Wrap" Padding="10"/>
 				</ScrollViewer>
 			</Border>
-		</Grid>
+		</StackPanel>
 
 		<!-- RIGHT: checklist sidebar -->
 		<Border Grid.Row="2" Grid.Column="1" Margin="8,12,12,12"
@@ -79,15 +69,14 @@
 						</DataTemplate>
 					</ItemsControl.ItemTemplate>
 				</ItemsControl>
-				<!-- Add more sidebar controls if you like -->
 			</StackPanel>
 		</Border>
 
 		<!-- Bottom nav -->
 		<Grid Grid.Row="3" Grid.ColumnSpan="2" Margin="12,0,12,12"
               ColumnDefinitions="*,Auto,8,Auto,*">
-			<Button Grid.Column="1" Content="prev" Width="120" Command="{Binding PrevCommand}"/>
-			<Button Grid.Column="3" Content="next" Width="120" Command="{Binding NextCommand}"/>
+			<Button Grid.Column="1" Content="Prev" Width="120" Command="{Binding PrevCommand}"/>
+			<Button Grid.Column="3" Content="Next" Width="120" Command="{Binding NextCommand}"/>
 		</Grid>
 	</Grid>
 </Window>

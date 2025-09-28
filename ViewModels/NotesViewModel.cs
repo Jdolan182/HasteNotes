@@ -1,76 +1,80 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Collections.ObjectModel;
-using System.Windows.Input;
 using System.Linq;
+using System.Windows.Forms;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using HasteNotes.Data;
 using HasteNotes.Models;
+
 
 namespace HasteNotes.ViewModels;
 
-// Inherits ObservableObject so bindings update automatically
 public partial class NotesViewModel : ObservableObject
 {
-    // ===== top controls =====
-    [ObservableProperty] private bool isBossNote;
+    public string Title { get; }
 
-    // JSON-backed bosses list
+    public ObservableCollection<Note> Notes { get; } = new();
     public ObservableCollection<Boss> Bosses { get; } = new();
+    public ObservableCollection<ChecklistItem> Checklist { get; } = new();
 
-    private Boss? _selectedBoss;
-    public Boss? SelectedBoss
+    [ObservableProperty] private string notesText = "";
+
+    [ObservableProperty] private int pageIndex = 0;
+    public Note? SelectedNote => (PageIndex >= 0 && PageIndex < Notes.Count)
+        ? Notes[PageIndex]
+        : null;
+    public bool IsBossNoteVisible => SelectedNote?.IsBossNote ?? false;
+
+    private readonly GlobalKeyService _keyService;
+
+    // Event to request the view to open the dialog
+    public event Action? RequestAddNoteDialog;
+    public NotesViewModel(string title)
     {
-        get => _selectedBoss;
-        set
+        Title = title;
+
+        var gameId = ToGameId(title);
+        foreach (var b in BossLoader.LoadFromAssets(gameId).Where(b => b.IsVisible))
+            Bosses.Add(b);
+
+        _keyService = new GlobalKeyService();  // <-- Initialize before use
+
+        _keyService.RegisterKey(Keys.P, Next);
+        _keyService.RegisterKey(Keys.O, Prev);
+
+        //TODO: load from user settings
+        //var settings = LoadUserSettings(); 
+        // hotkeys.Register(settings.NextNoteKey, () => NextCommand.Execute(null));
+        //  hotkeys.Register(settings.PrevNoteKey, () => PrevCommand.Execute(null));
+    }
+
+    // Command bound to Add button
+    [RelayCommand]
+    private void OnAdd() => RequestAddNoteDialog?.Invoke();
+
+    [RelayCommand]
+    private void OnEdit() { /* ... */ }
+
+    [RelayCommand]
+    private void Next()
+    {
+        if (PageIndex < Notes.Count - 1)
         {
-            if (SetProperty(ref _selectedBoss, value))
-                UpdateBossInfo();
+            PageIndex++;
+            OnPropertyChanged(nameof(SelectedNote));
+            OnPropertyChanged(nameof(IsBossNoteVisible));
         }
     }
 
-    // ===== boss detail area (computed from SelectedBoss) =====
-    [ObservableProperty] private string bossInfo = "";   // we’ll show HP here, or add a description later
-    [ObservableProperty] private string bossSteals = "";  // pretty-printed steals list
-    [ObservableProperty] private string bossItems = "";  // pretty-printed drops
-
-    // ===== notes text area =====
-    [ObservableProperty] private string notesText = "";
-
-    // ===== right-side checklist =====
-    public ObservableCollection<ChecklistItem> Checklist { get; } = new();
-
-    // ===== nav state =====
-    [ObservableProperty] private int pageIndex = 0;
-
-    // ===== title (window title) =====
-    public string Title { get; }
-
-    // ===== commands (kept from your version) =====
-    public ICommand AddCommand { get; }
-    public ICommand EditCommand { get; }
-    public ICommand PrevCommand { get; }
-    public ICommand NextCommand { get; }
-
-    public NotesViewModel(string gameTitleOrId)
+    [RelayCommand]
+    private void Prev()
     {
-        Title = gameTitleOrId;
-
-        // Load bosses for this game from JSON
-        var gameId = ToGameId(gameTitleOrId);
-        foreach (var b in BossLoader.LoadFromAssets(gameId).Where(b => b.isVisible))
-            Bosses.Add(b);
-
-        // Sample checklist (keep yours)
-        Checklist.Add(new ChecklistItem("Did sidequest X?"));
-        Checklist.Add(new ChecklistItem("Found hidden item?"));
-        Checklist.Add(new ChecklistItem("Learned ability Y?"));
-
-        // Commands
-        AddCommand = new RelayCommand(OnAdd);
-        EditCommand = new RelayCommand(OnEdit);
-        PrevCommand = new RelayCommand(OnPrev);
-        NextCommand = new RelayCommand(OnNext);
+        if (PageIndex > 0)
+        {
+            PageIndex--;
+            OnPropertyChanged(nameof(SelectedNote));
+            OnPropertyChanged(nameof(IsBossNoteVisible));
+        }
     }
 
     static string ToGameId(string title) => title.ToLowerInvariant() switch
@@ -79,32 +83,14 @@ public partial class NotesViewModel : ObservableObject
         _ => title.ToLowerInvariant().Replace(" ", "")
     };
 
-    void OnAdd() { /* open add dialog / commit notes */ }
-    void OnEdit() { /* toggle edit mode */ }
-    void OnPrev() { if (PageIndex > 0) PageIndex--; /* load prev note */ }
-    void OnNext() { PageIndex++; /* load next note */ }
-
-    // Build the three display strings when selection changes
-    void UpdateBossInfo()
+    public void RefreshSelectedNote()
     {
-        if (SelectedBoss is null)
-        {
-            BossInfo = BossSteals = BossItems = "";
-            return;
-        }
-
-        // For now BossInfo shows HP; add a "description" field later if needed
-        BossInfo = $"HP: {SelectedBoss.hp}";
-
-        string FormatLoot(IEnumerable<Loot> list) =>
-            string.Join(", ",
-                list.Where(x => x.isVisible)
-                    .Select(x => string.IsNullOrWhiteSpace(x.chance)
-                        ? x.itemName
-                        : $"{x.itemName} ({x.chance})"));
-
-        BossSteals = FormatLoot(SelectedBoss.steal);
-        BossItems = FormatLoot(SelectedBoss.dropped); // or SelectedBoss.card if you prefer
+        OnPropertyChanged(nameof(SelectedNote));
+        OnPropertyChanged(nameof(IsBossNoteVisible));
+    }
+    public void Dispose()
+    {
+        _keyService.Dispose();
     }
 }
 

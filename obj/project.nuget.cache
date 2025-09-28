@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "XK1iuH27QDI=",
+  "dgSpecHash": "Z1+czOlrdls=",
   "success": true,
   "projectFilePath": "C:\\Users\\jorda\\source\\repos\\HasteNotes\\HasteNotes\\HasteNotes.csproj",
   "expectedPackageFiles": [
@@ -26,6 +26,7 @@
     "C:\\Users\\jorda\\.nuget\\packages\\harfbuzzsharp.nativeassets.webassembly\\8.3.1.1\\harfbuzzsharp.nativeassets.webassembly.8.3.1.1.nupkg.sha512",
     "C:\\Users\\jorda\\.nuget\\packages\\harfbuzzsharp.nativeassets.win32\\8.3.1.1\\harfbuzzsharp.nativeassets.win32.8.3.1.1.nupkg.sha512",
     "C:\\Users\\jorda\\.nuget\\packages\\microcom.runtime\\0.11.0\\microcom.runtime.0.11.0.nupkg.sha512",
+    "C:\\Users\\jorda\\.nuget\\packages\\mousekeyhook\\5.7.1\\mousekeyhook.5.7.1.nupkg.sha512",
     "C:\\Users\\jorda\\.nuget\\packages\\skiasharp\\2.88.9\\skiasharp.2.88.9.nupkg.sha512",
     "C:\\Users\\jorda\\.nuget\\packages\\skiasharp.nativeassets.linux\\2.88.9\\skiasharp.nativeassets.linux.2.88.9.nupkg.sha512",
     "C:\\Users\\jorda\\.nuget\\packages\\skiasharp.nativeassets.macos\\2.88.9\\skiasharp.nativeassets.macos.2.88.9.nupkg.sha512",
@@ -34,5 +35,18 @@
     "C:\\Users\\jorda\\.nuget\\packages\\system.io.pipelines\\8.0.0\\system.io.pipelines.8.0.0.nupkg.sha512",
     "C:\\Users\\jorda\\.nuget\\packages\\tmds.dbus.protocol\\0.21.2\\tmds.dbus.protocol.0.21.2.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "message": "Package 'MouseKeyHook 5.7.1' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
+      "projectPath": "C:\\Users\\jorda\\source\\repos\\HasteNotes\\HasteNotes\\HasteNotes.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\jorda\\source\\repos\\HasteNotes\\HasteNotes\\HasteNotes.csproj",
+      "libraryId": "MouseKeyHook",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    }
+  ]
 }

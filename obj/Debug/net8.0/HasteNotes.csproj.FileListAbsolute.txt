@@ -74,3 +74,4 @@ C:\Users\jorda\source\repos\HasteNotes\HasteNotes\obj\Debug\net8.0\HasteNotes.pd
 C:\Users\jorda\source\repos\HasteNotes\HasteNotes\obj\Debug\net8.0\HasteNotes.genruntimeconfig.cache
 C:\Users\jorda\source\repos\HasteNotes\HasteNotes\obj\Debug\net8.0\ref\HasteNotes.dll
 C:\Users\jorda\source\repos\HasteNotes\HasteNotes\bin\Debug\net8.0\CommunityToolkit.Mvvm.dll
+C:\Users\jorda\source\repos\HasteNotes\HasteNotes\bin\Debug\net8.0\Gma.System.MouseKeyHook.dll

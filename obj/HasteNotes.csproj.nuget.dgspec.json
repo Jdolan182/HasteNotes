@@ -74,6 +74,10 @@
             "CommunityToolkit.Mvvm": {
               "target": "Package",
               "version": "[8.4.0, )"
+            },
+            "MouseKeyHook": {
+              "target": "Package",
+              "version": "[5.7.1, )"
             }
           },
           "imports": [
@@ -90,6 +94,9 @@
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App.WindowsForms": {
+              "privateAssets": "none"
             }
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"

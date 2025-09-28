@@ -1,0 +1,25 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:HasteNotes.ViewModels"
+        x:Class="HasteNotes.Views.AddNoteWindow"
+		x:DataType="vm:AddNoteViewModel"
+        Width="800" Height="600"
+        Title="Add Note">
+
+	<StackPanel Margin="12" Spacing="8">
+		<TextBlock Text="Note Title:"/>
+		<TextBox Text="{Binding Title}"/>
+
+		<TextBlock Text="Content:"/>
+		<TextBox Text="{Binding Content}" AcceptsReturn="True" Height="250"/>
+
+		<CheckBox Content="Boss note" IsChecked="{Binding IsBossNote}"/>
+		<ComboBox ItemsSource="{Binding Bosses}" SelectedItem="{Binding SelectedBoss}"
+			IsEnabled="{Binding IsBossNote}" PlaceholderText="Select boss"/>
+
+		<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8">
+			<Button Content="Save" Command="{Binding SaveCommand}"/>
+			<Button Content="Cancel" Command="{Binding CancelCommand}"/>
+		</StackPanel>
+	</StackPanel>
+</Window>

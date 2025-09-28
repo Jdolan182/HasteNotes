@@ -5,8 +5,7 @@ using System.Text.Json;
 using Avalonia.Platform;
 using HasteNotes.Models;
 
-namespace HasteNotes.Data;
-
+namespace HasteNotes.Models;
 public static class BossLoader
 {
     public static List<Boss> LoadFromAssets(string gameId)

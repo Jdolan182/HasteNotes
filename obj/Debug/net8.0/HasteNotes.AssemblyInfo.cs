@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HasteNotes")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b1a32ad33d43a4ec79be0295a4d0bd2373795d75")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ca39b806e867c04e36b2e719cae1fbd915ef4d30")]
 [assembly: System.Reflection.AssemblyProductAttribute("HasteNotes")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HasteNotes")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

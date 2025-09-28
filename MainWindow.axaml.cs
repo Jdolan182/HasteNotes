@@ -14,13 +14,19 @@ namespace HasteNotes
 
         private void OpenNotes(string gameTitle)
         {
+            var viewModel = new NotesViewModel(gameTitle);
             var notes = new Notes
-            { 
-                DataContext = new NotesViewModel(gameTitle),
+            {
+                DataContext = viewModel,
                 WindowStartupLocation = WindowStartupLocation.CenterOwner
             };
 
-            notes.Closed += (_, __) => { this.Show(); this.Activate(); };
+            notes.Closed += (_, __) =>
+            {
+                viewModel.Dispose();
+                this.Show();
+                this.Activate();
+            };
 
             this.Hide();
             notes.Show();
