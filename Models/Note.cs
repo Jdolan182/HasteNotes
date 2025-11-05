@@ -1,9 +1,18 @@
-﻿
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+
 namespace HasteNotes.Models;
-public class Note
+
+public partial class Note : ObservableObject
 {
-    public string Title { get; set; } = "";
-    public string Content { get; set; } = "";
-    public bool IsBossNote { get; set; }
-    public Boss? SelectedBoss { get; set; }
+    [ObservableProperty]
+    private string title = string.Empty;
+
+    [ObservableProperty]
+    private string content = string.Empty;
+
+    [ObservableProperty]
+    private bool isBossNote;
+
+    [ObservableProperty]
+    private Boss? selectedBoss;
 }

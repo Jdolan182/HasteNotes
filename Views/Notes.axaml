@@ -27,29 +27,53 @@
 			<Button Grid.Column="2" Content="Edit" Command="{Binding EditCommand}" />
 		</Grid>
 
-		<!-- LEFT: content area -->
-		<StackPanel Grid.Row="2" Grid.Column="0" Margin="12" Spacing="8">
+		<!-- Notes area -->
+		<StackPanel Grid.Row="2" Grid.Column="0" Margin="12" Spacing="8" IsVisible="{Binding SelectedNote, Converter={x:Static ObjectConverters.IsNotNull}}">
 
 			<!-- Note Title -->
 			<TextBlock Text="{Binding SelectedNote.Title}" FontSize="18" FontWeight="Bold"/>
 
 			<!-- Boss info: only visible if boss note -->
-			<Grid IsVisible="{Binding IsBossNoteVisible}" Margin="0,4,0,8">
+			<StackPanel IsVisible="{Binding IsBossNoteVisible}" Margin="0,4,0,8" Spacing="8">
+
+				<!-- Header -->
+				<TextBlock Text="{Binding SelectedNote.SelectedBoss.BossName}" FontWeight="Bold"/>
 				<Grid ColumnDefinitions="*,*,*" Margin="0,0,0,8">
-					<TextBlock Text="Boss HP" FontWeight="Bold"/>
+					<TextBlock Text="HP" FontWeight="Bold"/>
 					<TextBlock Text="Steals" Grid.Column="1" FontWeight="Bold"/>
 					<TextBlock Text="Items" Grid.Column="2" FontWeight="Bold"/>
 				</Grid>
 
-				<Grid ColumnDefinitions="*,*,*" Margin="0,0,0,0">
+				<!-- Data -->
+				<Grid ColumnDefinitions="*,*,*">
+
+					<!-- HP -->
 					<TextBlock Text="{Binding SelectedNote.SelectedBoss.Hp}" />
-					<TextBlock Text="{Binding SelectedNote.SelectedBoss.Steals}" Grid.Column="1"/>
-					<TextBlock Text="{Binding SelectedNote.SelectedBoss.Items}" Grid.Column="2"/>
+
+					<!-- Steals -->
+					<ItemsControl ItemsSource="{Binding SelectedNote.SelectedBoss.VisibleSteals}">
+					<ItemsControl.ItemTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding Display}" />
+						</DataTemplate>
+					</ItemsControl.ItemTemplate>
+				</ItemsControl>
+
+				<ItemsControl ItemsSource="{Binding SelectedNote.SelectedBoss.VisibleItems}">
+					<ItemsControl.ItemTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding Display}" />
+						</DataTemplate>
+					</ItemsControl.ItemTemplate>
+				</ItemsControl>
+
+
 				</Grid>
-			</Grid>
+			</StackPanel>
+
 
 			<!-- Note Content -->
-			<Border BorderBrush="Gray" BorderThickness="1" CornerRadius="4">
+			<Border BorderBrush="#DDD" BorderThickness="1" CornerRadius="4">
 				<ScrollViewer HorizontalScrollBarVisibility="Auto"
                               VerticalScrollBarVisibility="Auto">
 					<TextBlock Text="{Binding SelectedNote.Content}" TextWrapping="Wrap" Padding="10"/>
@@ -57,7 +81,7 @@
 			</Border>
 		</StackPanel>
 
-		<!-- RIGHT: checklist sidebar -->
+		<!-- Checklist sidebar -->
 		<Border Grid.Row="2" Grid.Column="1" Margin="8,12,12,12"
                 BorderBrush="#DDD" BorderThickness="1" CornerRadius="4" Padding="12">
 			<StackPanel Spacing="8">

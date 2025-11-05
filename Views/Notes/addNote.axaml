@@ -14,8 +14,19 @@
 		<TextBox Text="{Binding Content}" AcceptsReturn="True" Height="250"/>
 
 		<CheckBox Content="Boss note" IsChecked="{Binding IsBossNote}"/>
-		<ComboBox ItemsSource="{Binding Bosses}" SelectedItem="{Binding SelectedBoss}"
-			IsEnabled="{Binding IsBossNote}" PlaceholderText="Select boss"/>
+		<ComboBox 
+            ItemsSource="{Binding Bosses}" 
+            SelectedItem="{Binding SelectedBoss, Mode=TwoWay}"
+            IsEnabled="{Binding IsBossNote}"
+            PlaceholderText="Select boss">
+
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding BossName}" />
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
 
 		<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8">
 			<Button Content="Save" Command="{Binding SaveCommand}"/>

@@ -27,14 +27,22 @@ public partial class NotesViewModel : ObservableObject
 
     private readonly GlobalKeyService _keyService;
 
-    // Event to request the view to open the dialog
+    // Event requests
     public event Action? RequestAddNoteDialog;
+    public event Action? RequestEditNoteDialog;
+
     public NotesViewModel(string title)
     {
         Title = title;
 
-        var gameId = ToGameId(title);
-        foreach (var b in BossLoader.LoadFromAssets(gameId).Where(b => b.IsVisible))
+        // var gameId = ToGameId(title);
+
+        var gameData = new GameBossData
+        {
+            GameId = ToGameId(title),
+            Bosses = new ObservableCollection<Boss>(BossLoader.LoadFromAssets(ToGameId(title)))
+        };
+        foreach (var b in gameData.Bosses.Where(b => b.IsVisible))
             Bosses.Add(b);
 
         _keyService = new GlobalKeyService();  // <-- Initialize before use
@@ -53,7 +61,8 @@ public partial class NotesViewModel : ObservableObject
     private void OnAdd() => RequestAddNoteDialog?.Invoke();
 
     [RelayCommand]
-    private void OnEdit() { /* ... */ }
+    private void OnEdit() => RequestEditNoteDialog?.Invoke();
+    private bool CanEdit() => SelectedNote != null;
 
     [RelayCommand]
     private void Next()
