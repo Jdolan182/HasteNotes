@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using HasteNotes.Models;
+using static System.Net.Mime.MediaTypeNames;
 
 
 namespace HasteNotes.ViewModels;
@@ -15,7 +16,6 @@ public partial class NotesViewModel : ObservableObject
 
     public ObservableCollection<Note> Notes { get; } = new();
     public ObservableCollection<Boss> Bosses { get; } = new();
-    public ObservableCollection<ChecklistItem> Checklist { get; } = new();
 
     [ObservableProperty] private string notesText = "";
 
@@ -24,6 +24,10 @@ public partial class NotesViewModel : ObservableObject
         ? Notes[PageIndex]
         : null;
     public bool IsBossNoteVisible => SelectedNote?.IsBossNote ?? false;
+
+    [ObservableProperty]
+    private string newChecklistText = "";
+    public ObservableCollection<ChecklistItem> Checklist { get; } = new();
 
     private readonly GlobalKeyService _keyService;
 
@@ -45,15 +49,16 @@ public partial class NotesViewModel : ObservableObject
         foreach (var b in gameData.Bosses.Where(b => b.IsVisible))
             Bosses.Add(b);
 
-        _keyService = new GlobalKeyService();  // <-- Initialize before use
+        // To allow for keys to register when window isn't focused
+        _keyService = new GlobalKeyService();
 
         _keyService.RegisterKey(Keys.P, Next);
         _keyService.RegisterKey(Keys.O, Prev);
 
-        //TODO: load from user settings
-        //var settings = LoadUserSettings(); 
+        // TODO: load from user settings
+        // var settings = LoadUserSettings(); 
         // hotkeys.Register(settings.NextNoteKey, () => NextCommand.Execute(null));
-        //  hotkeys.Register(settings.PrevNoteKey, () => PrevCommand.Execute(null));
+        // hotkeys.Register(settings.PrevNoteKey, () => PrevCommand.Execute(null));
     }
 
     // Command bound to Add button
@@ -86,6 +91,23 @@ public partial class NotesViewModel : ObservableObject
         }
     }
 
+    [RelayCommand]
+    private void AddChecklist()
+    {
+        if (!string.IsNullOrWhiteSpace(NewChecklistText))
+        {
+            Checklist.Add(new ChecklistItem { Text = NewChecklistText });
+            NewChecklistText = "";
+        }
+    }
+
+    [RelayCommand]
+    private void RemoveChecklist(ChecklistItem item)
+    {
+        if (item != null && Checklist.Contains(item))
+            Checklist.Remove(item);
+    }
+
     static string ToGameId(string title) => title.ToLowerInvariant() switch
     {
         "final fantasy ix" => "ff9",
@@ -105,8 +127,9 @@ public partial class NotesViewModel : ObservableObject
 
 public partial class ChecklistItem : ObservableObject
 {
-    public ChecklistItem(string text) { Text = text; }
-    public string Text { get; }
+    public ChecklistItem() { }
+    public ChecklistItem(string text) => Text = text;
 
+    [ObservableProperty] private string text = "";
     [ObservableProperty] private bool isChecked;
 }

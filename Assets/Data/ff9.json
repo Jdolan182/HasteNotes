@@ -29,11 +29,13 @@
         "steal": [
             {
                 "itemName": "Leather Hat",
-                "isVisible": true
+                "isVisible": true,
+                "chance": "100%"
             },
             {
                 "itemName": "Silk Shirt",
-                "isVisible": true
+                "isVisible": true,
+                "chance": "25%"
             }
         ],
         "dropped": [],
@@ -70,11 +72,13 @@
         "steal": [
             {
                 "itemName": "Broadsword",
-                "isVisible": true
+                "isVisible": true,
+                "chance": "100%"
             },
             {
                 "itemName": "Leather Wrist",
-                "isVisible": true
+                "isVisible": true,
+                "chance": "25%"
             }
         ],
         "dropped": [
@@ -170,12 +174,12 @@
         "dropped": [
             {
                 "itemName": "Hi-Potion (BW)",
-                "isVisible": false,
+                "isVisible": true,
                 "chance": "100%"
             },
             {
                 "itemName": "Phoenix Down (SL)",
-                "isVisible": false,
+                "isVisible": true,
                 "chance": "100%"
             }
         ],

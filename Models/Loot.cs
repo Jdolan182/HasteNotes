@@ -1,13 +1,18 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System.Text.Json.Serialization;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace HasteNotes.Models;
 
 public partial class Loot : ObservableObject
 {
+    [JsonPropertyName("itemName")]
     public string ItemName { get; set; } = "";
+
+    [JsonPropertyName("chance")]
     public string? Chance { get; set; }
 
     [ObservableProperty]
+    [JsonPropertyName("isVisible")]
     private bool isVisible = true;
 
     public string Display => string.IsNullOrWhiteSpace(Chance)

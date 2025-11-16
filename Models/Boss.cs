@@ -1,56 +1,64 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace HasteNotes.Models;
 
-public class Boss : ObservableObject
+public class Boss : ObservableObject, IJsonOnDeserialized
 {
     public string BossName { get; set; } = "";
     public string Hp { get; set; } = "";
 
-    // All loot collections
+    [JsonPropertyName("steal")]
     public ObservableCollection<Loot> Steals { get; set; } = new();
+
+    [JsonPropertyName("dropped")]
     public ObservableCollection<Loot> Items { get; set; } = new();
+
+    [JsonPropertyName("card")]
     public ObservableCollection<Loot> Cards { get; set; } = new();
 
     public bool IsVisible { get; set; } = true;
 
-    // Observable collections of visible loot
-    public ObservableCollection<Loot> VisibleSteals { get; } = new();
-    public ObservableCollection<Loot> VisibleItems { get; } = new();
+    [JsonIgnore] public ObservableCollection<Loot> VisibleSteals { get; } = new();
+    [JsonIgnore] public ObservableCollection<Loot> VisibleItems { get; } = new();
 
-    public Boss()
+    // This will be called AUTOMATICALLY after deserialization!
+    public void OnDeserialized()
     {
-        // Listen for changes in the loot collections
-        Steals.CollectionChanged += (s, e) => RefreshVisibleLoot(VisibleSteals, Steals);
-        Items.CollectionChanged += (s, e) => RefreshVisibleLoot(VisibleItems, Items);
-
-        foreach (var loot in Steals) loot.PropertyChanged += Loot_PropertyChanged;
-        foreach (var loot in Items) loot.PropertyChanged += Loot_PropertyChanged;
-
-        // Initialize visible collections
+        HookCollections();
         RefreshVisibleLoot(VisibleSteals, Steals);
         RefreshVisibleLoot(VisibleItems, Items);
     }
 
+    private void HookCollections()
+    {
+        Steals.CollectionChanged += (s, e) => RefreshVisibleLoot(VisibleSteals, Steals);
+        Items.CollectionChanged += (s, e) => RefreshVisibleLoot(VisibleItems, Items);
+
+        foreach (var loot in Steals)
+            loot.PropertyChanged += Loot_PropertyChanged;
+
+        foreach (var loot in Items)
+            loot.PropertyChanged += Loot_PropertyChanged;
+    }
+
     private void Loot_PropertyChanged(object? sender, PropertyChangedEventArgs e)
     {
-        if (sender is Loot loot && e.PropertyName == nameof(Loot.IsVisible))
+        if (e.PropertyName == nameof(Loot.IsVisible))
         {
-            // Refresh the visible collections when IsVisible changes
             RefreshVisibleLoot(VisibleSteals, Steals);
             RefreshVisibleLoot(VisibleItems, Items);
         }
     }
 
-    private void RefreshVisibleLoot(ObservableCollection<Loot> visible, ObservableCollection<Loot> source)
+    private static void RefreshVisibleLoot(ObservableCollection<Loot> visible, ObservableCollection<Loot> source)
     {
         visible.Clear();
         foreach (var loot in source.Where(l => l.IsVisible))
             visible.Add(loot);
     }
-
-    public override string ToString() => BossName;
 }

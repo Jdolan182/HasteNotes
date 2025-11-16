@@ -107,5 +107,8 @@ namespace HasteNotes.Views
             dlg.ShowDialog<bool?>(this);
         }
 
+        private void Button_ActualThemeVariantChanged(object? sender, EventArgs e)
+        {
+        }
     }
 }
