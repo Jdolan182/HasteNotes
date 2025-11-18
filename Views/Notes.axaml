@@ -22,12 +22,14 @@
         </Menu>
 
         <!-- Toolbar -->
-        <Grid Grid.Row="1" Grid.ColumnSpan="2"
+        <Grid Grid.Row="1" Grid.ColumnSpan="4"
               Margin="12,8"
-              ColumnDefinitions="Auto,8,Auto">
+              ColumnDefinitions="Auto,8,Auto,8,Auto">
             <Button Content="Add" Command="{Binding AddCommand}"/>
             <Rectangle Grid.Column="1" Width="8"/>
             <Button Grid.Column="2" Content="Edit" Command="{Binding EditCommand}"/>
+            <Rectangle Grid.Column="3" Width="8"/>
+            <Button Grid.Column="4" Content="Delete" Command="{Binding DeleteNoteCommand}"/>
         </Grid>
 
         <!-- NOTES AREA -->

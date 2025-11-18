@@ -2,9 +2,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="350"
-		   Width="800" Height="350"
-        MinWidth="800" MinHeight="350"
+        mc:Ignorable="d" d:DesignWidth="650" d:DesignHeight="445"
+		   Width="650" Height="445"
+        MinWidth="650" MinHeight="445"
         x:Class="HasteNotes.MainWindow"
         Title="HasteNotes">
 	
@@ -55,6 +55,9 @@
 			</Button>
 			<Button Classes="transparent" x:Name="ff16" Width="143" Height="93" IsEnabled="False" Content="FF16" Margin="5">
 				<Image Source="avares://HasteNotes/Assets/Icons/ff16.png" />
+			</Button>
+			<Button Classes="transparent" x:Name="noGame" Width="143" Height="93" IsEnabled="False" Content="FF16" Margin="5">
+				No Specific Game
 			</Button>
 		</WrapPanel>
 	</ScrollViewer>

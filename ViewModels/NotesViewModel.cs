@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Windows.Forms;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -15,8 +15,9 @@ using HasteNotes.Models;
 using MsBox.Avalonia;
 using MsBox.Avalonia.Dto;
 using MsBox.Avalonia.Enums;
-using MsBoxIcon = MsBox.Avalonia.Enums.Icon;
+using MsBox.Avalonia.Models;
 using static System.Net.Mime.MediaTypeNames;
+using MsBoxIcon = MsBox.Avalonia.Enums.Icon;
 
 
 namespace HasteNotes.ViewModels;
@@ -90,6 +91,50 @@ public partial class NotesViewModel : ObservableObject
     [RelayCommand]
     private void OnEdit() => RequestEditNoteDialog?.Invoke();
     private bool CanEdit() => SelectedNote != null;
+
+    [RelayCommand]
+    private async Task DeleteNote()
+    {
+        if (SelectedNote == null) return;
+
+        var box = MessageBoxManager.GetMessageBoxCustom(new MessageBoxCustomParams
+        {
+            ContentTitle = "Delete Note?",
+            ContentMessage = "Are you sure you want to delete this note?",
+            Icon = MsBoxIcon.Warning,
+            WindowStartupLocation = WindowStartupLocation.CenterOwner,
+            ButtonDefinitions = new[]
+            {
+                new ButtonDefinition { Name = "Yes" },
+                new ButtonDefinition { Name = "No" }
+            }
+        });
+
+        var result = await box.ShowAsync();
+
+        if (result == "Yes")
+        {
+            var index = PageIndex;
+            Notes.Remove(SelectedNote);
+
+            if (Notes.Count == 0)
+            {
+                PageIndex = 0;
+            }
+            else if (index >= Notes.Count)
+            {
+                PageIndex = Notes.Count - 1;
+            }
+            else
+            {
+                PageIndex = index;
+            }
+
+            RefreshSelectedNote();
+        }
+
+      
+    }
 
     [RelayCommand]
     private void Next()
