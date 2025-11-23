@@ -1,0 +1,45 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:HasteNotes.ViewModels"
+        xmlns:models="clr-namespace:HasteNotes.Models"
+        x:Class="HasteNotes.Views.SettingsWindow"
+        x:DataType="vm:SettingsViewModel"
+        Title="Settings" Width="400" Height="600">
+
+    <StackPanel Margin="12" Spacing="10">
+
+        <!-- Keybinds -->
+        <TextBlock Text="Keybinds" FontWeight="Bold"/>
+        <StackPanel Orientation="Horizontal" Spacing="8">
+            <TextBlock Text="Next Note:" VerticalAlignment="Center"/>
+            <ComboBox ItemsSource="{Binding AllKeys}" SelectedItem="{Binding NextKey, Mode=TwoWay}" Width="120"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Spacing="8">
+            <TextBlock Text="Previous Note:" VerticalAlignment="Center"/>
+            <ComboBox ItemsSource="{Binding AllKeys}" SelectedItem="{Binding PrevKey, Mode=TwoWay}" Width="120"/>
+        </StackPanel>
+
+        <!-- Checklist visibility -->
+        <CheckBox Content="Show Checklist" IsChecked="{Binding ShowChecklist, Mode=TwoWay}"/>
+
+         <!-- Default notes per game -->
+        <TextBlock Text="Default Notes File per Game" FontWeight="Bold" Margin="0,10,0,0"/>
+        <ItemsControl ItemsSource="{Binding DefaultNotesFiles}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate x:DataType="models:DefaultNoteFile">
+                    <StackPanel Orientation="Horizontal" Spacing="6">
+                        <TextBlock Text="{Binding GameIndex}" Width="50"/>
+                        <TextBox Text="{Binding FileName, Mode=TwoWay}" Width="250"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <!-- Buttons -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8" Margin="0,20,0,0">
+            <Button Content="Save" Command="{Binding SaveSettingsCommand}"/>
+            <Button Content="Reset Defaults" Command="{Binding ResetDefaultsCommand}"/>
+        </StackPanel>
+    </StackPanel>
+</Window>

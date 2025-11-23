@@ -32,8 +32,14 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 [C:/Users/jorda/source/repos/HasteNotes/HasteNotes/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
+[C:/Users/jorda/source/repos/HasteNotes/HasteNotes/Styles/General.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
 [C:/Users/jorda/source/repos/HasteNotes/HasteNotes/Views/Notes.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
 [C:/Users/jorda/source/repos/HasteNotes/HasteNotes/Views/Notes/addNote.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/jorda/source/repos/HasteNotes/HasteNotes/Views/SettingsWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml

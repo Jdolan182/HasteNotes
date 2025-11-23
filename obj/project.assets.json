@@ -636,6 +636,22 @@
         "runtime": {
           "lib/net8.0/Tmds.DBus.Protocol.dll": {}
         }
+      },
+      "Xaml.Behaviors/11.3.8": {
+        "type": "package",
+        "dependencies": {
+          "Avalonia": "11.3.8"
+        },
+        "compile": {
+          "lib/net8.0/Xaml.Behaviors.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Xaml.Behaviors.dll": {
+            "related": ".xml"
+          }
+        }
       }
     }
   },
@@ -1545,6 +1561,25 @@
         "tmds.dbus.protocol.0.21.2.nupkg.sha512",
         "tmds.dbus.protocol.nuspec"
       ]
+    },
+    "Xaml.Behaviors/11.3.8": {
+      "sha512": "QtIDZswKxeqajW+UsJtsIuHFsPd5ZU9tooeV853w7dDpwDA/AlYDB+42IzhmYelTdxPOdbBBiIRv/nApKEeSIg==",
+      "type": "package",
+      "path": "xaml.behaviors/11.3.8",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net10.0/Xaml.Behaviors.dll",
+        "lib/net10.0/Xaml.Behaviors.xml",
+        "lib/net6.0/Xaml.Behaviors.dll",
+        "lib/net6.0/Xaml.Behaviors.xml",
+        "lib/net8.0/Xaml.Behaviors.dll",
+        "lib/net8.0/Xaml.Behaviors.xml",
+        "lib/netstandard2.0/Xaml.Behaviors.dll",
+        "lib/netstandard2.0/Xaml.Behaviors.xml",
+        "xaml.behaviors.11.3.8.nupkg.sha512",
+        "xaml.behaviors.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
@@ -1556,7 +1591,8 @@
       "Avalonia.Themes.Fluent >= 11.3.8",
       "CommunityToolkit.Mvvm >= 8.4.0",
       "MessageBox.Avalonia >= 3.3.0",
-      "MouseKeyHook >= 5.7.1"
+      "MouseKeyHook >= 5.7.1",
+      "Xaml.Behaviors >= 11.3.8"
     ]
   },
   "packageFolders": {
@@ -1641,6 +1677,10 @@
           "MouseKeyHook": {
             "target": "Package",
             "version": "[5.7.1, )"
+          },
+          "Xaml.Behaviors": {
+            "target": "Package",
+            "version": "[11.3.8, )"
           }
         },
         "imports": [

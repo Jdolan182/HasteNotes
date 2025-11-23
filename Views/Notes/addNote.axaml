@@ -3,34 +3,86 @@
         xmlns:vm="clr-namespace:HasteNotes.ViewModels"
         x:Class="HasteNotes.Views.AddNoteWindow"
 		x:DataType="vm:AddNoteViewModel"
-        Width="800" Height="600"
+        Width="800" Height="650"
         Title="Add Note">
 
 	<StackPanel Margin="12" Spacing="8">
-		<TextBlock Text="Note Title:"/>
-		<TextBox Text="{Binding Title}"/>
+        
+        <!-- Note Title -->
+        <TextBlock Text="Note Title:"/>
+        <TextBox Text="{Binding Title, Mode=TwoWay}" />
 
-		<TextBlock Text="Content:"/>
-		<TextBox Text="{Binding Content}" AcceptsReturn="True" Height="250"/>
+        <!-- Content with wrapping -->
+        <TextBlock Text="Content:"/>
+        <TextBox Text="{Binding Content, Mode=TwoWay}"
+                 AcceptsReturn="True"
+                 TextWrapping="Wrap"
+                 Height="250"/>
 
-		<CheckBox Content="Boss note" IsChecked="{Binding IsBossNote}"/>
-		<ComboBox 
-            ItemsSource="{Binding Bosses}" 
-            SelectedItem="{Binding SelectedBoss, Mode=TwoWay}"
-            IsEnabled="{Binding IsBossNote}"
-            PlaceholderText="Select boss">
+        <!-- Boss note checkbox -->
+        <CheckBox Content="Boss note"
+                  IsChecked="{Binding IsBossNote, Mode=TwoWay}"/>
 
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding BossName}" />
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
+        <!-- Grid for Boss dropdown + Steals + Dropped -->
+        <Grid Margin="0,8,0,0" Height="170">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
 
+            <!-- Boss selection dropdown -->
+            <StackPanel Grid.Column="0" Spacing="4">
+                <TextBlock Text="Select Boss:" FontWeight="Bold"/>
+                <ComboBox ItemsSource="{Binding Bosses}"
+                          SelectedItem="{Binding SelectedBoss, Mode=TwoWay}"
+                          IsEnabled="{Binding IsBossNote}"
+                          PlaceholderText="Select boss">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding BossName}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
 
-		<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8">
-			<Button Content="Save" Command="{Binding SaveCommand}"/>
-			<Button Content="Cancel" Command="{Binding CancelCommand}"/>
-		</StackPanel>
-	</StackPanel>
+            <!-- Steals -->
+            <StackPanel Grid.Column="1" Spacing="4">
+                <TextBlock Text="Steals" FontWeight="Bold"/>
+                <ItemsControl ItemsSource="{Binding CurrentSteals}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                <CheckBox IsChecked="{Binding IsVisible, Mode=TwoWay}"/>
+                                <TextBlock Text="{Binding Display}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+
+            <!-- Dropped -->
+            <StackPanel Grid.Column="2" Spacing="4">
+                <TextBlock Text="Items" FontWeight="Bold"/>
+                <ItemsControl ItemsSource="{Binding CurrentDropped}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                <CheckBox IsChecked="{Binding IsVisible, Mode=TwoWay}"/>
+                                <TextBlock Text="{Binding Display}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+
+        </Grid>
+
+        <!-- Buttons -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8">
+            <Button Content="Save" Command="{Binding SaveCommand}" />
+            <Button Content="Cancel" Command="{Binding CancelCommand}" />
+        </StackPanel>
+
+    </StackPanel>
 </Window>

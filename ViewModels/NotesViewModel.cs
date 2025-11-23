@@ -1,22 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Input;
 using Avalonia.Controls;
-using Avalonia.Controls.ApplicationLifetimes;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using HasteNotes.Models;
+using HasteNotes.Services;
 using MsBox.Avalonia;
 using MsBox.Avalonia.Dto;
 using MsBox.Avalonia.Enums;
 using MsBox.Avalonia.Models;
-using static System.Net.Mime.MediaTypeNames;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using MsBoxIcon = MsBox.Avalonia.Enums.Icon;
 
 
@@ -43,6 +45,7 @@ public partial class NotesViewModel : ObservableObject
     private bool _hasUnsavedChanges;
     private void MarkDirty() => _hasUnsavedChanges = true;
     public ObservableCollection<ChecklistItem> Checklist { get; } = new();
+    public bool IsEditing { get; set; }
 
     private readonly GlobalKeyService _keyService;
 
@@ -52,6 +55,8 @@ public partial class NotesViewModel : ObservableObject
 
     private async Task SaveAsync() => Save();
 
+    [ObservableProperty] private bool isNotesListVisible = false;
+    public ICommand GoToNoteCommand { get; }
 
     public NotesViewModel(string title)
     {
@@ -70,11 +75,15 @@ public partial class NotesViewModel : ObservableObject
         foreach (var b in gameData.Bosses.Where(b => b.IsVisible))
             Bosses.Add(b);
 
+        var settings = SettingsService.LoadSettings();
+
         // To allow for keys to register when window isn't focused
         _keyService = new GlobalKeyService();
 
-        _keyService.RegisterKey(Keys.P, Next);
-        _keyService.RegisterKey(Keys.O, Prev);
+        _keyService.RegisterKey(settings.NextKey, Next);
+        _keyService.RegisterKey(settings.O, PrevKey);
+
+        GoToNoteCommand = new RelayCommand<Note>(GoToNote);
 
         // TODO: load from user settings
         // var settings = LoadUserSettings(); 
@@ -86,11 +95,22 @@ public partial class NotesViewModel : ObservableObject
 
     // Command bound to Add button
     [RelayCommand]
-    private void OnAdd() => RequestAddNoteDialog?.Invoke();
+    private void OnAdd()
+    {
+        IsEditing = true;
+        RequestAddNoteDialog?.Invoke();
+    }
 
     [RelayCommand]
-    private void OnEdit() => RequestEditNoteDialog?.Invoke();
+    private void OnEdit()
+    {
+        IsEditing = true;
+        RequestEditNoteDialog?.Invoke();
+    }
     private bool CanEdit() => SelectedNote != null;
+
+    [RelayCommand]
+    private void ToggleNotesList() => IsNotesListVisible = !IsNotesListVisible;
 
     [RelayCommand]
     private async Task DeleteNote()
@@ -139,6 +159,7 @@ public partial class NotesViewModel : ObservableObject
     [RelayCommand]
     private void Next()
     {
+        if (IsEditing) return;
         if (PageIndex < Notes.Count - 1)
         {
             PageIndex++;
@@ -150,6 +171,7 @@ public partial class NotesViewModel : ObservableObject
     [RelayCommand]
     private void Prev()
     {
+        if (IsEditing) return;
         if (PageIndex > 0)
         {
             PageIndex--;
@@ -278,6 +300,19 @@ public partial class NotesViewModel : ObservableObject
     }
 
     [RelayCommand]
+    private void Settings()
+    {
+        // Create the window
+        var window = new Views.SettingsWindow
+        {
+            DataContext = new SettingsViewModel()
+        };
+
+        // Show it as a regular window (non-modal)
+        window.Show();
+    }
+
+    [RelayCommand]
     private void Exit()
     {
         GetMainWindow().Close();
@@ -285,6 +320,31 @@ public partial class NotesViewModel : ObservableObject
     #endregion
 
     #region Helpers
+    private void GoToNote(Note note)
+    {
+        if (note == null) return;
+
+        PageIndex = Notes.IndexOf(note);
+        RefreshSelectedNote();
+        ToggleNotesList();
+    }
+
+    public void MoveNote(int oldIndex, int newIndex)
+    {
+        Debug.WriteLine("Send to debug output.");
+
+        if (oldIndex == newIndex || oldIndex < 0 || oldIndex >= Notes.Count || newIndex < 0 || newIndex >= Notes.Count)
+            return;
+
+        var note = Notes[oldIndex];
+        Notes.RemoveAt(oldIndex);
+        Notes.Insert(newIndex, note);
+
+        PageIndex = newIndex;
+        OnPropertyChanged(nameof(Notes));
+        RefreshSelectedNote();
+        MarkDirty();
+    }
 
     private async Task<ButtonResult> ShowSavePromptAsync()
     {

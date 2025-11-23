@@ -77,3 +77,4 @@ C:\Users\jorda\source\repos\HasteNotes\HasteNotes\obj\Debug\net8.0\refint\HasteN
 C:\Users\jorda\source\repos\HasteNotes\HasteNotes\obj\Debug\net8.0\HasteNotes.pdb
 C:\Users\jorda\source\repos\HasteNotes\HasteNotes\obj\Debug\net8.0\HasteNotes.genruntimeconfig.cache
 C:\Users\jorda\source\repos\HasteNotes\HasteNotes\obj\Debug\net8.0\ref\HasteNotes.dll
+C:\Users\jorda\source\repos\HasteNotes\HasteNotes\bin\Debug\net8.0\Xaml.Behaviors.dll

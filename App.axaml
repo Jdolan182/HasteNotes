@@ -23,5 +23,8 @@
 			<Setter Property="BorderBrush" Value="Black"/>
 			<Setter Property="Background" Value="#80FFFFFF"/>
 		</Style>
+
+		        <StyleInclude Source="avares://HasteNotes/Styles/General.axaml"/>
+
     </Application.Styles>
 </Application>

@@ -15,7 +15,8 @@
           "Avalonia.Themes.Fluent": "11.3.8",
           "CommunityToolkit.Mvvm": "8.4.0",
           "MessageBox.Avalonia": "3.3.0",
-          "MouseKeyHook": "5.7.1"
+          "MouseKeyHook": "5.7.1",
+          "Xaml.Behaviors": "11.3.8"
         },
         "runtime": {
           "HasteNotes.dll": {}
@@ -484,6 +485,17 @@
             "fileVersion": "0.21.2.0"
           }
         }
+      },
+      "Xaml.Behaviors/11.3.8": {
+        "dependencies": {
+          "Avalonia": "11.3.8"
+        },
+        "runtime": {
+          "lib/net8.0/Xaml.Behaviors.dll": {
+            "assemblyVersion": "11.3.8.0",
+            "fileVersion": "11.3.8.0"
+          }
+        }
       }
     }
   },
@@ -716,6 +728,13 @@
       "sha512": "sha512-ScSMrUrrw8px4kK1Glh0fZv/HQUlg1078bNXNPfRPKQ3WbRzV9HpsydYEOgSoMK5LWICMf2bMwIFH0pGjxjcMA==",
       "path": "tmds.dbus.protocol/0.21.2",
       "hashPath": "tmds.dbus.protocol.0.21.2.nupkg.sha512"
+    },
+    "Xaml.Behaviors/11.3.8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-QtIDZswKxeqajW+UsJtsIuHFsPd5ZU9tooeV853w7dDpwDA/AlYDB+42IzhmYelTdxPOdbBBiIRv/nApKEeSIg==",
+      "path": "xaml.behaviors/11.3.8",
+      "hashPath": "xaml.behaviors.11.3.8.nupkg.sha512"
     }
   }
 }
