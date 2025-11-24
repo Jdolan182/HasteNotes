@@ -12,8 +12,8 @@
         <conv:GreaterThanZeroToBoolConverter x:Key="GreaterThanZeroToBoolConverter"/>
     </Window.Resources>
 
-    <Grid RowDefinitions="Auto,Auto,*,Auto"
-          ColumnDefinitions="*,300">
+    <Grid x:Name="MainGrid" RowDefinitions="Auto,Auto,*,Auto"
+          ColumnDefinitions="*,Auto">
 
         <!-- Menu -->
         <Menu Grid.Row="0" Grid.ColumnSpan="2">
@@ -157,7 +157,8 @@
                 BorderBrush="#DDD"
                 BorderThickness="1"
                 CornerRadius="4"
-                Padding="12">
+                Padding="12"
+                IsVisible="{Binding ShowChecklist, Mode=TwoWay}">
 
             <Grid RowDefinitions="Auto,Auto,*">
 

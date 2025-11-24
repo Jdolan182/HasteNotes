@@ -1,23 +1,21 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using Avalonia.Input;
+using System.Linq;
+using System.Windows.Forms;
+
 
 namespace HasteNotes.Models;
 
 public class Settings
 {
-    public Key NextKey { get; set; } = Key.P;
-    public Key PrevKey { get; set; } = Key.O;
+    public Keys NextKey { get; set; } = Keys.P;
+    public Keys PrevKey { get; set; } = Keys.O;
     public bool ShowChecklist { get; set; } = true;
-
-    public ObservableCollection<DefaultNoteFile> DefaultNotesFiles { get; } = new ObservableCollection<DefaultNoteFile>();
-
-    public Settings()
-    {
-        // Initialize 16 games
-        for (int i = 0; i < 16; i++)
-        {
-            DefaultNotesFiles.Add(new DefaultNoteFile { GameIndex = i + 1 });
-        }
-    }
+    public ObservableCollection<DefaultNoteFile> DefaultNotesFiles { get; }
+     = new ObservableCollection<DefaultNoteFile>(
+         // Create 16 empty/default entries
+         Enumerable.Range(0, 16)
+                   .Select(i => new DefaultNoteFile { GameIndex = i, FileName = "" })
+                   .ToList()
+     );
 }

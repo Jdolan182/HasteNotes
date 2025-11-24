@@ -38,8 +38,8 @@
 
         <!-- Buttons -->
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8" Margin="0,20,0,0">
-            <Button Content="Save" Command="{Binding SaveSettingsCommand}"/>
-            <Button Content="Reset Defaults" Command="{Binding ResetDefaultsCommand}"/>
+            <Button Content="Save" Click="SaveButton_Click"/>
+            <Button Content="Reset Defaults" Click="ResetButton_Click"/>
         </StackPanel>
     </StackPanel>
 </Window>

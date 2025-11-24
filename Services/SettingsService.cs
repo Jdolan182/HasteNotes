@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
 using HasteNotes.Models;
@@ -19,6 +18,8 @@ public class SettingsService
 
     public Settings Current => _settings;
 
+    // Event that fires whenever a setting changes
+    public event Action? SettingsChanged;
     public void Save()
     {
         var json = JsonSerializer.Serialize(_settings, new JsonSerializerOptions { WriteIndented = true });
@@ -41,9 +42,17 @@ public class SettingsService
         }
     }
 
+    // Use this method to update a setting
+    public void Update(Action<Settings> updater)
+    {
+        updater(_settings);      // modify the settings
+        SettingsChanged?.Invoke(); // notify all listeners
+    }
+
     public void ResetDefaults()
     {
         _settings = new Settings();
+        SettingsChanged?.Invoke();
         Save();
     }
 }

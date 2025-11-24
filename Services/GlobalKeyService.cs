@@ -33,6 +33,11 @@ public class GlobalKeyService : IDisposable
         _callbacks.Remove(key);
     }
 
+    public void UnregisterAll()
+    {
+        _callbacks.Clear();
+    }
+
     public void Dispose()
     {
         _hook.KeyDown -= OnKeyDown;

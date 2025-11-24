@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using HasteNotes.ViewModels;
@@ -6,21 +7,23 @@ namespace HasteNotes.Views
 {
     public partial class SettingsWindow : Window
     {
+        public NotesViewModel? OwnerViewModel { get; set; }
         public SettingsWindow()
         {
             InitializeComponent();
+
+            this.Closing += SettingsWindow_Closing;
         }
 
         public SettingsWindow(SettingsViewModel vm) : this()
         {
             DataContext = vm;
         }
-
-        // Optional: handle window closing if you need to prompt or validate
-        private void Window_Closing(object? sender, WindowClosingEventArgs e)
+        private void SettingsWindow_Closing(object? sender, WindowClosingEventArgs e)
         {
-            // Example: Cancel closing if some validation fails
-            // if (!vm.CanClose()) e.Cancel = true;
+            // Always set IsEditing to false when the window closes
+            if (OwnerViewModel != null)
+                OwnerViewModel.IsEditing = false;
         }
 
         // Optional: handle buttons without commands (not recommended if using MVVM)
@@ -29,7 +32,13 @@ namespace HasteNotes.Views
             if (DataContext is SettingsViewModel vm)
                 vm.SaveSettingsCommand.Execute(null);
 
-            Close();
+
+            Debug.WriteLine("Settings saved, closing window.");
+            if (OwnerViewModel != null)
+                OwnerViewModel.IsEditing = false;
+
+            // Close the settings window
+            this.Close();
         }
 
         private void ResetButton_Click(object? sender, RoutedEventArgs e)

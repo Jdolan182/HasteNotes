@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
@@ -47,6 +48,16 @@ public partial class NotesViewModel : ObservableObject
     public ObservableCollection<ChecklistItem> Checklist { get; } = new();
     public bool IsEditing { get; set; }
 
+    public bool ShowChecklist
+    {
+        get => App.SettingsService.Current.ShowChecklist;
+        set
+        {
+            App.SettingsService.Update(s => s.ShowChecklist = value);
+            OnPropertyChanged();
+        }
+    }
+
     private readonly GlobalKeyService _keyService;
 
     // Event requests
@@ -75,20 +86,21 @@ public partial class NotesViewModel : ObservableObject
         foreach (var b in gameData.Bosses.Where(b => b.IsVisible))
             Bosses.Add(b);
 
-        var settings = SettingsService.LoadSettings();
+        var settings = App.SettingsService.Current;
 
         // To allow for keys to register when window isn't focused
         _keyService = new GlobalKeyService();
 
         _keyService.RegisterKey(settings.NextKey, Next);
-        _keyService.RegisterKey(settings.O, PrevKey);
+        _keyService.RegisterKey(settings.PrevKey, Prev);
 
         GoToNoteCommand = new RelayCommand<Note>(GoToNote);
 
-        // TODO: load from user settings
-        // var settings = LoadUserSettings(); 
-        // hotkeys.Register(settings.NextNoteKey, () => NextCommand.Execute(null));
-        // hotkeys.Register(settings.PrevNoteKey, () => PrevCommand.Execute(null));
+        // Subscribe to settings changes
+        App.SettingsService.SettingsChanged += OnSettingsChanged;
+
+        // Initial key registration
+        RegisterKeys(App.SettingsService.Current.NextKey, App.SettingsService.Current.PrevKey);
     }
 
     #region Commands
@@ -303,12 +315,14 @@ public partial class NotesViewModel : ObservableObject
     private void Settings()
     {
         // Create the window
+        IsEditing = true;
+
         var window = new Views.SettingsWindow
         {
             DataContext = new SettingsViewModel()
         };
 
-        // Show it as a regular window (non-modal)
+        window.OwnerViewModel = this; 
         window.Show();
     }
 
@@ -397,6 +411,24 @@ public partial class NotesViewModel : ObservableObject
 
         return mainWindow;
     }
+
+    private void OnSettingsChanged()
+    {
+        // Refresh checklist visibility
+        OnPropertyChanged(nameof(ShowChecklist));
+
+        // Re-register keys if they changed
+        var settings = App.SettingsService.Current;
+        RegisterKeys(settings.NextKey, settings.PrevKey);
+    }
+
+    private void RegisterKeys(Keys next, Keys prev)
+    {
+        _keyService.UnregisterAll();
+        _keyService.RegisterKey(next, Next);
+        _keyService.RegisterKey(prev, Prev);
+    }
+
 
     #endregion
 }
