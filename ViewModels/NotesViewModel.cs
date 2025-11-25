@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Runtime;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
@@ -19,7 +18,6 @@ using MsBox.Avalonia;
 using MsBox.Avalonia.Dto;
 using MsBox.Avalonia.Enums;
 using MsBox.Avalonia.Models;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using MsBoxIcon = MsBox.Avalonia.Enums.Icon;
 
 
@@ -87,6 +85,17 @@ public partial class NotesViewModel : ObservableObject
             Bosses.Add(b);
 
         var settings = App.SettingsService.Current;
+
+        // Load default notes file if exists
+        var defaultFile = settings.DefaultNotesFiles.FirstOrDefault(f => f.GameIndex.Equals(ToGameId(title), StringComparison.OrdinalIgnoreCase)
+        && !string.IsNullOrEmpty(f.FileName));
+
+        Debug.WriteLine(defaultFile);
+        if (defaultFile != null && File.Exists(defaultFile.FileName))
+        {
+            // Fire-and-forget loading here (can also await if you make constructor async pattern)
+            _ = LoadNotesFileAsync(defaultFile.FileName);
+        }
 
         // To allow for keys to register when window isn't focused
         _keyService = new GlobalKeyService();
@@ -390,7 +399,21 @@ public partial class NotesViewModel : ObservableObject
     }
     static string ToGameId(string title) => title.ToLowerInvariant() switch
     {
+        "final fantasy i" => "ff1",
+        "final fantasy ii" => "ff2",
+        "final fantasy iii" => "ff3",
+        "final fantasy iv" => "ff4",
+        "final fantasy v" => "ff5",
+        "final fantasy vi" => "ff6",
+        "final fantasy vii" => "ff7",
+        "final fantasy viii" => "ff8",
         "final fantasy ix" => "ff9",
+        "final fantasy x" => "ff10",
+        "final fantasy x-2" => "ff10-2",
+        "final fantasy xii" => "ff12",
+        "final fantasy xiii" => "ff13",
+        "final fantasy xv" => "ff15",
+        "final fantasy xvi" => "ff16",
         _ => title.ToLowerInvariant().Replace(" ", "")
     };
 
@@ -429,7 +452,37 @@ public partial class NotesViewModel : ObservableObject
         _keyService.RegisterKey(prev, Prev);
     }
 
+    private async Task LoadNotesFileAsync(string path)
+    {
+        Debug.WriteLine(path);
+        if (!File.Exists(path))
+            return;
 
+        try
+        {
+            var json = await File.ReadAllTextAsync(path);
+            var loaded = JsonSerializer.Deserialize<NotesFile>(json);
+
+            if (loaded != null)
+            {
+                Notes.Clear();
+                foreach (var n in loaded.Notes)
+                    Notes.Add(n);
+
+                Checklist.Clear();
+                foreach (var c in loaded.Checklist)
+                    Checklist.Add(c);
+
+                PageIndex = 0;
+                RefreshSelectedNote();
+                _hasUnsavedChanges = false;
+            }
+        }
+        catch (Exception ex)
+        {
+            await ShowMessageAsync("Error", $"Failed to load default notes file:\n{ex.Message}");
+        }
+    }
     #endregion
 }
 

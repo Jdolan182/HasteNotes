@@ -1,18 +1,20 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Windows.Forms;
+using System.Threading.Tasks;
 using System.Windows.Input;
-using Avalonia.Input;
+using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using HasteNotes.Models;
-using HasteNotes.Services;
+using Keys = System.Windows.Forms.Keys;
 
 namespace HasteNotes.ViewModels;
 
 public class SettingsViewModel : ObservableObject
 {
     private readonly Settings _settings;
+    public IAsyncRelayCommand<DefaultNoteFile> SelectDefaultFileCommand { get; }
 
     public SettingsViewModel()
     {
@@ -23,6 +25,8 @@ public class SettingsViewModel : ObservableObject
 
         // Expose all Keys for ComboBoxes
         AllKeys = (Keys[])Enum.GetValues(typeof(Keys));
+
+        SelectDefaultFileCommand = new AsyncRelayCommand<DefaultNoteFile>(SelectDefaultFile);
     }
 
     // Keybinds
@@ -73,5 +77,34 @@ public class SettingsViewModel : ObservableObject
         OnPropertyChanged(nameof(PrevKey));
         OnPropertyChanged(nameof(ShowChecklist));
         OnPropertyChanged(nameof(DefaultNotesFiles));
+    }
+
+    private async Task SelectDefaultFile(DefaultNoteFile file)
+    {
+        if (file is null)
+            return;
+
+        var dlg = new OpenFileDialog();
+        dlg.Filters.Add(new FileDialogFilter
+        {
+            Name = "JSON Files",
+            Extensions = { "json" }
+        });
+
+        var window = GetMainWindow();
+        var result = await dlg.ShowAsync(window);
+
+        if (result is { Length: > 0 })
+        {
+            file.FileName = result[0];
+            App.SettingsService.Save();
+            OnPropertyChanged(nameof(DefaultNotesFiles));
+        }
+    }
+
+    private Window GetMainWindow()
+    {
+        return (Avalonia.Application.Current.ApplicationLifetime
+            as IClassicDesktopStyleApplicationLifetime)!.MainWindow!;
     }
 }

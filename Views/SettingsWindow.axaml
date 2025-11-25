@@ -4,7 +4,7 @@
         xmlns:models="clr-namespace:HasteNotes.Models"
         x:Class="HasteNotes.Views.SettingsWindow"
         x:DataType="vm:SettingsViewModel"
-        Title="Settings" Width="400" Height="600">
+        Title="Settings" Width="800" Height="600">
 
     <StackPanel Margin="12" Spacing="10">
 
@@ -24,13 +24,28 @@
         <CheckBox Content="Show Checklist" IsChecked="{Binding ShowChecklist, Mode=TwoWay}"/>
 
          <!-- Default notes per game -->
-        <TextBlock Text="Default Notes File per Game" FontWeight="Bold" Margin="0,10,0,0"/>
+         <TextBlock Text="Default Notes File per Game"
+            FontWeight="Bold"
+            Margin="0,10,0,0"/>
+
         <ItemsControl ItemsSource="{Binding DefaultNotesFiles}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="2"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+
             <ItemsControl.ItemTemplate>
                 <DataTemplate x:DataType="models:DefaultNoteFile">
-                    <StackPanel Orientation="Horizontal" Spacing="6">
+                    <StackPanel Orientation="Horizontal" Spacing="6" Margin="0,4">
                         <TextBlock Text="{Binding GameIndex}" Width="50"/>
+
                         <TextBox Text="{Binding FileName, Mode=TwoWay}" Width="250"/>
+
+                        <Button Content="..." 
+                                Click="OpenFilePicker_Click"
+                                CommandParameter="{Binding}"/>
+                                
                     </StackPanel>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>

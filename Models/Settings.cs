@@ -13,9 +13,17 @@ public class Settings
     public bool ShowChecklist { get; set; } = true;
     public ObservableCollection<DefaultNoteFile> DefaultNotesFiles { get; }
      = new ObservableCollection<DefaultNoteFile>(
-         // Create 16 empty/default entries
-         Enumerable.Range(0, 16)
-                   .Select(i => new DefaultNoteFile { GameIndex = i, FileName = "" })
-                   .ToList()
+         new[]
+         {
+            "FF1", "FF2", "FF3", "FF4",
+            "FF5", "FF6", "FF7", "FF8",
+            "FF9", "FF10", "FF10-2", "FF12",
+            "FF13", "FF15", "FF16", "None"
+         }
+         .Select(name => new DefaultNoteFile
+         {
+             GameIndex = name,
+             FileName = ""
+         })
      );
 }

@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using HasteNotes.Models;
 using HasteNotes.ViewModels;
 
 namespace HasteNotes.Views
@@ -45,6 +46,15 @@ namespace HasteNotes.Views
         {
             if (DataContext is SettingsViewModel vm)
                 vm.ResetDefaultsCommand.Execute(null);
+        }
+
+        private async void OpenFilePicker_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button btn && btn.DataContext is DefaultNoteFile file)
+            {
+                if (DataContext is SettingsViewModel vm)
+                    await vm.SelectDefaultFileCommand.ExecuteAsync(file);
+            }
         }
     }
 }
