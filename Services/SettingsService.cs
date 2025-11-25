@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Text.Json;
 using HasteNotes.Models;
 
@@ -29,16 +30,18 @@ public class SettingsService
     private Settings LoadSettings()
     {
         if (!File.Exists(_filePath))
-            return new Settings(); // defaults
+            return new Settings().EnsureDefaultsAndReturn();
 
         var json = File.ReadAllText(_filePath);
         try
         {
-            return JsonSerializer.Deserialize<Settings>(json) ?? new Settings();
+            var loaded = JsonSerializer.Deserialize<Settings>(json) ?? new Settings();
+            loaded.EnsureDefaults(); // fill missing entries
+            return loaded;
         }
         catch
         {
-            return new Settings(); // fallback if corrupt
+            return new Settings().EnsureDefaultsAndReturn();
         }
     }
 

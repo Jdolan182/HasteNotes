@@ -90,7 +90,6 @@ public partial class NotesViewModel : ObservableObject
         var defaultFile = settings.DefaultNotesFiles.FirstOrDefault(f => f.GameIndex.Equals(ToGameId(title), StringComparison.OrdinalIgnoreCase)
         && !string.IsNullOrEmpty(f.FileName));
 
-        Debug.WriteLine(defaultFile);
         if (defaultFile != null && File.Exists(defaultFile.FileName))
         {
             // Fire-and-forget loading here (can also await if you make constructor async pattern)
