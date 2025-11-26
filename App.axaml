@@ -24,7 +24,7 @@
 			<Setter Property="Background" Value="#80FFFFFF"/>
 		</Style>
 
-		        <StyleInclude Source="avares://HasteNotes/Styles/General.axaml"/>
+		<StyleInclude Source="avares://HasteNotes/Styles/General.axaml"/>
 
     </Application.Styles>
 </Application>

@@ -1,5 +1,6 @@
 <Styles xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         xmlns:local="clr-namespace:HasteNotes.Behaviours">
     
     
     <Style Selector=":is(ListBox).draggable > :is(ListBoxItem)">
@@ -9,10 +10,22 @@
             <BehaviorCollectionTemplate>
                 <BehaviorCollection>
                     <ItemDragBehavior HorizontalDragThreshold="3" VerticalDragThreshold="3" Orientation="Vertical" />
+                   
                 </BehaviorCollection>
             </BehaviorCollectionTemplate>
         </Setter>
         
     </Style>
-    
+
+    <Style Selector=":is(ScrollViewer).draggableList">
+        
+        <Setter Property="(Interaction.Behaviors)">
+            <BehaviorCollectionTemplate>
+                <BehaviorCollection>
+                    <AutoScrollDuringDragBehavior ScrollDelta="5" EdgeDistance="20"/>
+                    <local:ContinuousAutoScrollDuringDragBehaviour /> 
+                </BehaviorCollection>
+            </BehaviorCollectionTemplate>
+        </Setter>
+    </Style>    
 </Styles>

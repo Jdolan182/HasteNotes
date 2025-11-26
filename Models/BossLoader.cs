@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
 using Avalonia.Platform;
-using HasteNotes.Models;
 
 namespace HasteNotes.Models;
 public static class BossLoader

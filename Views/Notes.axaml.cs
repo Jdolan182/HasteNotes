@@ -1,8 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Avalonia.VisualTree;
 using HasteNotes.Models;
 using HasteNotes.ViewModels;
 
@@ -170,6 +173,10 @@ namespace HasteNotes.Views
                 if (vm.GoToNoteCommand != null && vm.GoToNoteCommand.CanExecute(note))
                     vm.GoToNoteCommand.Execute(note);
             }
+        }
+
+        private void AutoScrollDuringDragBehavior_ActualThemeVariantChanged(object? sender, EventArgs e)
+        {
         }
     }
 }

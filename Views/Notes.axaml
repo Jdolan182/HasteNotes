@@ -49,36 +49,52 @@
                 Padding="6"
                 IsVisible="{Binding IsNotesListVisible}">
 
-            <StackPanel>
-                <TextBlock Text="Notes List"
-                           FontWeight="Bold"
-                           Margin="4"/>
+            <Border Grid.Row="2" Grid.Column="0"
+                    Margin="12"
+                    BorderThickness="1"
+                    BorderBrush="#CCC"
+                    CornerRadius="4"
+                    Padding="6"
+                    IsVisible="{Binding IsNotesListVisible}">
 
-                <ListBox x:Name="NotesListBox"  Classes="draggable"
-                         ItemsSource="{Binding Notes}"
-                         PointerReleased="NotesListBox_OnPointerReleased">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <DockPanel Margin="4">
+                <Grid RowDefinitions="Auto,*">
+                    <!-- Header -->
+                    <TextBlock Text="Notes List"
+                               FontWeight="Bold"
+                               Margin="4"
+                               Grid.Row="0"/>
+                  
+                    <!-- Scrollable List -->
+                    <ScrollViewer Grid.Row="1"
+                                  Classes="draggableList"
+                                  VerticalScrollBarVisibility="Auto"
+                                  HorizontalScrollBarVisibility="Disabled">
 
-                                <!-- Button aligned to the right -->
-                                <Button Content="&#x279C;"
-                                        Width="34"
-                                        Height="30"
-                                        Margin="4"
-                                        DockPanel.Dock="Right"
-                                        Click="GoToNote_Click"
-                                        CommandParameter="{Binding}"/>
+                        <ListBox x:Name="NotesListBox"
+                                 Classes="draggable"
+                                 ItemsSource="{Binding Notes}">
 
-                                <!-- Note title on the left -->
-                                <TextBlock Text="{Binding Title}"
-                                           VerticalAlignment="Center"/>
-                            </DockPanel>
-                        
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-            </StackPanel>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <DockPanel Margin="4">
+                                        <!-- Button aligned to the right -->
+                                        <Button Content="&#x279C;"
+                                                Width="34"
+                                                Height="30"
+                                                Margin="4"
+                                                DockPanel.Dock="Right"
+                                                Click="GoToNote_Click"
+                                                CommandParameter="{Binding}"/>
+                                        <!-- Note title on the left -->
+                                        <TextBlock Text="{Binding Title}" VerticalAlignment="Center"/>
+                                    </DockPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+
+                    </ScrollViewer>
+                </Grid>
+            </Border>
         </Border>
 
 
