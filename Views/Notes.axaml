@@ -85,6 +85,16 @@
                                                 DockPanel.Dock="Right"
                                                 Click="GoToNote_Click"
                                                 CommandParameter="{Binding}"/>
+
+                                        <!-- Delete Button -->
+                                        <Button Content="&#x1F5D1;"
+                                                Width="34"
+                                                Height="30"
+                                                 Margin="4"
+                                                DockPanel.Dock="Right"
+                                                Background="#FFFFC0C0"
+                                                Click="DeleteNote_Click"
+                                                CommandParameter="{Binding}" />
                                         <!-- Note title on the left -->
                                         <TextBlock Text="{Binding Title}" VerticalAlignment="Center"/>
                                     </DockPanel>

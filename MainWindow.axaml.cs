@@ -21,16 +21,9 @@ namespace HasteNotes
                 WindowStartupLocation = WindowStartupLocation.CenterOwner
             };
 
-            notes.Closed += (_, __) =>
-            {
-                viewModel.Dispose();
-                this.Show();
-                this.Activate();
-            };
-
-            this.Hide();
+          
             notes.Show();
-
+            this.Close();
         }
 
         private void Ff9_Click(object? sender, RoutedEventArgs e)

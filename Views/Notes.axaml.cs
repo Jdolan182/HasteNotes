@@ -1,19 +1,25 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
+
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Input;
 using Avalonia.Interactivity;
-using Avalonia.VisualTree;
 using HasteNotes.Models;
 using HasteNotes.ViewModels;
+using MsBox.Avalonia;
+using MsBox.Avalonia.Dto;
+using MsBox.Avalonia.Enums;
+using MsBoxIcon = MsBox.Avalonia.Enums.Icon;
 
 namespace HasteNotes.Views
 {
     public partial class Notes : Window
     {
         private NotesViewModel? _lastVm;
+        private bool _isForceClosing;
 
         public Notes()
         {
@@ -31,17 +37,17 @@ namespace HasteNotes.Views
                 _lastVm.RequestEditNoteDialog -= OpenEditNoteDialog;
             }
 
-            if (DataContext is NotesViewModel vm)
+            if (DataContext is NotesViewModel mainVm)
             {
-                vm.RequestAddNoteDialog += OpenAddNoteDialog;
-                vm.RequestEditNoteDialog += OpenEditNoteDialog;
-                _lastVm = vm;
+                mainVm.RequestAddNoteDialog += OpenAddNoteDialog;
+                mainVm.RequestEditNoteDialog += OpenEditNoteDialog;
+                _lastVm = mainVm;
             }
         }
 
         private void NotesListBox_OnPointerReleased(object? sender, PointerReleasedEventArgs e)
         {
-            if (DataContext is not NotesViewModel vm)
+            if (DataContext is not NotesViewModel mainVm)
                 return;
 
             // Get current visual ordering of items
@@ -54,15 +60,14 @@ namespace HasteNotes.Views
             }
 
             // Replace the ViewModel's Notes collection
-            vm.Notes.Clear();
+            mainVm.Notes.Clear();
             foreach (var note in newOrder)
-                vm.Notes.Add(note);
+                mainVm.Notes.Add(note);
 
             // Optional: sync to selected note’s new index
-            if (vm.SelectedNote != null)
-                vm.PageIndex = vm.Notes.IndexOf(vm.SelectedNote);
+            mainVm.PageIndex = mainVm.Notes.IndexOf(mainVm.SelectedNote);
 
-            vm.RefreshSelectedNote();
+            mainVm.RefreshSelectedNote();
         }
 
         #region Add/Edit Note Dialogs
@@ -94,6 +99,7 @@ namespace HasteNotes.Views
                     mainVm.Notes.Add(newNote);
                     mainVm.PageIndex = mainVm.Notes.Count - 1;
                     mainVm.RefreshSelectedNote();
+                    mainVm.MarkDirty();
                 }
             };
 
@@ -135,6 +141,7 @@ namespace HasteNotes.Views
                     selectedNote.SelectedBoss = dialogVm.SelectedBoss;
 
                     mainVm.RefreshSelectedNote();
+                    mainVm.MarkDirty();
                 }
             };
 
@@ -153,12 +160,14 @@ namespace HasteNotes.Views
 
         private void RemoveChecklist_Click(object? sender, RoutedEventArgs e)
         {
-            if (DataContext is not NotesViewModel vm) return;
+            if (DataContext is not NotesViewModel mainVm) return;
 
             if (sender is Button btn && btn.CommandParameter is ChecklistItem item)
             {
-                if (vm.RemoveChecklistCommand != null && vm.RemoveChecklistCommand.CanExecute(item))
-                    vm.RemoveChecklistCommand.Execute(item);
+                if (mainVm.RemoveChecklistCommand != null && mainVm.RemoveChecklistCommand.CanExecute(item))
+                    mainVm.RemoveChecklistCommand.Execute(item);
+                    mainVm.MarkDirty();
+
             }
         }
 
@@ -166,17 +175,86 @@ namespace HasteNotes.Views
 
         private void GoToNote_Click(object? sender, RoutedEventArgs e)
         {
-            if (DataContext is not NotesViewModel vm) return;
+            if (DataContext is not NotesViewModel mainVm) return;
 
             if (sender is Button btn && btn.CommandParameter is Note note)
             {
-                if (vm.GoToNoteCommand != null && vm.GoToNoteCommand.CanExecute(note))
-                    vm.GoToNoteCommand.Execute(note);
+                if (mainVm.GoToNoteCommand != null && mainVm.GoToNoteCommand.CanExecute(note))
+                    mainVm.GoToNoteCommand.Execute(note);
             }
         }
 
-        private void AutoScrollDuringDragBehavior_ActualThemeVariantChanged(object? sender, EventArgs e)
+        private async void DeleteNote_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
+            if (DataContext is not NotesViewModel mainVm)
+                return;
+
+            var btn = e.Source as Avalonia.Controls.Button;
+            if (btn?.CommandParameter is not Note note)
+                return;
+
+            await mainVm.DeleteNote(note);
+        }
+
+        protected override async void OnClosing(WindowClosingEventArgs e)
+        {
+            // If we're already closing intentionally skip logic
+            if (_isForceClosing)
+                return;
+
+            base.OnClosing(e);
+
+            if (DataContext is not NotesViewModel mainVm)
+                return;
+
+            if (!mainVm.HasUnsavedChanges)
+            {
+                ShutdownApp();
+                return;
+            }
+
+            // Cancel close until user chooses
+            e.Cancel = true;
+
+            var result = await ShowSavePromptAsync();
+
+            switch (result)
+            {
+                case ButtonResult.Yes:
+                    bool saved = await mainVm.SaveAsync();
+                    if (saved)
+                        ShutdownApp(); // only shutdown after save completes
+                    break;
+
+                case ButtonResult.No:
+                    ShutdownApp();
+                    break;
+
+                case ButtonResult.Cancel:
+                    // Just stay open
+                    break;
+            }
+        }
+
+        private void ShutdownApp()
+        {
+            _isForceClosing = true;  // prevents recursion
+            Close();
+        }
+
+        private async Task<ButtonResult> ShowSavePromptAsync()
+        {
+            var box = MessageBoxManager.GetMessageBoxStandard(new MessageBoxStandardParams
+            {
+                ContentHeader = "Unsaved Changes",
+                ContentMessage = "You have unsaved changes. Save before exiting?",
+                ButtonDefinitions = ButtonEnum.YesNoCancel,
+                Icon = MsBoxIcon.Warning,
+                WindowStartupLocation = WindowStartupLocation.CenterOwner,
+                CanResize = false
+            });
+
+            return await box.ShowAsync();
         }
     }
 }

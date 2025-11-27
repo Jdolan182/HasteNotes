@@ -14,6 +14,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using HasteNotes.Models;
 using HasteNotes.Services;
+using HasteNotes.Views;
 using MsBox.Avalonia;
 using MsBox.Avalonia.Dto;
 using MsBox.Avalonia.Enums;
@@ -42,7 +43,11 @@ public partial class NotesViewModel : ObservableObject
     private string newChecklistText = "";
 
     private bool _hasUnsavedChanges;
-    private void MarkDirty() => _hasUnsavedChanges = true;
+    public bool HasUnsavedChanges
+    {
+        get => _hasUnsavedChanges;
+    }
+    public void MarkDirty() => _hasUnsavedChanges = true;
     public ObservableCollection<ChecklistItem> Checklist { get; } = new();
     public bool IsEditing { get; set; }
 
@@ -62,7 +67,7 @@ public partial class NotesViewModel : ObservableObject
     public event Action? RequestAddNoteDialog;
     public event Action? RequestEditNoteDialog;
 
-    private async Task SaveAsync() => Save();
+    public async Task<bool> SaveAsync() => await Save();
 
     [ObservableProperty] private bool isNotesListVisible = false;
     public ICommand GoToNoteCommand { get; }
@@ -71,7 +76,20 @@ public partial class NotesViewModel : ObservableObject
     {
         Title = title;
 
-        Notes.CollectionChanged += (_, __) => MarkDirty();
+        Notes.CollectionChanged += (_, e) =>
+        {
+            if (Notes.Count == 0)
+            {
+                PageIndex = 0;
+            }
+            else if (PageIndex >= Notes.Count)
+            {
+                // If PageIndex is out of bounds, clamp to last note
+                PageIndex = Notes.Count - 1;
+            }
+            RefreshSelectedNote();
+            MarkDirty();
+        };
         Checklist.CollectionChanged += (_, __) => MarkDirty();
 
         // var gameId = ToGameId(title);
@@ -133,9 +151,12 @@ public partial class NotesViewModel : ObservableObject
     private void ToggleNotesList() => IsNotesListVisible = !IsNotesListVisible;
 
     [RelayCommand]
-    private async Task DeleteNote()
+    public async Task DeleteNote(Note? note = null)
     {
-        if (SelectedNote == null) return;
+        var targetNote = note ?? SelectedNote;
+        if (targetNote == null) return;
+
+        var owner = GetMainWindow(); // make sure this returns your Notes window
 
         var box = MessageBoxManager.GetMessageBoxCustom(new MessageBoxCustomParams
         {
@@ -145,35 +166,41 @@ public partial class NotesViewModel : ObservableObject
             WindowStartupLocation = WindowStartupLocation.CenterOwner,
             ButtonDefinitions = new[]
             {
-                new ButtonDefinition { Name = "Yes" },
-                new ButtonDefinition { Name = "No" }
-            }
+            new ButtonDefinition { Name = "Yes" },
+            new ButtonDefinition { Name = "No" }
+        }
         });
 
         var result = await box.ShowAsync();
 
         if (result == "Yes")
         {
-            var index = PageIndex;
-            Notes.Remove(SelectedNote);
+            var deletedIndex = Notes.IndexOf(targetNote);
+            Notes.Remove(targetNote);
 
+            Debug.WriteLine(PageIndex);
+            Debug.WriteLine(deletedIndex);
             if (Notes.Count == 0)
             {
                 PageIndex = 0;
             }
-            else if (index >= Notes.Count)
+            else if (deletedIndex == PageIndex)
             {
-                PageIndex = Notes.Count - 1;
+                // Deleted note was selected
+                // If there is a previous note, select it; otherwise select first remaining note
+                PageIndex = deletedIndex - 1 >= 0 ? deletedIndex - 1 : 0;
             }
-            else
+            else if (deletedIndex < PageIndex)
             {
-                PageIndex = index;
+                // Deleted note was before selected note, shift PageIndex back by 1
+                PageIndex = Math.Max(PageIndex - 1, 0);
             }
 
+            Debug.WriteLine(PageIndex);
+            Debug.WriteLine(deletedIndex);
             RefreshSelectedNote();
+            MarkDirty();
         }
-
-      
     }
 
     [RelayCommand]
@@ -285,7 +312,7 @@ public partial class NotesViewModel : ObservableObject
     }
 
     [RelayCommand]
-    private async Task Save()
+    public async Task<bool> Save()
     {
         var dlg = new Avalonia.Controls.SaveFileDialog();
         dlg.Filters.Add(new FileDialogFilter
@@ -294,8 +321,11 @@ public partial class NotesViewModel : ObservableObject
             Extensions = { "json" }
         });
 
-        var path = await dlg.ShowAsync(GetMainWindow());
-        if (string.IsNullOrEmpty(path)) return;
+        // Make sure the owner is the current window
+        var owner = GetMainWindow();
+        var path = await dlg.ShowAsync(owner);  // must pass owner here
+        if (string.IsNullOrEmpty(path))
+            return false;
 
         try
         {
@@ -305,17 +335,15 @@ public partial class NotesViewModel : ObservableObject
                 Checklist = new List<ChecklistItem>(Checklist)
             };
 
-            var json = JsonSerializer.Serialize(data, new JsonSerializerOptions
-            {
-                WriteIndented = true
-            });
-
+            var json = JsonSerializer.Serialize(data, new JsonSerializerOptions { WriteIndented = true });
             await File.WriteAllTextAsync(path, json);
             _hasUnsavedChanges = false;
+            return true;
         }
         catch (Exception ex)
         {
             await ShowMessageAsync("Error", $"Failed to save file:\n{ex.Message}");
+            return false;
         }
     }
 
@@ -349,23 +377,6 @@ public partial class NotesViewModel : ObservableObject
         PageIndex = Notes.IndexOf(note);
         RefreshSelectedNote();
         ToggleNotesList();
-    }
-
-    public void MoveNote(int oldIndex, int newIndex)
-    {
-        Debug.WriteLine("Send to debug output.");
-
-        if (oldIndex == newIndex || oldIndex < 0 || oldIndex >= Notes.Count || newIndex < 0 || newIndex >= Notes.Count)
-            return;
-
-        var note = Notes[oldIndex];
-        Notes.RemoveAt(oldIndex);
-        Notes.Insert(newIndex, note);
-
-        PageIndex = newIndex;
-        OnPropertyChanged(nameof(Notes));
-        RefreshSelectedNote();
-        MarkDirty();
     }
 
     private async Task<ButtonResult> ShowSavePromptAsync()
@@ -427,11 +438,12 @@ public partial class NotesViewModel : ObservableObject
     }
     private Window GetMainWindow()
     {
-        var mainWindow = Avalonia.Application.Current!.ApplicationLifetime is Avalonia.Controls.ApplicationLifetimes.IClassicDesktopStyleApplicationLifetime desktop
-            ? desktop.MainWindow
-            : null;
-
-        return mainWindow;
+        return Avalonia.Application.Current.ApplicationLifetime switch
+        {
+            Avalonia.Controls.ApplicationLifetimes.IClassicDesktopStyleApplicationLifetime desktop =>
+                desktop.Windows.OfType<Notes>().FirstOrDefault(w => w.IsVisible),
+            _ => null
+        };
     }
 
     private void OnSettingsChanged()
