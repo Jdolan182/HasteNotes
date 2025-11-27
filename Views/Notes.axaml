@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="clr-namespace:HasteNotes.ViewModels"
         xmlns:conv="clr-namespace:HasteNotes.Converters"
+        xmlns:markdown="clr-namespace:Markdown.Avalonia;assembly=Markdown.Avalonia"
         x:Class="HasteNotes.Views.Notes"
         x:DataType="vm:NotesViewModel"
         Width="900" Height="600"
@@ -164,14 +165,13 @@
             </StackPanel>
 
             <!-- Scrollable note content -->
-            <Border Grid.Row="2"
+           <Border Grid.Row="2"
                     BorderBrush="#DDD"
                     BorderThickness="1"
-                    CornerRadius="4">
+                    CornerRadius="4"
+                    Padding="6">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <TextBlock Text="{Binding SelectedNote.Content}"
-                               Padding="10"
-                               TextWrapping="Wrap"/>
+                    <markdown:MarkdownScrollViewer Markdown="{Binding SelectedNote.Content}" />
                 </ScrollViewer>
             </Border>
 

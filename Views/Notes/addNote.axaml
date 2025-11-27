@@ -1,9 +1,10 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="clr-namespace:HasteNotes.ViewModels"
+        xmlns:markdown="clr-namespace:Markdown.Avalonia;assembly=Markdown.Avalonia"
         x:Class="HasteNotes.Views.AddNoteWindow"
 		x:DataType="vm:AddNoteViewModel"
-        Width="800" Height="650"
+        Width="800" Height="900"
         Title="Add Note">
 
 	<StackPanel Margin="12" Spacing="8">
@@ -13,11 +14,40 @@
         <TextBox Text="{Binding Title, Mode=TwoWay}" />
 
         <!-- Content with wrapping -->
-        <TextBlock Text="Content:"/>
-        <TextBox Text="{Binding Content, Mode=TwoWay}"
+       <!-- <TextBox Text="{Binding Content, Mode=TwoWay}"
                  AcceptsReturn="True"
                  TextWrapping="Wrap"
-                 Height="250"/>
+                 Height="250"/> -->
+        <!-- Content label -->
+        <TextBlock Text="Content:" Margin="0,0,0,0"/> <!-- smaller bottom margin -->
+
+        <Grid Height="500" Margin="0,0,0,8"> <!-- smaller bottom margin on the Grid -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/> <!-- Editor -->
+                <RowDefinition Height="*"/>  <!-- Preview -->
+            </Grid.RowDefinitions>
+
+            <!-- Markdown editor -->
+            <TextBox Grid.Row="0"
+                     Text="{Binding Content, Mode=TwoWay}"
+                     AcceptsReturn="True"
+                     TextWrapping="Wrap"
+                     Height="250"/>
+
+            <!-- Markdown preview with border -->
+            <Border Grid.Row="1" 
+                    BorderBrush="#CCC" 
+                    BorderThickness="1" 
+                    CornerRadius="4"
+                    Margin="0,2,0,0" 
+                    Padding="6">
+                <ScrollViewer VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Auto">
+                    <markdown:MarkdownScrollViewer Markdown="{Binding Content, Mode=OneWay}"/>
+                </ScrollViewer>
+            </Border>
+        </Grid>
+
 
         <!-- Boss note checkbox -->
         <CheckBox Content="Boss note"
