@@ -80,7 +80,7 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Spacing="6">
                                 <CheckBox IsChecked="{Binding IsVisible, Mode=TwoWay}"/>
-                                <TextBlock Text="{Binding Display}"/>
+                                <TextBlock Text="{Binding Display}" VerticalAlignment="Center"/>
                             </StackPanel>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
@@ -95,7 +95,7 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Spacing="6">
                                 <CheckBox IsChecked="{Binding IsVisible, Mode=TwoWay}"/>
-                                <TextBlock Text="{Binding Display}"/>
+                                <TextBlock Text="{Binding Display}" VerticalAlignment="Center"/>
                             </StackPanel>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
