@@ -10,7 +10,10 @@
         Title="{Binding Title}">
 
     <Window.Resources>
+        <conv:NullOrCountGreaterThanZeroConverter x:Key="NullOrCountGreaterThanZeroConverter"/>
         <conv:GreaterThanZeroToBoolConverter x:Key="GreaterThanZeroToBoolConverter"/>
+        <conv:NullToBoolConverter x:Key="NullToBoolConverter"/>
+        <conv:NullToEmptyCollectionConverter x:Key="NullToEmptyCollectionConverter"/>
     </Window.Resources>
 
     <Grid x:Name="MainGrid" RowDefinitions="Auto,Auto,*,Auto"
@@ -117,11 +120,11 @@
         <!-- NOTES AREA -->
         <Grid Grid.Row="2" Grid.Column="0" Margin="12"
               RowDefinitions="Auto,Auto,*"
-               IsVisible="{Binding !IsNotesListVisible}">
+              IsVisible="{Binding !IsNotesListVisible}">
 
             <!-- Note title -->
             <TextBlock Grid.Row="0"
-                       Text="{Binding SelectedNote.Title}"
+                       Text="{Binding SelectedNote?.Title}"
                        FontSize="18"
                        FontWeight="Bold"
                        IsVisible="{Binding SelectedNote, Converter={x:Static ObjectConverters.IsNotNull}}"/>
@@ -132,24 +135,24 @@
                         Margin="0,8"
                         Spacing="8">
 
-                <TextBlock Text="{Binding SelectedNote.SelectedBoss.BossName}"
-                           FontWeight="Bold"/>
+                <TextBlock Text="{Binding SelectedNote?.SelectedBoss?.BossName}"
+                           FontWeight="Bold" IsVisible="{Binding SelectedNote?.SelectedBoss, Converter={StaticResource NullToBoolConverter}}"/>
 
                 <!-- Headers -->
-                <Grid ColumnDefinitions="*,*,*" Margin="0,0,0,8">
+                 <Grid ColumnDefinitions="*,*,*" Margin="0,0,0,8">
                     <TextBlock Text="HP" FontWeight="Bold"/>
                     <TextBlock Text="Steals" Grid.Column="1" FontWeight="Bold"
-                               IsVisible="{Binding SelectedNote.SelectedBoss.VisibleSteals.Count, Converter={StaticResource GreaterThanZeroToBoolConverter}}"/>
+                               IsVisible="{Binding SelectedNote?.SelectedBoss?.VisibleSteals, Converter={StaticResource NullOrCountGreaterThanZeroConverter}}"/>
                     <TextBlock Text="Items" Grid.Column="2" FontWeight="Bold"
-                               IsVisible="{Binding SelectedNote.SelectedBoss.VisibleItems.Count, Converter={StaticResource GreaterThanZeroToBoolConverter}}"/>
+                               IsVisible="{Binding SelectedNote?.SelectedBoss?.VisibleItems, Converter={StaticResource NullOrCountGreaterThanZeroConverter}}"/>
                 </Grid>
 
                 <!-- Data -->
                 <Grid ColumnDefinitions="*,*,*">
-                    <TextBlock Text="{Binding SelectedNote.SelectedBoss.Hp}"/>
+                    <TextBlock Text="{Binding SelectedNote?.SelectedBoss?.Hp}"/>
 
                     <ItemsControl Grid.Column="1"
-                                  ItemsSource="{Binding SelectedNote.SelectedBoss.VisibleSteals}">
+                                  ItemsSource="{Binding SelectedNote?.SelectedBoss?.VisibleSteals, Converter={StaticResource NullToEmptyCollectionConverter}}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Display}"/>
@@ -158,7 +161,7 @@
                     </ItemsControl>
 
                     <ItemsControl Grid.Column="2"
-                                  ItemsSource="{Binding SelectedNote.SelectedBoss.VisibleItems}">
+                                  ItemsSource="{Binding SelectedNote?.SelectedBoss?.VisibleItems, Converter={StaticResource NullToEmptyCollectionConverter}}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Display}"/>
@@ -176,7 +179,7 @@
                     CornerRadius="4"
                     Padding="6">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <markdown:MarkdownScrollViewer Markdown="{Binding SelectedNote.Content}" />
+                    <markdown:MarkdownScrollViewer Markdown="{Binding SelectedNote?.Content}" />
                 </ScrollViewer>
             </Border>
 

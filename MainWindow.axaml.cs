@@ -21,7 +21,6 @@ namespace HasteNotes
                 WindowStartupLocation = WindowStartupLocation.CenterOwner
             };
 
-          
             notes.Show();
             this.Close();
         }

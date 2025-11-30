@@ -5,7 +5,6 @@ using Avalonia.Threading;
 using Gma.System.MouseKeyHook;
 
 namespace HasteNotes.Services;
-
 public class GlobalKeyService : IDisposable
 {
     private readonly IKeyboardMouseEvents _hook;

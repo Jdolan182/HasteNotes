@@ -1,0 +1,132 @@
+[
+    {
+        "bossName": "Garland",
+        "hp": "212",
+        "steal": [],
+        "dropped": [
+            {
+                "itemName": "Longsword",
+                "isVisible": false,
+                "chance": ""
+            }
+        ],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Astos",
+        "hp": "420",
+        "steal": [],
+        "dropped": [
+            {
+                "itemName": "Mythril Sword",
+                "isVisible": false,
+                "chance": ""
+            }
+        ],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Vampire",
+        "hp": "280",
+        "steal": [],
+        "dropped": [],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Vampire",
+        "hp": "1200",
+        "steal": [],
+        "dropped": [
+            {
+                "itemName": "Dry Ether",
+                "isVisible": false,
+                "chance": ""
+            }
+        ],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Red Dragon",
+        "hp": "248",
+        "steal": [],
+        "dropped": [],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Marilith",
+        "hp": "1440",
+        "steal": [],
+        "dropped": [
+            {
+                "itemName": "Golden Apple",
+                "isVisible": false,
+                "chance": ""
+            }
+        ],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Kraken",
+        "hp": "1800",
+        "steal": [],
+        "dropped": [
+            {
+                "itemName": "Kikuichimonji",
+                "isVisible": false,
+                "chance": ""
+            }
+        ],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Kraken",
+        "hp": "1800",
+        "steal": [],
+        "dropped": [
+            {
+                "itemName": "Kikuichimonji",
+                "isVisible": false,
+                "chance": ""
+            }
+        ],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Tiamat",
+        "hp": "2400",
+        "steal": [],
+        "dropped": [],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Chaos",
+        "hp": "20000",
+        "steal": [],
+        "dropped": [],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Warmech",
+        "hp": "2000",
+        "steal": [],
+        "dropped": [
+            {
+                "itemName": "Genji Armor",
+                "isVisible": false,
+                "chance": ""
+            }
+        ],
+        "card": [],
+        "isVisible": true
+    }
+]

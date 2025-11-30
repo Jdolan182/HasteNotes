@@ -37,12 +37,10 @@ namespace HasteNotes
             if (!File.Exists(settingsFile))
                 SettingsService.Save();
 
-
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
                 desktop.MainWindow = new MainWindow();
             }
-
             base.OnFrameworkInitializationCompleted();
         }
     }

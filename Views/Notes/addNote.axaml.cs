@@ -16,7 +16,6 @@ namespace HasteNotes.Views
 
         private void AddNoteWindow_DataContextChanged(object? sender, EventArgs e)
         {
-            // Avalonia 0.10+ exposes DataContext directly
             if (this.DataContext is AddNoteViewModel vm)
             {
                 vm.RequestClose += r =>

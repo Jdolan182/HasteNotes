@@ -165,7 +165,7 @@ namespace HasteNotes.Views
             {
                 if (mainVm.RemoveChecklistCommand != null && mainVm.RemoveChecklistCommand.CanExecute(item))
                     mainVm.RemoveChecklistCommand.Execute(item);
-                    mainVm.MarkDirty();
+                mainVm.MarkDirty();
 
             }
         }
