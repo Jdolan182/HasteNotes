@@ -9,7 +9,8 @@ namespace HasteNotes.Services;
 public class GlobalKeyService : IDisposable
 {
     private readonly IKeyboardMouseEvents _hook;
-    private readonly Dictionary<Keys, Action> _callbacks = new();
+    private readonly Dictionary<Keys, Action> _callbacks = [];
+    private bool _disposed;
 
     public GlobalKeyService()
     {
@@ -17,7 +18,7 @@ public class GlobalKeyService : IDisposable
         _hook.KeyDown += OnKeyDown;
     }
 
-    private void OnKeyDown(object sender, KeyEventArgs e)
+    private void OnKeyDown(object? sender, KeyEventArgs e)
     {
         if (_callbacks.TryGetValue(e.KeyCode, out var callback))
             Dispatcher.UIThread.Post(callback);
@@ -40,8 +41,26 @@ public class GlobalKeyService : IDisposable
 
     public void Dispose()
     {
-        _hook.KeyDown -= OnKeyDown;
-        _hook.Dispose();
-        _callbacks.Clear();
+        Dispose(true);
+        GC.SuppressFinalize(this); // Suppress finalizer
+    }
+
+    protected virtual void Dispose(bool disposing)
+    {
+        if (_disposed) return;
+
+        if (disposing)
+        {
+            _hook.KeyDown -= OnKeyDown;
+            _hook.Dispose();
+            _callbacks.Clear();
+        }
+
+        _disposed = true;
+    }
+
+    ~GlobalKeyService()
+    {
+        Dispose(false);
     }
 }

@@ -12,12 +12,12 @@ public static class BossLoader
         var uri = new Uri($"avares://HasteNotes/Assets/Data/{gameId}.json");
         using var s = AssetLoader.Open(uri);
         return JsonSerializer.Deserialize<List<Boss>>(s, Options())
-               ?? new List<Boss>();
+               ?? [];
     }
 
     public static List<Boss> LoadFromFile(string path)
         => JsonSerializer.Deserialize<List<Boss>>(File.ReadAllText(path), Options())
-           ?? new List<Boss>();
+           ?? [];
 
     static JsonSerializerOptions Options() => new()
     {

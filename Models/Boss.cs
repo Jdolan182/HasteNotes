@@ -1,7 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using CommunityToolkit.Mvvm.ComponentModel;
 
@@ -11,22 +10,14 @@ public class Boss : ObservableObject, IJsonOnDeserialized
 {
     public string BossName { get; set; } = "";
     public string Hp { get; set; } = "";
-
-    [JsonPropertyName("steal")]
-    public ObservableCollection<Loot> Steals { get; set; } = new();
-
-    [JsonPropertyName("dropped")]
-    public ObservableCollection<Loot> Items { get; set; } = new();
-
-    [JsonPropertyName("card")]
-    public ObservableCollection<Loot> Cards { get; set; } = new();
-
     public bool IsVisible { get; set; } = true;
 
-    [JsonIgnore] public ObservableCollection<Loot> VisibleSteals { get; } = new();
-    [JsonIgnore] public ObservableCollection<Loot> VisibleItems { get; } = new();
+    [JsonPropertyName("steal")] public ObservableCollection<Loot> Steals { get; set; } = [];
+    [JsonPropertyName("dropped")] public ObservableCollection<Loot> Items { get; set; } = [];
+    [JsonPropertyName("card")] public ObservableCollection<Loot> Cards { get; set; } = [];
+    [JsonIgnore] public ObservableCollection<Loot> VisibleSteals { get; } = [];
+    [JsonIgnore] public ObservableCollection<Loot> VisibleItems { get; } = [];
 
-    // This will be called AUTOMATICALLY after deserialization!
     public void OnDeserialized()
     {
         HookCollections();
@@ -54,7 +45,6 @@ public class Boss : ObservableObject, IJsonOnDeserialized
             RefreshVisibleLoot(VisibleItems, Items);
         }
     }
-
     private static void RefreshVisibleLoot(ObservableCollection<Loot> visible, ObservableCollection<Loot> source)
     {
         visible.Clear();

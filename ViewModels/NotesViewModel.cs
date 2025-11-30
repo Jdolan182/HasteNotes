@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
@@ -10,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Input;
 using Avalonia.Controls;
+using Avalonia.Platform.Storage;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using HasteNotes.Models;
@@ -21,26 +20,12 @@ using MsBox.Avalonia.Enums;
 using MsBox.Avalonia.Models;
 using MsBoxIcon = MsBox.Avalonia.Enums.Icon;
 
-
 namespace HasteNotes.ViewModels;
 
 public partial class NotesViewModel : ObservableObject
 {
     public string Title { get; }
-
-    public ObservableCollection<Note> Notes { get; } = new();
-    public ObservableCollection<Boss> Bosses { get; } = new();
-
-    [ObservableProperty] private string notesText = "";
-
-    [ObservableProperty] private int pageIndex = 0;
-    public Note? SelectedNote => (PageIndex >= 0 && PageIndex < Notes.Count)
-        ? Notes[PageIndex]
-        : null;
-    public bool IsBossNoteVisible => SelectedNote?.IsBossNote ?? false;
-
-    [ObservableProperty]
-    private string newChecklistText = "";
+    public bool HasBosses { get; }
 
     private bool _hasUnsavedChanges;
     public bool HasUnsavedChanges
@@ -48,33 +33,49 @@ public partial class NotesViewModel : ObservableObject
         get => _hasUnsavedChanges;
     }
     public void MarkDirty() => _hasUnsavedChanges = true;
-    public ObservableCollection<ChecklistItem> Checklist { get; } = new();
     public bool IsEditing { get; set; }
+
+    private readonly Settings settings = App.SettingsService?.Current
+               ?? throw new InvalidOperationException("SettingsService is not initialized.");
+
+    private readonly SettingsService settingsService = App.SettingsService;
 
     public bool ShowChecklist
     {
-        get => App.SettingsService.Current.ShowChecklist;
+        get => settings.ShowChecklist;
         set
         {
-            App.SettingsService.Update(s => s.ShowChecklist = value);
+            settingsService.Update(s => s.ShowChecklist = value);
             OnPropertyChanged();
         }
     }
-
     private readonly GlobalKeyService _keyService;
 
-    // Event requests
+    public Note? SelectedNote => (PageIndex >= 0 && PageIndex < Notes.Count)
+       ? Notes[PageIndex]
+       : null;
+    public bool IsBossNoteVisible => SelectedNote?.IsBossNote ?? false;
+
+    [ObservableProperty] private string notesText = "";
+    [ObservableProperty] private int pageIndex = 0;
+    [ObservableProperty] private string newChecklistText = "";
+    [ObservableProperty] private bool isNotesListVisible = false;
+
+    public ObservableCollection<Note> Notes { get; } = [];
+    public ObservableCollection<Boss> Bosses { get; } = [];
+    public ObservableCollection<ChecklistItem> Checklist { get; } = [];
+
     public event Action? RequestAddNoteDialog;
     public event Action? RequestEditNoteDialog;
 
     public async Task<bool> SaveAsync() => await Save();
 
-    [ObservableProperty] private bool isNotesListVisible = false;
     public ICommand GoToNoteCommand { get; }
 
-    public NotesViewModel(string title)
+    public NotesViewModel(string title, bool hasBosses = false)
     {
         Title = title;
+        HasBosses = hasBosses;
 
         Notes.CollectionChanged += (_, e) =>
         {
@@ -92,15 +93,18 @@ public partial class NotesViewModel : ObservableObject
         };
         Checklist.CollectionChanged += (_, __) => MarkDirty();
 
-        // var gameId = ToGameId(title);
 
-        var gameData = new GameBossData
+        if (hasBosses)
         {
-            GameId = ToGameId(title),
-            Bosses = new ObservableCollection<Boss>(BossLoader.LoadFromAssets(ToGameId(title)))
-        };
-        foreach (var b in gameData.Bosses.Where(b => b.IsVisible))
-            Bosses.Add(b);
+            var GameId = ToGameId(title);
+            var gameData = new GameBossData
+            {
+                GameId = ToGameId(title),
+                Bosses = new ObservableCollection<Boss>(BossLoader.LoadFromAssets(ToGameId(title)))
+            };
+            foreach (var b in gameData.Bosses.Where(b => b.IsVisible))
+                Bosses.Add(b);
+        }
 
         var settings = App.SettingsService.Current;
 
@@ -110,7 +114,6 @@ public partial class NotesViewModel : ObservableObject
 
         if (defaultFile != null && File.Exists(defaultFile.FileName))
         {
-            // Fire-and-forget loading here (can also await if you make constructor async pattern)
             _ = LoadNotesFileAsync(defaultFile.FileName);
         }
 
@@ -131,7 +134,6 @@ public partial class NotesViewModel : ObservableObject
 
     #region Commands
 
-    // Command bound to Add button
     [RelayCommand]
     private void OnAdd()
     {
@@ -155,8 +157,7 @@ public partial class NotesViewModel : ObservableObject
     {
         var targetNote = note ?? SelectedNote;
         if (targetNote == null) return;
-
-        var owner = GetMainWindow(); // make sure this returns your Notes window
+        _ = MainWindow;
 
         var box = MessageBoxManager.GetMessageBoxCustom(new MessageBoxCustomParams
         {
@@ -164,11 +165,11 @@ public partial class NotesViewModel : ObservableObject
             ContentMessage = "Are you sure you want to delete this note?",
             Icon = MsBoxIcon.Warning,
             WindowStartupLocation = WindowStartupLocation.CenterOwner,
-            ButtonDefinitions = new[]
-            {
-            new ButtonDefinition { Name = "Yes" },
-            new ButtonDefinition { Name = "No" }
-        }
+            ButtonDefinitions =
+            [
+                new ButtonDefinition { Name = "Yes" },
+                new ButtonDefinition { Name = "No" }
+            ]
         });
 
         var result = await box.ShowAsync();
@@ -177,9 +178,6 @@ public partial class NotesViewModel : ObservableObject
         {
             var deletedIndex = Notes.IndexOf(targetNote);
             Notes.Remove(targetNote);
-
-            Debug.WriteLine(PageIndex);
-            Debug.WriteLine(deletedIndex);
             if (Notes.Count == 0)
             {
                 PageIndex = 0;
@@ -192,12 +190,9 @@ public partial class NotesViewModel : ObservableObject
             }
             else if (deletedIndex < PageIndex)
             {
-                // Deleted note was before selected note, shift PageIndex back by 1
-                PageIndex = Math.Max(PageIndex - 1, 0);
+                // Deleted note was before selected note, shift PageIndex back to selected note
+                PageIndex = deletedIndex;
             }
-
-            Debug.WriteLine(PageIndex);
-            Debug.WriteLine(deletedIndex);
             RefreshSelectedNote();
             MarkDirty();
         }
@@ -245,7 +240,7 @@ public partial class NotesViewModel : ObservableObject
     }
 
     [RelayCommand]
-    private async void New()
+    private async Task New()
     {
         if (_hasUnsavedChanges)
         {
@@ -265,7 +260,7 @@ public partial class NotesViewModel : ObservableObject
     }
 
     [RelayCommand]
-    private async void Open()
+    private async Task Open()
     {
         if (_hasUnsavedChanges)
         {
@@ -274,28 +269,41 @@ public partial class NotesViewModel : ObservableObject
             if (result == ButtonResult.Yes) await SaveAsync();
         }
 
-        var dlg = new Avalonia.Controls.OpenFileDialog();
-        dlg.Filters.Add(new FileDialogFilter
+        var owner = MainWindow;
+        if (owner?.StorageProvider == null) return;
+
+        // Open file picker
+        var files = await owner.StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions
         {
-            Name = "JSON Files",
-            Extensions = { "json" }
+            AllowMultiple = false,
+            FileTypeFilter =
+            [
+                new("JSON Files")
+                {
+                    Patterns = ["*.json"]
+                }
+            ]
         });
 
-        var path = await dlg.ShowAsync(GetMainWindow());
-        if (path == null || path.Length == 0) return;
+        if (files == null || files.Count == 0) return;
 
+        var file = files[0];
         try
         {
-            var json = await File.ReadAllTextAsync(path[0]);
-            var loaded = JsonSerializer.Deserialize<NotesFile>(json);
+            await using var stream = await file.OpenReadAsync();
+            using var reader = new StreamReader(stream);
+            var json = await reader.ReadToEndAsync();
 
+            var loaded = JsonSerializer.Deserialize<NotesFile>(json);
             if (loaded != null)
             {
                 Notes.Clear();
-                foreach (var n in loaded.Notes) Notes.Add(n);
+                foreach (var n in loaded.Notes)
+                    Notes.Add(n);
 
                 Checklist.Clear();
-                foreach (var c in loaded.Checklist) Checklist.Add(c);
+                foreach (var c in loaded.Checklist)
+                    Checklist.Add(c);
 
                 // Reset page index to first note
                 PageIndex = 0;
@@ -311,32 +319,42 @@ public partial class NotesViewModel : ObservableObject
         }
     }
 
+
     [RelayCommand]
     public async Task<bool> Save()
     {
-        var dlg = new Avalonia.Controls.SaveFileDialog();
-        dlg.Filters.Add(new FileDialogFilter
+        var owner = MainWindow;
+        if (owner?.StorageProvider == null) return false;
+
+        var files = await owner.StorageProvider.SaveFilePickerAsync(new FilePickerSaveOptions
         {
-            Name = "JSON Files",
-            Extensions = { "json" }
+            DefaultExtension = "json",
+            FileTypeChoices =
+            [
+                new("JSON Files")
+                {
+                    Patterns = ["*.json"]
+                }
+            ]
         });
 
-        // Make sure the owner is the current window
-        var owner = GetMainWindow();
-        var path = await dlg.ShowAsync(owner);  // must pass owner here
-        if (string.IsNullOrEmpty(path))
-            return false;
+        if (files == null) return false;
 
+        var file = files; // IStorageFile
         try
         {
             var data = new NotesFile
             {
-                Notes = new List<Note>(Notes),
-                Checklist = new List<ChecklistItem>(Checklist)
+                Notes = [.. Notes],
+                Checklist = [.. Checklist]
             };
 
-            var json = JsonSerializer.Serialize(data, new JsonSerializerOptions { WriteIndented = true });
-            await File.WriteAllTextAsync(path, json);
+            var json = JsonSerializer.Serialize(data, _jsonOptions);
+
+            await using var stream = await file.OpenWriteAsync();
+            using var writer = new StreamWriter(stream);
+            await writer.WriteAsync(json);
+
             _hasUnsavedChanges = false;
             return true;
         }
@@ -347,30 +365,29 @@ public partial class NotesViewModel : ObservableObject
         }
     }
 
+
     [RelayCommand]
     private void Settings()
     {
-        // Create the window
         IsEditing = true;
 
         var window = new Views.SettingsWindow
         {
-            DataContext = new SettingsViewModel()
+            DataContext = new SettingsViewModel(),
+            OwnerViewModel = this
         };
-
-        window.OwnerViewModel = this; 
         window.Show();
     }
 
     [RelayCommand]
-    private void Exit()
+    private static void Exit()
     {
-        GetMainWindow().Close();
+        MainWindow?.Close();
     }
     #endregion
 
     #region Helpers
-    private void GoToNote(Note note)
+    private void GoToNote(Note? note)
     {
         if (note == null) return;
 
@@ -379,7 +396,7 @@ public partial class NotesViewModel : ObservableObject
         ToggleNotesList();
     }
 
-    private async Task<ButtonResult> ShowSavePromptAsync()
+    private static async Task<ButtonResult> ShowSavePromptAsync()
     {
         var box = MessageBoxManager.GetMessageBoxStandard(new MessageBoxStandardParams
         {
@@ -394,7 +411,7 @@ public partial class NotesViewModel : ObservableObject
         return result;
     }
 
-    private async Task ShowMessageAsync(string title, string message)
+    private static async Task ShowMessageAsync(string title, string message)
     {
         var box = MessageBoxManager.GetMessageBoxStandard(new MessageBoxStandardParams
         {
@@ -407,7 +424,7 @@ public partial class NotesViewModel : ObservableObject
 
         await box.ShowAsync();
     }
-    static string ToGameId(string title) => title.ToLowerInvariant() switch
+    private static string ToGameId(string title) => title.ToLowerInvariant() switch
     {
         "final fantasy i" => "ff1",
         "final fantasy ii" => "ff2",
@@ -436,14 +453,17 @@ public partial class NotesViewModel : ObservableObject
     {
         _keyService.Dispose();
     }
-    private Window GetMainWindow()
+    private static Window? MainWindow
     {
-        return Avalonia.Application.Current.ApplicationLifetime switch
+        get
         {
-            Avalonia.Controls.ApplicationLifetimes.IClassicDesktopStyleApplicationLifetime desktop =>
-                desktop.Windows.OfType<Notes>().FirstOrDefault(w => w.IsVisible),
-            _ => null
-        };
+            var app = Avalonia.Application.Current;
+            if (app?.ApplicationLifetime is Avalonia.Controls.ApplicationLifetimes.IClassicDesktopStyleApplicationLifetime desktop)
+            {
+                return desktop.Windows.OfType<Notes>().FirstOrDefault(w => w.IsVisible);
+            }
+            return null;
+        }
     }
 
     private void OnSettingsChanged()
@@ -452,7 +472,6 @@ public partial class NotesViewModel : ObservableObject
         OnPropertyChanged(nameof(ShowChecklist));
 
         // Re-register keys if they changed
-        var settings = App.SettingsService.Current;
         RegisterKeys(settings.NextKey, settings.PrevKey);
     }
 
@@ -465,7 +484,6 @@ public partial class NotesViewModel : ObservableObject
 
     private async Task LoadNotesFileAsync(string path)
     {
-        Debug.WriteLine(path);
         if (!File.Exists(path))
             return;
 
@@ -494,6 +512,11 @@ public partial class NotesViewModel : ObservableObject
             await ShowMessageAsync("Error", $"Failed to load default notes file:\n{ex.Message}");
         }
     }
+
+    private static readonly JsonSerializerOptions _jsonOptions = new()
+    {
+        WriteIndented = true
+    };
     #endregion
 }
 

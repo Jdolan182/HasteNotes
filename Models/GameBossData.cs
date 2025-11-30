@@ -5,5 +5,5 @@ namespace HasteNotes.Models;
 public class GameBossData
 {
     public string GameId { get; set; } = "";
-    public ObservableCollection<Boss> Bosses { get; set; } = new();
+    public ObservableCollection<Boss> Bosses { get; set; } = [];
 }

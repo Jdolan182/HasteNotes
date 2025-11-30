@@ -1,10 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-
-using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using HasteNotes.Models;
@@ -64,8 +61,10 @@ namespace HasteNotes.Views
             foreach (var note in newOrder)
                 mainVm.Notes.Add(note);
 
-            // Optional: sync to selected note’s new index
-            mainVm.PageIndex = mainVm.Notes.IndexOf(mainVm.SelectedNote);
+            mainVm.PageIndex = mainVm.SelectedNote is Note sel
+             ? mainVm.Notes.IndexOf(sel)
+             : -1;
+
 
             mainVm.RefreshSelectedNote();
         }
@@ -172,7 +171,6 @@ namespace HasteNotes.Views
         }
 
         #endregion
-
         private void GoToNote_Click(object? sender, RoutedEventArgs e)
         {
             if (DataContext is not NotesViewModel mainVm) return;
@@ -196,6 +194,12 @@ namespace HasteNotes.Views
             await mainVm.DeleteNote(note);
         }
 
+        private void GameSelection_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+        {
+            var viewModel = new MainWindow();
+            viewModel.Show();
+            this.Close();
+        }
         protected override async void OnClosing(WindowClosingEventArgs e)
         {
             // If we're already closing intentionally skip logic
@@ -231,7 +235,6 @@ namespace HasteNotes.Views
                     break;
 
                 case ButtonResult.Cancel:
-                    // Just stay open
                     break;
             }
         }
@@ -242,7 +245,7 @@ namespace HasteNotes.Views
             Close();
         }
 
-        private async Task<ButtonResult> ShowSavePromptAsync()
+        private static async Task<ButtonResult> ShowSavePromptAsync()
         {
             var box = MessageBoxManager.GetMessageBoxStandard(new MessageBoxStandardParams
             {

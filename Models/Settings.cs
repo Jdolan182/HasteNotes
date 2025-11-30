@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Forms;
-
 
 namespace HasteNotes.Models;
 
@@ -11,7 +9,7 @@ public class Settings
     public Keys NextKey { get; set; } = Keys.P;
     public Keys PrevKey { get; set; } = Keys.O;
     public bool ShowChecklist { get; set; } = true;
-    public ObservableCollection<DefaultNoteFile> DefaultNotesFiles { get; set; } = new ObservableCollection<DefaultNoteFile>();
+    public ObservableCollection<DefaultNoteFile> DefaultNotesFiles { get; set; } = [];
 
     // Initialize default entries if empty
     public void EnsureDefaults()

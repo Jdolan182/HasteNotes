@@ -8,29 +8,18 @@ using HasteNotes.Models;
 namespace HasteNotes.ViewModels;
 public partial class AddNoteViewModel : ObservableObject
 {
-    // Observable properties
-    [ObservableProperty]
-    private string title = "";
+    [ObservableProperty] private string title = "";
+    [ObservableProperty] private string content = "";
+    [ObservableProperty] private bool isBossNote;
+    [ObservableProperty] private Boss? selectedBoss;
 
-    [ObservableProperty]
-    private string content = "";
+    public ObservableCollection<Boss> Bosses { get; } = [];
+    public ObservableCollection<Loot> CurrentSteals { get; } = [];
+    public ObservableCollection<Loot> CurrentDropped { get; } = [];
 
-    [ObservableProperty]
-    private bool isBossNote;
-
-    [ObservableProperty]
-    private Boss? selectedBoss;
-
-    // Collections
-    public ObservableCollection<Boss> Bosses { get; } = new();
-    public ObservableCollection<Loot> CurrentSteals { get; } = new();
-    public ObservableCollection<Loot> CurrentDropped { get; } = new();
-
-    // Commands
     public RelayCommand SaveCommand { get; }
     public RelayCommand CancelCommand { get; }
 
-    // Event to notify window to close
     public event Action<bool>? RequestClose;
 
     public AddNoteViewModel(IEnumerable<Boss> bosses)
@@ -46,8 +35,7 @@ public partial class AddNoteViewModel : ObservableObject
     private void OnSave() => RequestClose?.Invoke(true);
     private void OnCancel() => RequestClose?.Invoke(false);
 
-    // Called automatically when Title changes
-    partial void OnTitleChanged(string oldValue, string newValue)
+    partial void OnTitleChanged(string? oldValue, string newValue)
     {
         SaveCommand.NotifyCanExecuteChanged();
     }

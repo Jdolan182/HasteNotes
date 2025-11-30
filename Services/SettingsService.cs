@@ -19,11 +19,10 @@ public class SettingsService
 
     public Settings Current => _settings;
 
-    // Event that fires whenever a setting changes
     public event Action? SettingsChanged;
     public void Save()
     {
-        var json = JsonSerializer.Serialize(_settings, new JsonSerializerOptions { WriteIndented = true });
+        var json = JsonSerializer.Serialize(_settings, _jsonOptions);
         File.WriteAllText(_filePath, json);
     }
 
@@ -36,7 +35,7 @@ public class SettingsService
         try
         {
             var loaded = JsonSerializer.Deserialize<Settings>(json) ?? new Settings();
-            loaded.EnsureDefaults(); // fill missing entries
+            loaded.EnsureDefaults();
             return loaded;
         }
         catch
@@ -45,17 +44,24 @@ public class SettingsService
         }
     }
 
-    // Use this method to update a setting
     public void Update(Action<Settings> updater)
     {
-        updater(_settings);      // modify the settings
-        SettingsChanged?.Invoke(); // notify all listeners
+        // modify the settings
+        updater(_settings);
+        // notify all listeners
+        SettingsChanged?.Invoke();
     }
 
     public void ResetDefaults()
     {
         _settings = new Settings();
+        _settings.EnsureDefaults();
         SettingsChanged?.Invoke();
         Save();
     }
+
+    private static readonly JsonSerializerOptions _jsonOptions = new()
+    {
+        WriteIndented = true
+    };
 }

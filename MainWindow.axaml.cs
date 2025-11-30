@@ -12,9 +12,9 @@ namespace HasteNotes
             InitializeComponent();
         }
 
-        private void OpenNotes(string gameTitle)
+        private void OpenNotes(string gameTitle, bool hasBosses)
         {
-            var viewModel = new NotesViewModel(gameTitle);
+            var viewModel = new NotesViewModel(gameTitle, hasBosses);
             var notes = new Notes
             {
                 DataContext = viewModel,
@@ -26,8 +26,14 @@ namespace HasteNotes
             this.Close();
         }
 
-        private void Ff9_Click(object? sender, RoutedEventArgs e)
-                => OpenNotes("Final Fantasy IX");
+        private void GameButton_Click(object? sender, RoutedEventArgs e)
+        {
+            if (sender is Button btn && btn.Tag is string gameTitle)
+            {
+                bool hasBosses = gameTitle != "Haste Notes";
+                OpenNotes(gameTitle, hasBosses);
+            }
+        }
     }
 
 }

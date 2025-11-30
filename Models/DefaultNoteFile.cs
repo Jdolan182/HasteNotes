@@ -3,8 +3,7 @@
 namespace HasteNotes.Models;
 public class DefaultNoteFile : ObservableObject
 {
-    public string GameIndex { get; set; }
-
+    public string GameIndex { get; set; } = string.Empty;
     private string _fileName = string.Empty;
     public string FileName
     {

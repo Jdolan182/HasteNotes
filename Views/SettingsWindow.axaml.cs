@@ -1,3 +1,4 @@
+using System;
 using System.Diagnostics;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
@@ -27,7 +28,6 @@ namespace HasteNotes.Views
                 OwnerViewModel.IsEditing = false;
         }
 
-        // Optional: handle buttons without commands (not recommended if using MVVM)
         private void SaveButton_Click(object? sender, RoutedEventArgs e)
         {
             if (DataContext is SettingsViewModel vm)
@@ -37,8 +37,6 @@ namespace HasteNotes.Views
             Debug.WriteLine("Settings saved, closing window.");
             if (OwnerViewModel != null)
                 OwnerViewModel.IsEditing = false;
-
-            // Close the settings window
             this.Close();
         }
 
@@ -53,7 +51,16 @@ namespace HasteNotes.Views
             if (sender is Button btn && btn.DataContext is DefaultNoteFile file)
             {
                 if (DataContext is SettingsViewModel vm)
-                    await vm.SelectDefaultFileCommand.ExecuteAsync(file);
+                {
+                    try
+                    {
+                        await vm.SelectDefaultFile(file);
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine("File picker error: " + ex);
+                    }
+                }
             }
         }
     }

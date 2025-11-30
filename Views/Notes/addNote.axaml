@@ -14,10 +14,6 @@
         <TextBox Text="{Binding Title, Mode=TwoWay}" />
 
         <!-- Content with wrapping -->
-       <!-- <TextBox Text="{Binding Content, Mode=TwoWay}"
-                 AcceptsReturn="True"
-                 TextWrapping="Wrap"
-                 Height="250"/> -->
         <!-- Content label -->
         <TextBlock Text="Content:" Margin="0,0,0,0"/> <!-- smaller bottom margin -->
 

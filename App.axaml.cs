@@ -9,7 +9,7 @@ namespace HasteNotes
 {
     public partial class App : Application
     {
-        public static SettingsService SettingsService { get; private set; }
+        public static SettingsService? SettingsService { get; private set; }
 
         public override void Initialize()
         {
