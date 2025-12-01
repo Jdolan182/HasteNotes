@@ -33,8 +33,6 @@ namespace HasteNotes.Views
             if (DataContext is SettingsViewModel vm)
                 vm.SaveSettingsCommand.Execute(null);
 
-
-            Debug.WriteLine("Settings saved, closing window.");
             if (OwnerViewModel != null)
                 OwnerViewModel.IsEditing = false;
             this.Close();

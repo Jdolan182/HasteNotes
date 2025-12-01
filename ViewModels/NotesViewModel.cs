@@ -441,6 +441,7 @@ public partial class NotesViewModel : ObservableObject
         "final fantasy xiii" => "ff13",
         "final fantasy xv" => "ff15",
         "final fantasy xvi" => "ff16",
+        "haste notes" => "none",
         _ => title.ToLowerInvariant().Replace(" ", "")
     };
 
