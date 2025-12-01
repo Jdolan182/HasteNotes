@@ -79,7 +79,7 @@
     },
     {
         "bossName": "Lamia Queen",
-        "hp": "1290",
+        "hp": "1,290",
         "steal": [],
         "dropped": [
             {
@@ -113,7 +113,7 @@
     },
     {
         "bossName": "Behemoth",
-        "hp": "1620",
+        "hp": "1,620",
         "steal": [],
         "dropped": [],
         "card": [],
@@ -121,7 +121,7 @@
     },
     {
         "bossName": "Gottos",
-        "hp": "2000",
+        "hp": "2,000",
         "steal": [],
         "dropped": [
             {
@@ -145,7 +145,7 @@
     },
     {
         "bossName": "Big Horn",
-        "hp": "1140",
+        "hp": "1,140",
         "steal": [],
         "dropped": [],
         "card": [],
@@ -153,7 +153,7 @@
     },
     {
         "bossName": "Roundworm",
-        "hp": "2500",
+        "hp": "2,500",
         "steal": [],
         "dropped": [],
         "card": [],
@@ -161,7 +161,7 @@
     },
     {
         "bossName": "Fire Gigas",
-        "hp": "1800",
+        "hp": "1,800",
         "steal": [],
         "dropped": [
             {
@@ -185,7 +185,7 @@
     },
     {
         "bossName": "Ice Gigas",
-        "hp": "2000",
+        "hp": "2,000",
         "steal": [],
         "dropped": [
             {
@@ -209,7 +209,7 @@
     },
     {
         "bossName": "Thunder Gigas",
-        "hp": "2500",
+        "hp": "2,500",
         "steal": [],
         "dropped": [
             {
@@ -238,7 +238,7 @@
     },
     {
         "bossName": "White Dragon",
-        "hp": "2500",
+        "hp": "2,500",
         "steal": [],
         "dropped": [
             {
@@ -272,7 +272,7 @@
     },
     {
         "bossName": "Green Dragon",
-        "hp": "3000",
+        "hp": "3,000",
         "steal": [],
         "dropped": [
             {
@@ -306,7 +306,7 @@
     },
     {
         "bossName": "Emperor",
-        "hp": "3000",
+        "hp": "3,000",
         "steal": [],
         "dropped": [
             {
@@ -345,7 +345,7 @@
     },
     {
         "bossName": "Blue Dragon",
-        "hp": "3500",
+        "hp": "3,500",
         "steal": [],
         "dropped": [
             {
@@ -384,7 +384,7 @@
     },
     {
         "bossName": "King Behemoth",
-        "hp": "5000",
+        "hp": "5,000",
         "steal": [],
         "dropped": [
             {
@@ -418,7 +418,7 @@
     },
     {
         "bossName": "Red Dragon",
-        "hp": "5000",
+        "hp": "5,000",
         "steal": [],
         "dropped": [
             {
@@ -452,7 +452,7 @@
     },
     {
         "bossName": "Zombie Borghen",
-        "hp": "2500",
+        "hp": "2,500",
         "steal": [],
         "dropped": [],
         "card": [],
@@ -460,7 +460,7 @@
     },
     {
         "bossName": "Tiamat",
-        "hp": "5000",
+        "hp": "5,000",
         "steal": [],
         "dropped": [
             {
@@ -494,7 +494,7 @@
     },
     {
         "bossName": "Beelzebub",
-        "hp": "5000",
+        "hp": "5,000",
         "steal": [],
         "dropped": [
             {
@@ -528,7 +528,7 @@
     },
     {
         "bossName": "Astaroth",
-        "hp": "7000",
+        "hp": "7,000",
         "steal": [],
         "dropped": [
             {
@@ -562,7 +562,7 @@
     },
     {
         "bossName": "Iron Giant",
-        "hp": "3500",
+        "hp": "3,500",
         "steal": [],
         "dropped": [
             {
@@ -596,7 +596,7 @@
     },
     {
         "bossName": "Emperor (Final Boss)",
-        "hp": "15000",
+        "hp": "15,000",
         "steal": [],
         "dropped": [],
         "card": [],

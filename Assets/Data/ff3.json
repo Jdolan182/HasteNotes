@@ -1,7 +1,231 @@
 [
     {
-        "bossName": "Emperor (Final Boss)",
-        "hp": "15000",
+        "bossName": "Land Turtle",
+        "hp": "111",
+        "steal": [],
+        "dropped": [],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Djinn",
+        "hp": "550",
+        "steal": [],
+        "dropped": [],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Giant Rat",
+        "hp": "1,050",
+        "steal": [],
+        "dropped": [],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Medus",
+        "hp": "2,000",
+        "steal": [],
+        "dropped": [],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Gutsco",
+        "hp": "2,800",
+        "steal": [],
+        "dropped": [],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Salamander",
+        "hp": "4,000",
+        "steal": [],
+        "dropped": [],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Hein",
+        "hp": "3,500",
+        "steal": [],
+        "dropped": [],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Kraken",
+        "hp": "5,000",
+        "steal": [],
+        "dropped": [],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Goldor",
+        "hp": "6,000",
+        "steal": [],
+        "dropped": [],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Garuda",
+        "hp": "7,500",
+        "steal": [],
+        "dropped": [],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Hecatoncheir",
+        "hp": "9,800",
+        "steal": [],
+        "dropped": [],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Titan",
+        "hp": "20,000",
+        "steal": [],
+        "dropped": [],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Odin",
+        "hp": "20,000",
+        "steal": [],
+        "dropped": [],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Leviathan",
+        "hp": "22,000",
+        "steal": [],
+        "dropped": [],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Bahamut (2nd)",
+        "hp": "25,000",
+        "steal": [],
+        "dropped": [],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Doga",
+        "hp": "12,800",
+        "steal": [],
+        "dropped": [],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Unei",
+        "hp": "11,800",
+        "steal": [],
+        "dropped": [],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Amon",
+        "hp": "23,000",
+        "steal": [],
+        "dropped": [],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Kunoichi",
+        "hp": "19,000",
+        "steal": [],
+        "dropped": [],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "General",
+        "hp": "25,000",
+        "steal": [],
+        "dropped": [],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Scylla",
+        "hp": "25,000",
+        "steal": [],
+        "dropped": [],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Guardian",
+        "hp": "23,000",
+        "steal": [],
+        "dropped": [],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Xande",
+        "hp": "38,000",
+        "steal": [],
+        "dropped": [],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Cloud of Darkness (1st)",
+        "hp": "?????",
+        "steal": [],
+        "dropped": [],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Cerberus",
+        "hp": "60,000",
+        "steal": [],
+        "dropped": [],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Echidna",
+        "hp": "70,000",
+        "steal": [],
+        "dropped": [],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Two-Headed Dragon",
+        "hp": "65,000",
+        "steal": [],
+        "dropped": [],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Ahriman",
+        "hp": "75,000",
+        "steal": [],
+        "dropped": [],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Cloud of Darkness (Final)",
+        "hp": "120,000",
         "steal": [],
         "dropped": [],
         "card": [],

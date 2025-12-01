@@ -37,7 +37,7 @@
     },
     {
         "bossName": "Vampire",
-        "hp": "1200",
+        "hp": "1,200",
         "steal": [],
         "dropped": [
             {
@@ -59,7 +59,7 @@
     },
     {
         "bossName": "Marilith",
-        "hp": "1440",
+        "hp": "1,440",
         "steal": [],
         "dropped": [
             {
@@ -73,7 +73,7 @@
     },
     {
         "bossName": "Kraken",
-        "hp": "1800",
+        "hp": "1,800",
         "steal": [],
         "dropped": [
             {
@@ -87,7 +87,7 @@
     },
     {
         "bossName": "Kraken",
-        "hp": "1800",
+        "hp": "1,800",
         "steal": [],
         "dropped": [
             {
@@ -101,7 +101,7 @@
     },
     {
         "bossName": "Tiamat",
-        "hp": "2400",
+        "hp": "2,400",
         "steal": [],
         "dropped": [],
         "card": [],
@@ -109,7 +109,7 @@
     },
     {
         "bossName": "Chaos",
-        "hp": "20000",
+        "hp": "20,000",
         "steal": [],
         "dropped": [],
         "card": [],
@@ -117,7 +117,7 @@
     },
     {
         "bossName": "Warmech",
-        "hp": "2000",
+        "hp": "2,000",
         "steal": [],
         "dropped": [
             {
