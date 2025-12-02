@@ -1,1480 +1,1242 @@
 [
     {
-        "bossName": "Masked Man",
-        "hp": "188",
-        "steal": [
-            {
-                "itemName": "Potion",
-                "isVisible": true,
-                "chance": "100%"
-            },
-            {
-                "itemName": "Wrist",
-                "isVisible": true,
-                "chance": "25%"
-            },
-            {
-                "itemName": "Mage Masher",
-                "isVisible": true,
-                "chance": "6.25%"
-            }
-        ],
-        "dropped": [],
-        "card": [],
-        "isVisible": true
-    },
-    {
-        "bossName": "Steiner #1",
-        "hp": "169",
-        "steal": [
-            {
-                "itemName": "Leather Hat",
-                "isVisible": true,
-                "chance": "100%"
-            },
-            {
-                "itemName": "Silk Shirt",
-                "isVisible": true,
-                "chance": "25%"
-            }
-        ],
-        "dropped": [],
-        "card": [],
-        "isVisible": true
-    },
-    {
-        "bossName": "Steiner #2",
-        "hp": "167",
+        "bossName": "Sinspawn: Ammes",
+        "hp": "2,400",
         "steal": [],
         "dropped": [],
         "card": [],
         "isVisible": true
     },
     {
-        "bossName": "Steiner #3",
-        "hp": "162",
+        "bossName": "Geosgaeno",
+        "hp": "32,767",
+        "steal": [
+            {
+                "itemName": "Water Gem",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Water Gem x2",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "dropped": [],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Klikk",
+        "hp": "1,500",
+        "steal": [
+            {
+                "itemName": "Grenade",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Grenade x2",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "dropped": [
+            {
+                "itemName": "Ability Sphere",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Ability Sphere x2",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Tros",
+        "hp": "2,200",
+        "steal": [
+            {
+                "itemName": "Grenade",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Grenade x3",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "dropped": [
+            {
+                "itemName": "Power Sphere x2",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Power Sphere x2",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Sin (Fin)",
+        "hp": "2,000",
+        "steal": [
+            {
+                "itemName": "Potion",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Potion",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "dropped": [
+            {
+                "itemName": "Mana Sphere x1",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Mana Sphere x1",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Sinspawn: Echuilles",
+        "hp": "2,000",
+        "steal": [
+            {
+                "itemName": "Potion",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Potion",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "dropped": [
+            {
+                "itemName": "Ability Sphere x2",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Ability Sphere x2",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Lord Ochu",
+        "hp": "4,649",
+        "steal": [
+            {
+                "itemName": "Potion",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Potion",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "dropped": [
+            {
+                "itemName": "MP Sphere x1",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "HP Sphere x1",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Sinspawn: Geneaux",
+        "hp": "",
         "steal": [],
         "dropped": [],
         "card": [],
         "isVisible": true
     },
     {
-        "bossName": "Prison Cage #1",
-        "hp": "513",
+        "bossName": "Oblitzerator",
+        "hp": "3,000",
+        "steal": [
+            {
+                "itemName": "Potion",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Potion",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "dropped": [
+            {
+                "itemName": "Power Sphere x2",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Power Sphere x3",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Chocobo Eater",
+        "hp": "10,000",
+        "steal": [
+            {
+                "itemName": "Potion",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Potion",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "dropped": [],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Sinspawn: Gui",
+        "hp": "12,000",
+        "steal": [
+            {
+                "itemName": "Potion",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Potion",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "dropped": [],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Extractor",
+        "hp": "4,000",
+        "steal": [
+            {
+                "itemName": "Potion",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Potion",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "dropped": [
+            {
+                "itemName": "Mega Phoenix",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Mega Phoenix x1",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Spherimorph",
+        "hp": "12,000",
+        "steal": [
+            {
+                "itemName": "Ether",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Turbo Ether",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "dropped": [
+            {
+                "itemName": "Lv.2 Key Sphere x1",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Lv.2 Key Sphere x1",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Crawler",
+        "hp": "16,000",
+        "steal": [
+            {
+                "itemName": "Lunar Curtain",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Lunar Curtain x2",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "dropped": [
+            {
+                "itemName": "Elixir",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Elixir x1",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Seymour",
+        "hp": "6,000",
+        "steal": [
+            {
+                "itemName": "Turbo Ether",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Elixir",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "dropped": [
+            {
+                "itemName": "Blk Magic Sphere x1",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Special Sphere x1",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Anima",
+        "hp": "18,000",
+        "steal": [
+            {
+                "itemName": "Silence Grenade",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Farplane Shadow",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "dropped": [
+            {
+                "itemName": "Ability Sphere x1",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Ability Sphere x1",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Wendigo",
+        "hp": "18,000",
+        "steal": [
+            {
+                "itemName": "Hi-Potion",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "X-Potion",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "dropped": [
+            {
+                "itemName": "Power Sphere x1",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Power Sphere x2",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Evrae",
+        "hp": "32,000",
+        "steal": [
+            {
+                "itemName": "Water Gen",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Water Gem x2",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "dropped": [
+            {
+                "itemName": "Blk Magic Sphere x1",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Blk Magic Sphere x1",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Evrae Altana",
+        "hp": "16,384",
+        "steal": [
+            {
+                "itemName": "Water Gem x2",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Healing Spring",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "dropped": [
+            {
+                "itemName": "Blk Magic Sphere x1",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Blk Magic Sphere x1",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Seymour: Natus",
+        "hp": "36,000",
+        "steal": [
+            {
+                "itemName": "Tetra Elemental x2",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Tetra Elemental x3",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "dropped": [
+            {
+                "itemName": "Lv.2 Key Sphere x2",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Lv.2 Sphere x2",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Defender X",
+        "hp": "64,000",
+        "steal": [
+            {
+                "itemName": "",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Lunar Curtain x4",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "dropped": [
+            {
+                "itemName": "Lv.2 Key Sphere x1",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Lv.2 Key Sphere x2",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Biran Ronso",
+        "hp": "Varies",
+        "steal": [
+            {
+                "itemName": "Lv.3 Key Sphere x1",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Lv.3 Key Sphere x2",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "dropped": [
+            {
+                "itemName": "Return Sphere x1",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Friend Sphere x1",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Yenke Ronso",
+        "hp": "Varies",
+        "steal": [
+            {
+                "itemName": "Lv.3 Key Sphere x1",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Lv.3 Key Sphere x2",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "dropped": [
+            {
+                "itemName": "Return Sphere x1",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Friend Sphere x1",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Seymour Flux",
+        "hp": "70,000",
+        "steal": [
+            {
+                "itemName": "Elixir",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Elixir",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "dropped": [
+            {
+                "itemName": "Lv.4 Key Sphere x1",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Lv.4 Key Sphere x1",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Sanctuary Keeper",
+        "hp": "40,000",
+        "steal": [
+            {
+                "itemName": "Turbo Ether",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Turbo Ether x2",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "dropped": [
+            {
+                "itemName": "Return Sphere x1",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Return Sphere x1",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Spectral Keeper",
+        "hp": "52,000",
+        "steal": [
+            {
+                "itemName": "Ether",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Turbo Ether",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "dropped": [
+            {
+                "itemName": "Lv.4 Key Sphere x1",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Lv.4 Key Sphere x1",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Yunalesca ",
+        "hp": "24,000/48,000/60,000",
+        "steal": [
+            {
+                "itemName": "Stamina Tablet",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Farplane Wind",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "dropped": [
+            {
+                "itemName": "Lv.3 Key Sphere x1",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Lv.3 Key Sphere x1",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Sin Core",
+        "hp": "36,000",
+        "steal": [
+            {
+                "itemName": "Stamina Spring x3",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Stamina Spring x4",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "dropped": [
+            {
+                "itemName": "MP Sphere x1",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "MP Sphere x1",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Sin",
+        "hp": "140,000",
+        "steal": [
+            {
+                "itemName": "Ether",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Supreme Gem",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "dropped": [
+            {
+                "itemName": "Lv.3 Key Sphere x1",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Lv.3 Key Sphere x1",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Seymour Omnis",
+        "hp": "80,000",
+        "steal": [
+            {
+                "itemName": "Shining Gem",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Supreme Gem",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "dropped": [
+            {
+                "itemName": "Lv.3 Key Sphere x1",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Lv.3 Key Sphere x2",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Braska's Final Aeon",
+        "hp": "60,000/120,000",
+        "steal": [
+            {
+                "itemName": "Turbo Ether",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Elixir",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "dropped": [],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Yu Yevon",
+        "hp": "99,999",
         "steal": [],
         "dropped": [],
         "card": [],
         "isVisible": true
     },
     {
-        "bossName": "Prison Cage #2",
-        "hp": "533",
+        "bossName": "Ultima Weapon",
+        "hp": "99,999",
         "steal": [
             {
-                "itemName": "Broadsword",
-                "isVisible": true,
-                "chance": "100%"
-            },
-            {
-                "itemName": "Leather Wrist",
-                "isVisible": true,
-                "chance": "25%"
-            }
-        ],
-        "dropped": [
-            {
-                "itemName": "Eye Drops",
+                "itemName": "Door to Tomorrow x10",
                 "isVisible": false,
-                "chance": "100%"
+                "chance": "87.5%"
             },
             {
-                "itemName": "Phoenix Down",
-                "isVisible": false,
-                "chance": "37.5%"
-            }
-        ],
-        "card": [
-            {
-                "cardName": "Goblin",
-                "isVisible": false
-            }
-        ],
-        "isVisible": true
-    },
-    {
-        "bossName": "Plant Brain",
-        "hp": "916",
-        "steal": [
-            {
-                "itemName": "Eye Drops",
-                "isVisible": true,
-                "chance": "100%"
-            },
-            {
-                "itemName": "Iron Helm",
-                "isVisible": true,
-                "chance": "25%"
-            }
-        ],
-        "dropped": [
-            {
-                "itemName": "Phoenix Down",
-                "isVisible": false,
-                "chance": "100%"
-            },
-            {
-                "itemName": "Potion",
-                "isVisible": false,
-                "chance": "37.5%"
-            },
-            {
-                "itemName": "Potion",
+                "itemName": "Door to Tomorrow x20",
                 "isVisible": false,
                 "chance": "12.5%"
-            },
+            }
+        ],
+        "dropped": [
             {
-                "itemName": "Potion",
+                "itemName": "Lv.3 Key Sphere x3",
                 "isVisible": false,
-                "chance": "0.39%"
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Lv.3 Key Sphere x3",
+                "isVisible": false,
+                "chance": "12.5%"
             }
         ],
         "card": [],
         "isVisible": true
     },
     {
-        "bossName": "Black Walt #1/Sealion",
-        "hp": "299 (BW)/472 (SL)",
+        "bossName": "Omega Weapon",
+        "hp": "999,999",
         "steal": [
             {
-                "itemName": "Remedy (BW)",
-                "isVisible": true,
-                "chance": "100%"
+                "itemName": "0",
+                "isVisible": false,
+                "chance": "87.5%"
             },
             {
-                "itemName": "Wrist (BW)",
-                "isVisible": true,
-                "chance": "25%"
-            },
-            {
-                "itemName": "Mage Masher (BW)",
-                "isVisible": true,
+                "itemName": "Gambler's Spirit x30",
+                "isVisible": false,
                 "chance": "12.5%"
-            },
-            {
-                "itemName": "Ether (SL)",
-                "isVisible": true,
-                "chance": "100%"
-            },
-            {
-                "itemName": "Mythril Dagger (SL)",
-                "isVisible": true,
-                "chance": "25%"
             }
         ],
         "dropped": [
             {
-                "itemName": "Hi-Potion (BW)",
-                "isVisible": true,
-                "chance": "100%"
+                "itemName": "Lv.4 Key Sphere x3",
+                "isVisible": false,
+                "chance": "87.5%"
             },
             {
-                "itemName": "Phoenix Down (SL)",
-                "isVisible": true,
-                "chance": "100%"
-            }
-        ],
-        "card": [
-            {
-                "cardName": "Skeleton (BW)",
-                "isVisible": false
-            },
-            {
-                "cardName": "Fang (SL)",
-                "isVisible": false
-            }
-        ],
-        "isVisible": true
-    },
-    {
-        "bossName": "Black Walt #2",
-        "hp": "1,030",
-        "steal": [
-            {
-                "itemName": "Steepled Hat",
-                "isVisible": true,
-                "chance": "100%"
-            },
-            {
-                "itemName": "Leather Plate",
-                "isVisible": true,
-                "chance": "25%"
-            }
-        ],
-        "dropped": [
-            {
-                "itemName": "Ether",
-                "isVisible": true,
-                "chance": "100%"
-            },
-            {
-                "itemName": "Ether",
-                "isVisible": true,
-                "chance": "37.5%"
-            },
-            {
-                "itemName": "Ether",
-                "isVisible": true,
+                "itemName": "Lv.4 Key Sphere x3",
+                "isVisible": false,
                 "chance": "12.5%"
-            },
-            {
-                "itemName": "Ether",
-                "isVisible": true,
-                "chance": "0.39%"
-            }
-        ],
-        "card": [
-            {
-                "cardName": "Zaghnol",
-                "isVisible": false
-            }
-        ],
-        "isVisible": true
-    },
-    {
-        "bossName": "Black Walt #3 (1st Time)",
-        "hp": "1,128",
-        "steal": [
-            {
-                "itemName": "Steepled Hat",
-                "isVisible": true,
-                "chance": "100%"
-            },
-            {
-                "itemName": "Linen Cuirass",
-                "isVisible": true,
-                "chance": "25%"
-            },
-            {
-                "itemName": "Silver Gloves",
-                "isVisible": true,
-                "chance": "6.25%"
-            }
-        ],
-        "dropped": [],
-        "card": [],
-        "isVisible": true
-    },
-    {
-        "bossName": "Gizamaluke",
-        "hp": "3,175",
-        "steal": [
-            {
-                "itemName": "Elixir",
-                "isVisible": true,
-                "chance": "100%"
-            },
-            {
-                "itemName": "Magus Hat",
-                "isVisible": true,
-                "chance": "25%"
-            },
-            {
-                "itemName": "Ice Staff",
-                "isVisible": true,
-                "chance": "6.25%"
-            }
-        ],
-        "dropped": [
-            {
-                "itemName": "Tent",
-                "isVisible": true,
-                "chance": "100%"
-            }
-        ],
-        "card": [
-            {
-                "cardName": "Mythril Sword",
-                "isVisible": false
-            }
-        ],
-        "isVisible": true
-    },
-    {
-        "bossName": "Beatrix #1",
-        "hp": "3,630",
-        "steal": [
-            {
-                "itemName": "Phoenix Down",
-                "isVisible": true,
-                "chance": "100%"
-            },
-            {
-                "itemName": "Chain Plate",
-                "isVisible": true,
-                "chance": "25%"
-            },
-            {
-                "itemName": "Mythril Sword",
-                "isVisible": true,
-                "chance": "0.39%"
-            }
-        ],
-        "dropped": [],
-        "card": [],
-        "isVisible": true
-    },
-    {
-        "bossName": "Ralvurahva",
-        "hp": "2,296",
-        "steal": [
-            {
-                "itemName": "Bone Wrist",
-                "isVisible": true,
-                "chance": "100%"
-            },
-            {
-                "itemName": "Mythril Fork",
-                "isVisible": true,
-                "chance": "25%"
-            }
-        ],
-        "dropped": [],
-        "card": [],
-        "isVisible": true
-    },
-    {
-        "bossName": "Antlion",
-        "hp": "3,938",
-        "steal": [
-            {
-                "itemName": "Annoyntment",
-                "isVisible": true,
-                "chance": "100%"
-            },
-            {
-                "itemName": "Mythril Vest",
-                "isVisible": true,
-                "chance": "25%"
-            },
-            {
-                "itemName": "Gold Helm",
-                "isVisible": true,
-                "chance": "6.25%"
-            }
-        ],
-        "dropped": [
-            {
-                "itemName": "Annoyntment",
-                "isVisible": true,
-                "chance": "100%"
-            },
-            {
-                "itemName": "Ether",
-                "isVisible": true,
-                "chance": "37.5%"
-            },
-            {
-                "itemName": "Ether",
-                "isVisible": true,
-                "chance": "12.5%"
-            },
-            {
-                "itemName": "Ether",
-                "isVisible": true,
-                "chance": "0.39%"
-            }
-        ],
-        "card": [
-            {
-                "cardName": "Sahagin",
-                "isVisible": false
-            }
-        ],
-        "isVisible": true
-    },
-    {
-        "bossName": "Beatrix #2",
-        "hp": "4,736",
-        "steal": [
-            {
-                "itemName": "Phoenix Down",
-                "isVisible": true,
-                "chance": "100%"
-            },
-            {
-                "itemName": "Thunder Gloves",
-                "isVisible": true,
-                "chance": "25%"
-            },
-            {
-                "itemName": "Ice Brand",
-                "isVisible": true,
-                "chance": "6.25%"
-            }
-        ],
-        "dropped": [],
-        "card": [],
-        "isVisible": true
-    },
-    {
-        "bossName": "Tantarian",
-        "hp": "21,997",
-        "steal": [
-            {
-                "itemName": "Ether",
-                "isVisible": true,
-                "chance": "100%"
-            },
-            {
-                "itemName": "Elixir",
-                "isVisible": true,
-                "chance": "25%"
-            },
-            {
-                "itemName": "Silver Fork",
-                "isVisible": true,
-                "chance": "6.25%"
-            },
-            {
-                "itemName": "Demon's Mail",
-                "isVisible": true,
-                "chance": "0.39%"
-            }
-        ],
-        "dropped": [
-            {
-                "itemName": "Running Shoes",
-                "isVisible": true,
-                "chance": "100%"
-            }
-        ],
-        "card": [
-            {
-                "cardName": "Ramuh",
-                "isVisible": false
-            }
-        ],
-        "isVisible": true
-    },
-    {
-        "bossName": "Zorn & Thorn",
-        "hp": "4,896 (Zorn) / 2,984 (Thorn)",
-        "steal": [
-            {
-                "itemName": "Partisan (Zorn)",
-                "isVisible": true,
-                "chance": "100%"
-            },
-            {
-                "itemName": "Stardust Rod (Zorn)",
-                "isVisible": true,
-                "chance": "25%"
-            },
-            {
-                "itemName": "Mythril Armor (Thorn)",
-                "isVisible": true,
-                "chance": "100%"
-            },
-            {
-                "itemName": "Mythril Armlet (Thorn)",
-                "isVisible": true,
-                "chance": "25%"
-            }
-        ],
-        "dropped": [],
-        "card": [],
-        "isVisible": true
-    },
-    {
-        "bossName": "Beatrix #3",
-        "hp": "5,709",
-        "steal": [
-            {
-                "itemName": "Phoenix Down",
-                "isVisible": true,
-                "chance": "100%"
-            },
-            {
-                "itemName": "Ice Brand",
-                "isVisible": true,
-                "chance": "25%"
-            },
-            {
-                "itemName": "Survival Vest",
-                "isVisible": true,
-                "chance": "6.25%"
-            }
-        ],
-        "dropped": [],
-        "card": [],
-        "isVisible": true
-    },
-    {
-        "bossName": "Ralvuimago",
-        "hp": "3,352",
-        "steal": [
-            {
-                "itemName": "Phoenix Down",
-                "isVisible": true,
-                "chance": "100%"
-            },
-            {
-                "itemName": "Adaman Vest",
-                "isVisible": true,
-                "chance": "25%"
-            },
-            {
-                "itemName": "Oak Staff",
-                "isVisible": true,
-                "chance": "6.25%"
-            }
-        ],
-        "dropped": [
-            {
-                "itemName": "Ether",
-                "isVisible": true,
-                "chance": "100%"
-            },
-            {
-                "itemName": "Ether",
-                "isVisible": true,
-                "chance": "37.5%"
-            }
-        ],
-        "card": [
-            {
-                "cardName": "Gargant",
-                "isVisible": false
-            }
-        ],
-        "isVisible": true
-    },
-    {
-        "bossName": "Lani",
-        "hp": "5,708",
-        "steal": [
-            {
-                "itemName": "Ether",
-                "isVisible": true,
-                "chance": "100%"
-            },
-            {
-                "itemName": "Gladius",
-                "isVisible": true,
-                "chance": "25%"
-            },
-            {
-                "itemName": "Coral Sword",
-                "isVisible": true,
-                "chance": "6.25%"
-            }
-        ],
-        "dropped": [],
-        "card": [],
-        "isVisible": true
-    },
-    {
-        "bossName": "Hilgigars",
-        "hp": "8,106",
-        "steal": [
-            {
-                "itemName": "Phoenix Down",
-                "isVisible": true,
-                "chance": "100%"
-            },
-            {
-                "itemName": "Mythril Fork",
-                "isVisible": true,
-                "chance": "25%"
-            },
-            {
-                "itemName": "Fairy Flute",
-                "isVisible": true,
-                "chance": "0.39%"
-            }
-        ],
-        "dropped": [
-            {
-                "itemName": "Tent",
-                "isVisible": true,
-                "chance": "100%"
-            },
-            {
-                "itemName": "Elixir",
-                "isVisible": true,
-                "chance": "37.5%"
-            },
-            {
-                "itemName": "Elixir",
-                "isVisible": true,
-                "chance": "12.5%"
-            },
-            {
-                "itemName": "Elixir",
-                "isVisible": true,
-                "chance": "0.39%"
-            }
-        ],
-        "card": [
-            {
-                "cardName": "Anylion",
-                "isVisible": false
-            }
-        ],
-        "isVisible": true
-    },
-    {
-        "bossName": "Soulcage",
-        "hp": "9,765",
-        "steal": [
-            {
-                "itemName": "Oak Staff",
-                "isVisible": true,
-                "chance": "100%"
-            },
-            {
-                "itemName": "Magician Cloak",
-                "isVisible": true,
-                "chance": "25%"
-            },
-            {
-                "itemName": "Brigandine",
-                "isVisible": true,
-                "chance": "0.39%"
-            }
-        ],
-        "dropped": [
-            {
-                "itemName": "Phoenix Pinion",
-                "isVisible": true,
-                "chance": "100%"
-            },
-            {
-                "itemName": "Elixir",
-                "isVisible": true,
-                "chance": "37.5%"
-            },
-            {
-                "itemName": "Elixir",
-                "isVisible": true,
-                "chance": "12.5%"
-            },
-            {
-                "itemName": "Elixir",
-                "isVisible": true,
-                "chance": "0.39%"
-            }
-        ],
-        "card": [
-            {
-                "cardName": "Anylion",
-                "isVisible": false
-            }
-        ],
-        "isVisible": true
-    },
-    {
-        "bossName": "Scarlet Hair (Amarant)",
-        "hp": "8,985",
-        "steal": [
-            {
-                "itemName": "Ether",
-                "isVisible": true,
-                "chance": "100%"
-            },
-            {
-                "itemName": "Poison Knuckles",
-                "isVisible": true,
-                "chance": "25%"
-            }
-        ],
-        "dropped": [
-            {
-                "itemName": "Tent",
-                "isVisible": true,
-                "chance": "100%"
             }
         ],
         "card": [],
         "isVisible": true
     },
     {
-        "bossName": "Ark",
-        "hp": "20,002",
+        "bossName": "Dark Valefor",
+        "hp": "800,000",
         "steal": [
             {
-                "itemName": "Elixir",
-                "isVisible": true,
-                "chance": "100%"
-            },
-            {
-                "itemName": "Power Vest",
-                "isVisible": true,
-                "chance": "25%"
-            },
-            {
-                "itemName": "Holy Lance",
-                "isVisible": true,
-                "chance": "6.25%"
-            }
-        ],
-        "dropped": [
-            {
-                "itemName": "Pumice Piece",
-                "isVisible": true,
-                "chance": "100%"
-            },
-            {
-                "itemName": "Ether",
-                "isVisible": true,
-                "chance": "37.5%"
-            },
-            {
-                "itemName": "Ether",
-                "isVisible": true,
-                "chance": "12.5%"
-            },
-            {
-                "itemName": "Ether",
-                "isVisible": true,
-                "chance": "0.39%"
-            }
-        ],
-        "card": [
-            {
-                "cardName": "Atomos",
-                "isVisible": false
-            }
-        ],
-        "isVisible": true
-    },
-    {
-        "bossName": "Valia Pira",
-        "hp": "12,119",
-        "steal": [],
-        "dropped": [
-            {
-                "itemName": "Elixir",
-                "isVisible": true,
-                "chance": "100%"
+                "itemName": "X-Potion x2",
+                "isVisible": false,
+                "chance": "87.5%"
             },
             {
                 "itemName": "Elixir",
-                "isVisible": true,
-                "chance": "37.5%"
-            },
-            {
-                "itemName": "Elixir",
-                "isVisible": true,
-                "chance": "12.5%"
-            },
-            {
-                "itemName": "Elixir",
-                "isVisible": true,
-                "chance": "0.39%"
-            }
-        ],
-        "card": [
-            {
-                "cardName": "Shiva",
-                "isVisible": false
-            }
-        ],
-        "isVisible": true
-    },
-    {
-        "bossName": "Red Dragons",
-        "hp": "8,000",
-        "steal": [
-            {
-                "itemName": "Tent",
-                "isVisible": true,
-                "chance": "100%"
-            },
-            {
-                "itemName": "Ether",
-                "isVisible": true,
-                "chance": "25%"
-            },
-            {
-                "itemName": "Elixir",
-                "isVisible": true,
-                "chance": "6.25%"
-            },
-            {
-                "itemName": "Elixir",
-                "isVisible": true,
-                "chance": "0.39%"
-            }
-        ],
-        "dropped": [
-            {
-                "itemName": "Ether",
-                "isVisible": true,
-                "chance": "100%"
-            },
-            {
-                "itemName": "Sapphire",
-                "isVisible": true,
-                "chance": "37.5%"
-            },
-            {
-                "itemName": "Sapphire",
-                "isVisible": true,
-                "chance": "12.5%"
-            },
-            {
-                "itemName": "Sapphire",
-                "isVisible": true,
-                "chance": "0.39%"
-            }
-        ],
-        "card": [
-            {
-                "cardName": "Abomination",
-                "isVisible": false
-            }
-        ],
-        "isVisible": true
-    },
-    {
-        "bossName": "Meltigemini",
-        "hp": "24,348",
-        "steal": [
-            {
-                "itemName": "Vaccine",
-                "isVisible": true,
-                "chance": "100%"
-            },
-            {
-                "itemName": "Golden Hairpin",
-                "isVisible": true,
-                "chance": "25%"
-            },
-            {
-                "itemName": "Demon's Vest",
-                "isVisible": true,
-                "chance": "6.25%"
-            }
-        ],
-        "dropped": [
-            {
-                "itemName": "Vaccine",
-                "isVisible": true,
-                "chance": "100%"
-            },
-            {
-                "itemName": "Vaccine",
-                "isVisible": true,
-                "chance": "37.5%"
-            },
-            {
-                "itemName": "Vaccine",
-                "isVisible": true,
-                "chance": "12.5%"
-            },
-            {
-                "itemName": "Vaccine",
-                "isVisible": true,
-                "chance": "0.39%"
-            }
-        ],
-        "card": [
-            {
-                "cardName": "Tantarian",
-                "isVisible": false
-            }
-        ],
-        "isVisible": true
-    },
-    {
-        "bossName": "Taharka",
-        "hp": "29,186",
-        "steal": [
-            {
-                "itemName": "Elixir",
-                "isVisible": true,
-                "chance": "100%"
-            },
-            {
-                "itemName": "Mythril Claws",
-                "isVisible": true,
-                "chance": "25%"
-            },
-            {
-                "itemName": "Orichalcon",
-                "isVisible": true,
-                "chance": "6.25%"
-            }
-        ],
-        "dropped": [],
-        "card": [
-            {
-                "cardName": "Ramuh",
-                "isVisible": false
-            }
-        ],
-        "isVisible": true
-    },
-    {
-        "bossName": "Earth Guardian",
-        "hp": "20,756",
-        "steal": [
-            {
-                "itemName": "Avenger",
-                "isVisible": true,
-                "chance": "100%"
-            },
-            {
-                "itemName": "Rubber Suit",
-                "isVisible": true,
-                "chance": "25%"
-            }
-        ],
-        "dropped": [
-            {
-                "itemName": "Phoenix Pinion",
-                "isVisible": true,
-                "chance": "100%"
-            }
-        ],
-        "card": [
-            {
-                "cardName": "Atomos",
-                "isVisible": false
-            }
-        ],
-        "isVisible": true
-    },
-    {
-        "bossName": "Silver Dragon",
-        "hp": "24,055",
-        "steal": [
-            {
-                "itemName": "Elixir",
-                "isVisible": true,
-                "chance": "100%"
-            },
-            {
-                "itemName": "Dragon Mail",
-                "isVisible": true,
-                "chance": "25%"
-            },
-            {
-                "itemName": "Kaiser Knuckles",
-                "isVisible": true,
-                "chance": "6.25%"
-            }
-        ],
-        "dropped": [
-            {
-                "itemName": "Wing Edge",
-                "isVisible": true,
-                "chance": "100%"
-            },
-            {
-                "itemName": "Elixir",
-                "isVisible": true,
-                "chance": "37.5%"
-            },
-            {
-                "itemName": "Elixir",
-                "isVisible": true,
-                "chance": "12.5%"
-            },
-            {
-                "itemName": "Elixir",
-                "isVisible": true,
-                "chance": "0.39%"
-            }
-        ],
-        "card": [
-            {
-                "cardName": "Fenrir",
-                "isVisible": false
-            }
-        ],
-        "isVisible": true
-    },
-    {
-        "bossName": "Garland",
-        "hp": "40,728",
-        "steal": [
-            {
-                "itemName": "Battle Boots",
-                "isVisible": true,
-                "chance": "100%"
-            },
-            {
-                "itemName": "Ninja Gear",
-                "isVisible": true,
-                "chance": "25%"
-            },
-            {
-                "itemName": "Dark Gear",
-                "isVisible": true,
-                "chance": "6.25%"
-            }
-        ],
-        "dropped": [],
-        "card": [],
-        "isVisible": true
-    },
-    {
-        "bossName": "Kuja",
-        "hp": "42,383",
-        "steal": [
-            {
-                "itemName": "Ether",
-                "isVisible": true,
-                "chance": "100%"
-            },
-            {
-                "itemName": "Carabini Mail",
-                "isVisible": true,
-                "chance": "25%"
-            },
-            {
-                "itemName": "Light Robe",
-                "isVisible": true,
-                "chance": "0.39%"
-            }
-        ],
-        "dropped": [],
-        "card": [],
-        "isVisible": true
-    },
-    {
-        "bossName": "Nova Dragon",
-        "hp": "54,940",
-        "steal": [
-            {
-                "itemName": "Remedy",
-                "isVisible": true,
-                "chance": "100%"
-            },
-            {
-                "itemName": "Dragon Wrist",
-                "isVisible": true,
-                "chance": "25%"
-            },
-            {
-                "itemName": "Grand Armor",
-                "isVisible": true,
-                "chance": "0.39%"
-            }
-        ],
-        "dropped": [
-            {
-                "itemName": "Wing Edge",
-                "isVisible": true,
-                "chance": "100%"
-            },
-            {
-                "itemName": "Ether",
-                "isVisible": true,
-                "chance": "37.5%"
-            },
-            {
-                "itemName": "Elixir",
-                "isVisible": true,
+                "isVisible": false,
                 "chance": "12.5%"
             }
         ],
-        "card": [
-            {
-                "cardName": "Elixir",
-                "isVisible": false
-            }
-        ],
-        "isVisible": true
-    },
-    {
-        "bossName": "Maliris",
-        "hp": "59,497",
-        "steal": [
-            {
-                "itemName": "Genji Armor",
-                "isVisible": true,
-                "chance": "100%"
-            },
-            {
-                "itemName": "Ultima Sword",
-                "isVisible": true,
-                "chance": "25%"
-            },
-            {
-                "itemName": "Masamune",
-                "isVisible": true,
-                "chance": "6.25%"
-            }
-        ],
         "dropped": [
             {
-                "itemName": "Phoenix Pinion",
-                "isVisible": true,
-                "chance": "100%"
+                "itemName": "Dark Matter x1",
+                "isVisible": false,
+                "chance": "87.5%"
             },
             {
-                "itemName": "Phoenix Down",
-                "isVisible": true,
-                "chance": "37.5%"
-            },
-            {
-                "itemName": "Ether",
-                "isVisible": true,
+                "itemName": "Master Sphere x1",
+                "isVisible": false,
                 "chance": "12.5%"
-            },
-            {
-                "itemName": "Elixir",
-                "isVisible": true,
-                "chance": "0.39%"
             }
         ],
         "card": [],
         "isVisible": true
     },
     {
-        "bossName": "Tiamat",
-        "hp": "59,494",
+        "bossName": "Dark Ifrit",
+        "hp": "1,400,000",
         "steal": [
             {
-                "itemName": "Blood Sword",
-                "isVisible": true,
-                "chance": "100%"
+                "itemName": "Mega Phoenix x2",
+                "isVisible": false,
+                "chance": "87.5%"
             },
             {
-                "itemName": "Feather Boots",
-                "isVisible": true,
-                "chance": "25%"
-            },
-            {
-                "itemName": "Grand Helm",
-                "isVisible": true,
-                "chance": "0.39%"
+                "itemName": "Elixir",
+                "isVisible": false,
+                "chance": "12.5%"
             }
         ],
         "dropped": [
             {
-                "itemName": "Wing Edge",
-                "isVisible": true,
-                "chance": "100%"
+                "itemName": "Dark Matter x1",
+                "isVisible": false,
+                "chance": "87.5%"
             },
             {
-                "itemName": "Phoenix Down",
-                "isVisible": true,
-                "chance": "37.5%"
-            },
-            {
-                "itemName": "Ether",
-                "isVisible": true,
+                "itemName": "Master Sphere x1",
+                "isVisible": false,
                 "chance": "12.5%"
-            },
-            {
-                "itemName": "Elixir",
-                "isVisible": true,
-                "chance": "0.39%"
             }
         ],
         "card": [],
         "isVisible": true
     },
     {
-        "bossName": "Kraken",
-        "hp": "55,536",
+        "bossName": "Dark Ixion",
+        "hp": "1,200,000",
         "steal": [
             {
-                "itemName": "Genji Helmet",
-                "isVisible": true,
-                "chance": "100%"
+                "itemName": "Stamina Tablet x2",
+                "isVisible": false,
+                "chance": "87.5%"
             },
             {
-                "itemName": "Wizard Robe",
-                "isVisible": true,
-                "chance": "25%"
-            },
-            {
-                "itemName": "Glutton's Robe",
-                "isVisible": true,
-                "chance": "0.39%"
+                "itemName": "Elixir",
+                "isVisible": false,
+                "chance": "12.5%"
             }
         ],
         "dropped": [
             {
-                "itemName": "Phoenix Pinion",
-                "isVisible": true,
-                "chance": "100%"
+                "itemName": "Dark Matter x1",
+                "isVisible": false,
+                "chance": "87.5%"
             },
             {
-                "itemName": "Phoenix Down",
-                "isVisible": true,
-                "chance": "37.5%"
-            },
-            {
-                "itemName": "Ether",
-                "isVisible": true,
+                "itemName": "Master Sphere x1",
+                "isVisible": false,
                 "chance": "12.5%"
-            },
-            {
-                "itemName": "Elixir",
-                "isVisible": true,
-                "chance": "0.39%"
             }
         ],
         "card": [],
         "isVisible": true
     },
     {
-        "bossName": "Lich",
-        "hp": "58,554",
+        "bossName": "Dark Shiva",
+        "hp": "1,100,000",
         "steal": [
             {
-                "itemName": "Genji Gloves",
-                "isVisible": true,
-                "chance": "100%"
+                "itemName": "Mana Tablet x2",
+                "isVisible": false,
+                "chance": "87.5%"
             },
             {
-                "itemName": "Siren's Flute",
-                "isVisible": true,
-                "chance": "25%"
-            },
-            {
-                "itemName": "Black Robe",
-                "isVisible": true,
-                "chance": "6.25%"
+                "itemName": "Elixir",
+                "isVisible": false,
+                "chance": "12.5%"
             }
         ],
         "dropped": [
             {
-                "itemName": "Phoenix Pinion",
-                "isVisible": true,
-                "chance": "100%"
+                "itemName": "Dark Matter x1",
+                "isVisible": false,
+                "chance": "87.5%"
             },
             {
-                "itemName": "Phoenix Down",
-                "isVisible": true,
-                "chance": "37.5%"
-            },
-            {
-                "itemName": "Ether",
-                "isVisible": true,
+                "itemName": "Master Sphere x1",
+                "isVisible": false,
                 "chance": "12.5%"
-            },
-            {
-                "itemName": "Elixir",
-                "isVisible": true,
-                "chance": "0.39%"
             }
         ],
         "card": [],
         "isVisible": true
     },
     {
-        "bossName": "Deathguise",
-        "hp": "55,535",
+        "bossName": "Dark Bahamut",
+        "hp": "4,000,000",
         "steal": [
             {
+                "itemName": "Twin Stars x2",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
                 "itemName": "Elixir",
-                "isVisible": true,
-                "chance": "100%"
-            },
-            {
-                "itemName": "Black Belt",
-                "isVisible": true,
-                "chance": "25%"
-            },
-            {
-                "itemName": "Duel Claws",
-                "isVisible": true,
-                "chance": "0.39%"
+                "isVisible": false,
+                "chance": "12.5%"
             }
         ],
         "dropped": [
             {
-                "itemName": "Wing Edge",
-                "isVisible": true,
-                "chance": "100%"
+                "itemName": "Dark Matter x1",
+                "isVisible": false,
+                "chance": "87.5%"
             },
             {
-                "itemName": "Phoenix Down",
-                "isVisible": true,
-                "chance": "37.5%"
-            },
-            {
-                "itemName": "Ether",
-                "isVisible": true,
+                "itemName": "Master Sphere x1",
+                "isVisible": false,
                 "chance": "12.5%"
-            },
-            {
-                "itemName": "Elixir",
-                "isVisible": true,
-                "chance": "0.39%"
             }
         ],
         "card": [],
         "isVisible": true
     },
     {
-        "bossName": "Trance Kuja",
-        "hp": "55,535",
+        "bossName": "Dark Yojimbo",
+        "hp": "1,600,000",
         "steal": [
             {
-                "itemName": "Ether",
-                "isVisible": true,
-                "chance": "100%"
-            },
-            {
-                "itemName": "White Robe",
-                "isVisible": true,
-                "chance": "25%"
-            },
-            {
-                "itemName": "Rebirth Ring",
-                "isVisible": true,
-                "chance": "0.39%"
-            }
-        ],
-        "dropped": [],
-        "card": [],
-        "isVisible": true
-    },
-    {
-        "bossName": "Necron",
-        "hp": "54,100",
-        "steal": [
-            {
-                "itemName": "Elixir",
-                "isVisible": true,
-                "chance": "100%"
+                "itemName": "Stamina Tonic x2",
+                "isVisible": false,
+                "chance": "87.5%"
             },
             {
                 "itemName": "Elixir",
-                "isVisible": true,
-                "chance": "25%"
-            },
-            {
-                "itemName": "Elixir",
-                "isVisible": true,
-                "chance": "6.25%"
-            },
-            {
-                "itemName": "Elixir",
-                "isVisible": true,
-                "chance": "0.39%"
-            }
-        ],
-        "dropped": [],
-        "card": [],
-        "isVisible": true
-    },
-    {
-        "bossName": "Hades",
-        "hp": "55,535",
-        "steal": [
-            {
-                "itemName": "Reflect Wing",
-                "isVisible": true,
-                "chance": "100%"
-            },
-            {
-                "itemName": "Running Shoes",
-                "isVisible": true,
-                "chance": "25%"
-            },
-            {
-                "itemName": "Battle Boots",
-                "isVisible": true,
-                "chance": "6.25%"
-            },
-            {
-                "itemName": "Robe of Lords",
-                "isVisible": true,
-                "chance": "0.39%"
+                "isVisible": false,
+                "chance": "12.5%"
             }
         ],
         "dropped": [
             {
-                "itemName": "Wing Edge",
-                "isVisible": true,
-                "chance": "100%"
+                "itemName": "Dark Matter x1",
+                "isVisible": false,
+                "chance": "87.5%"
             },
             {
-                "itemName": "Elixir",
-                "isVisible": true,
-                "chance": "37.5%"
-            },
-            {
-                "itemName": "Elixir",
-                "isVisible": true,
+                "itemName": "Master Sphere x1",
+                "isVisible": false,
                 "chance": "12.5%"
-            },
-            {
-                "itemName": "Elixir",
-                "isVisible": true,
-                "chance": "0.39%"
             }
         ],
-        "card": [
-            {
-                "cardName": "Holy",
-                "isVisible": false
-            }
-        ],
+        "card": [],
         "isVisible": true
     },
     {
-        "bossName": "Ozma",
-        "hp": "55,535",
+        "bossName": "Dark Anima",
+        "hp": "8,000,000",
         "steal": [
             {
+                "itemName": "Three Stars x2",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
                 "itemName": "Elixir",
-                "isVisible": true,
-                "chance": "100%"
-            },
-            {
-                "itemName": "Robe of Lords",
-                "isVisible": true,
-                "chance": "25%"
-            },
-            {
-                "itemName": "Dark Matter",
-                "isVisible": true,
-                "chance": "6.25%"
-            },
-            {
-                "itemName": "Pumice Piece",
-                "isVisible": true,
-                "chance": "0.39%"
+                "isVisible": false,
+                "chance": "12.5%"
             }
         ],
         "dropped": [
             {
-                "itemName": "Pumice",
-                "isVisible": true,
-                "chance": "100%"
+                "itemName": "Dark Matter x1",
+                "isVisible": false,
+                "chance": "87.5%"
             },
             {
-                "itemName": "Dark Matter",
-                "isVisible": true,
-                "chance": "37.5%"
-            },
-            {
-                "itemName": "Dark Matter",
-                "isVisible": true,
+                "itemName": "Master Sphere x1",
+                "isVisible": false,
                 "chance": "12.5%"
+            }
+        ],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Dark Cindy",
+        "hp": "3,000,000",
+        "steal": [
+            {
+                "itemName": "Return Sphere",
+                "isVisible": false,
+                "chance": "87.5%"
             },
             {
-                "itemName": "Dark Matter",
-                "isVisible": true,
-                "chance": "0.39%"
+                "itemName": "Elixir",
+                "isVisible": false,
+                "chance": "12.5%"
             }
         ],
-        "card": [
+        "dropped": [
             {
-                "cardName": "Ozma",
-                "isVisible": false
+                "itemName": "Dark Matter x1",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Master Sphere x1",
+                "isVisible": false,
+                "chance": "12.5%"
             }
         ],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Dark Sandy",
+        "hp": "2,500,000",
+        "steal": [
+            {
+                "itemName": "Friend Sphere",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Elixir",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "dropped": [
+            {
+                "itemName": "Dark Matter x1",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Master Sphere x1",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Dark Mindy",
+        "hp": "2,000,000",
+        "steal": [
+            {
+                "itemName": "Teleport Sphere",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Elixir",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "dropped": [
+            {
+                "itemName": "Dark Matter x1",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Master Sphere x1",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "card": [],
+        "isVisible": true
+    },
+    {
+        "bossName": "Penance",
+        "hp": "12,000,000 (500,000 arms)",
+        "steal": [
+            {
+                "itemName": "Elixir",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Megalixir x2",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "dropped": [
+            {
+                "itemName": "Master Sphere x3",
+                "isVisible": false,
+                "chance": "87.5%"
+            },
+            {
+                "itemName": "Master Sphere x3",
+                "isVisible": false,
+                "chance": "12.5%"
+            }
+        ],
+        "card": [],
         "isVisible": true
     }
 ]

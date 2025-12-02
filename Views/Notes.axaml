@@ -140,7 +140,8 @@
 
                 <!-- Headers -->
                  <Grid ColumnDefinitions="*,*,*" Margin="0,0,0,8">
-                    <TextBlock Text="HP" FontWeight="Bold"/>
+                    <TextBlock Text="HP" FontWeight="Bold"                                
+                               IsVisible="{Binding SelectedNote?.SelectedBoss?.VisibleSteals, Converter={StaticResource NullOrCountGreaterThanZeroConverter}}"/>
                     <TextBlock Text="Steals" Grid.Column="1" FontWeight="Bold"
                                IsVisible="{Binding SelectedNote?.SelectedBoss?.VisibleSteals, Converter={StaticResource NullOrCountGreaterThanZeroConverter}}"/>
                     <TextBlock Text="Items" Grid.Column="2" FontWeight="Bold"
