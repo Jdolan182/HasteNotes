@@ -80,8 +80,8 @@ Notes List (you can drag and drop these)
 
 I gathered the data for the boss information through different wikis and guides so not sure what versions everything is for (especially pre FF7)
 
-This app will also only work on Windows as it uses MouseKeyHook 5.7.1 to let you navigate notes without focusing the window
-It might run fine on other OS's but without th keybinds working but not entirely sure
+This app will also only work on Windows as it uses MouseKeyHook 5.7.1 to let you navigate notes without focusing the window.
+It might run fine on other OS's but without the keybinds working but not entirely sure
 
 ## Features to add
 
