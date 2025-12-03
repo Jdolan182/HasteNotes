@@ -21,35 +21,38 @@
 
         <!-- Content -->
         <!-- Content label -->
-        <TextBlock Text="Content:" Margin="0,0,0,0"/> <!-- smaller bottom margin -->
+        <TextBlock Text="Content:" Margin="0,0,0,0"/>
 
-        <Grid Height="500" Margin="0,0,0,8"> <!-- smaller bottom margin on the Grid -->
+        <Grid Height="500" Margin="0,0,0,8">
             <Grid.RowDefinitions>
-                <RowDefinition Height="1*"/> <!-- Editor -->
-                <RowDefinition Height="*"/>  <!-- Preview -->
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
             <!-- Markdown editor -->
             <TextBox Grid.Row="0"
-                     Text="{Binding Content, Mode=TwoWay}"
-                     AcceptsReturn="True"
-                     TextWrapping="Wrap"
-                     Height="250"/>
+                        Text="{Binding Content, Mode=TwoWay}"
+                        AcceptsReturn="True"
+                        TextWrapping="Wrap"
+                        Height="250"
+                        Margin="0,0,0,8"/>
 
-            <!-- Markdown preview with border -->
-            <Border Grid.Row="1" 
+            <!-- Preview label -->
+            <TextBlock Grid.Row="1" Text="Preview:" Margin="0,0,0,2"/>
+
+            <!-- Markdown preview -->
+            <Border Grid.Row="2" 
                     BorderBrush="#CCC" 
                     BorderThickness="1" 
                     CornerRadius="4"
-                    Margin="0,2,0,0" 
                     Padding="6">
                 <ScrollViewer VerticalScrollBarVisibility="Auto"
-                              HorizontalScrollBarVisibility="Auto">
+                                HorizontalScrollBarVisibility="Auto">
                     <markdown:MarkdownScrollViewer Markdown="{Binding Content, Mode=OneWay}"/>
                 </ScrollViewer>
             </Border>
         </Grid>
-
 
         <!-- Boss note checkbox -->
         <CheckBox Content="Boss note"
