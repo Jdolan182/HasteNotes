@@ -49,6 +49,7 @@
         <FrameworkReference Include="Microsoft.WindowsDesktop.App.WindowsForms" />
     </ItemGroup>
     <ItemGroup>
+        <Folder Include="Assets\Images\" />
         <Folder Include="Styles\" />
     </ItemGroup>
 </Project>
