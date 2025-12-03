@@ -26,5 +26,9 @@
 
 		<StyleInclude Source="avares://HasteNotes/Styles/General.axaml"/>
 
+		<Style Selector="Window">
+			<Setter Property="Icon" Value="avares://HasteNotes/Assets/Icons/HNLogo-Black.png" />
+		</Style>
+
     </Application.Styles>
 </Application>

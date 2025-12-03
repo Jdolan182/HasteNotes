@@ -3,63 +3,143 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="650" d:DesignHeight="445"
-		   Width="650" Height="445"
-        MinWidth="650" MinHeight="445"
+        Width="690" Height="630"
+        MinWidth="690" MinHeight="630"
         x:Class="HasteNotes.MainWindow"
         Title="HasteNotes">
-	
-	<ScrollViewer>
-		<WrapPanel Margin="15">
-			<!-- Example buttons -->
-			<Button Classes="transparent" x:Name="ff1" Width="143" Height="93" Tag="Final Fantasy I" Click="GameButton_Click" Margin="5">
-				<Image Source="avares://HasteNotes/Assets/Icons/ff1.png" />
-			</Button>
-			<Button Classes="transparent" x:Name="ff2" Width="143" Height="93" Tag="Final Fantasy II"  Click="GameButton_Click" Margin="5">
-				<Image Source="avares://HasteNotes/Assets/Icons/ff2.png" />
-			</Button>
-			<Button Classes="transparent" x:Name="ff3" Width="143" Height="93" Tag="Final Fantasy III" Click="GameButton_Click" Margin="5">
-				<Image Source="avares://HasteNotes/Assets/Icons/ff3.png" />
-			</Button>
-			<Button Classes="transparent" x:Name="ff4" Width="143" Height="93" Tag="Final Fantasy IV" Click="GameButton_Click" Margin="5">
-				<Image Source="avares://HasteNotes/Assets/Icons/ff4.png" />
-			</Button>
-			<Button Classes="transparent" x:Name="ff5" Width="143" Height="93" Tag="Final Fantasy V" Click="GameButton_Click" Margin="5">
-				<Image Source="avares://HasteNotes/Assets/Icons/ff5.png" />
-			</Button>
-			<Button Classes="transparent" x:Name="ff6" Width="143" Height="93" Tag="Final Fantasy VI" Click="GameButton_Click" Margin="5">
-				<Image Source="avares://HasteNotes/Assets/Icons/ff6.png" />
-			</Button>
-			<Button Classes="transparent" x:Name="ff7" Width="143" Height="93" Tag="Final Fantasy VII" Click="GameButton_Click" Margin="5">
-				<Image Source="avares://HasteNotes/Assets/Icons/ff7.png" />
-			</Button>
-			<Button Classes="transparent" x:Name="ff8" Width="143" Height="93" Tag="Final Fantasy VIII" Click="GameButton_Click" Margin="5">
-				<Image Source="avares://HasteNotes/Assets/Icons/ff8.png" />
-			</Button>
-			<Button Classes="transparent" x:Name="ff9" Width="143" Height="93" Tag="Final Fantasy IX" Click="GameButton_Click" Margin="5">
-				<Image Source="avares://HasteNotes/Assets/Icons/ff9.png" />
-			</Button>
-			<Button Classes="transparent" x:Name="ff10" Width="143" Height="93" Tag="Final Fantasy X" Click="GameButton_Click" Margin="5">
-				<Image Source="avares://HasteNotes/Assets/Icons/ff10.png" />
-			</Button>
-			<Button Classes="transparent" x:Name="ff102" Width="143" Height="93" Tag="Final Fantasy X-2" Click="GameButton_Click" Margin="5">
-				<Image Source="avares://HasteNotes/Assets/Icons/ff10-2.png" />
-			</Button>
-			<Button Classes="transparent" x:Name="ff12" Width="143" Height="93" Tag="Final Fantasy XII" Click="GameButton_Click" Margin="5">
-				<Image Source="avares://HasteNotes/Assets/Icons/ff12.png" />
-			</Button>
-			<Button Classes="transparent" x:Name="ff13" Width="143" Height="93" Tag="Final Fantasy XIII" Click="GameButton_Click" Margin="5">
-				<Image Source="avares://HasteNotes/Assets/Icons/ff13.png" />
-			</Button>
-			<Button Classes="transparent" x:Name="ff15" Width="143" Height="93" Tag="Final Fantasy XV" Click="GameButton_Click" Margin="5">
-				<Image Source="avares://HasteNotes/Assets/Icons/ff15.png" />
-			</Button>
-			<Button Classes="transparent" x:Name="ff16" Width="143" Height="93" Tag="Final Fantasy XVI" Click="GameButton_Click" Margin="5">
-				<Image Source="avares://HasteNotes/Assets/Icons/ff16.png" />
-			</Button>
-			<Button Classes="transparent" x:Name="noGame" Width="143" Height="93" Tag="Haste Notes" Click="GameButton_Click" Margin="5">
-				No Specific Game
-			</Button>
-		</WrapPanel>
-	</ScrollViewer>
+
+    <ScrollViewer>
+        <WrapPanel Margin="15">
+
+            <!-- Final Fantasy I -->
+            <Button Classes="transparent" x:Name="ff1" Width="155" Height="140" Tag="Final Fantasy I" Click="GameButton_Click" Margin="5">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                    <TextBlock Text="Final Fantasy I" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+                    <Image Source="avares://HasteNotes/Assets/Icons/ff1.png"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Final Fantasy II -->
+            <Button Classes="transparent" x:Name="ff2" Width="155" Height="140" Tag="Final Fantasy II" Click="GameButton_Click" Margin="5">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                    <TextBlock Text="Final Fantasy II" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+                    <Image Source="avares://HasteNotes/Assets/Icons/ff2.png"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Final Fantasy III -->
+            <Button Classes="transparent" x:Name="ff3" Width="155" Height="140" Tag="Final Fantasy III" Click="GameButton_Click" Margin="5">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                    <TextBlock Text="Final Fantasy III" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+                    <Image Source="avares://HasteNotes/Assets/Icons/ff3.png"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Final Fantasy IV -->
+            <Button Classes="transparent" x:Name="ff4" Width="155" Height="140" Tag="Final Fantasy IV" Click="GameButton_Click" Margin="5">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                    <TextBlock Text="Final Fantasy IV" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+                    <Image Source="avares://HasteNotes/Assets/Icons/ff4.png"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Final Fantasy V -->
+            <Button Classes="transparent" x:Name="ff5" Width="155" Height="140" Tag="Final Fantasy V" Click="GameButton_Click" Margin="5">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                    <TextBlock Text="Final Fantasy V" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+                    <Image Source="avares://HasteNotes/Assets/Icons/ff5.png"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Final Fantasy VI -->
+            <Button Classes="transparent" x:Name="ff6" Width="155" Height="140" Tag="Final Fantasy VI" Click="GameButton_Click" Margin="5">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                    <TextBlock Text="Final Fantasy VI" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+                    <Image Source="avares://HasteNotes/Assets/Icons/ff6.png"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Final Fantasy VII -->
+            <Button Classes="transparent" x:Name="ff7" Width="155" Height="140" Tag="Final Fantasy VII" Click="GameButton_Click" Margin="5">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                    <TextBlock Text="Final Fantasy VII" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+                    <Image Source="avares://HasteNotes/Assets/Icons/ff7.png"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Final Fantasy VIII -->
+            <Button Classes="transparent" x:Name="ff8" Width="155" Height="140" Tag="Final Fantasy VIII" Click="GameButton_Click" Margin="5">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                    <TextBlock Text="Final Fantasy VIII" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+                    <Image Source="avares://HasteNotes/Assets/Icons/ff8.png"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Final Fantasy IX -->
+            <Button Classes="transparent" x:Name="ff9" Width="155" Height="140" Tag="Final Fantasy IX" Click="GameButton_Click" Margin="5">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                    <TextBlock Text="Final Fantasy IX" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+                    <Image Source="avares://HasteNotes/Assets/Icons/ff9.png"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Final Fantasy X -->
+            <Button Classes="transparent" x:Name="ff10" Width="155" Height="140" Tag="Final Fantasy X" Click="GameButton_Click" Margin="5">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                    <TextBlock Text="Final Fantasy X" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+                    <Image Source="avares://HasteNotes/Assets/Icons/ff10.png"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Final Fantasy X-2 -->
+            <Button Classes="transparent" x:Name="ff102" Width="155" Height="140" Tag="Final Fantasy X-2" Click="GameButton_Click" Margin="5">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                    <TextBlock Text="Final Fantasy X-2" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+                    <Image Source="avares://HasteNotes/Assets/Icons/ff10-2.png"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Final Fantasy XII -->
+            <Button Classes="transparent" x:Name="ff12" Width="155" Height="140" Tag="Final Fantasy XII" Click="GameButton_Click" Margin="5">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                    <TextBlock Text="Final Fantasy XII" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+                    <Image Height="110" Source="avares://HasteNotes/Assets/Icons/ff12.png"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Final Fantasy XIII -->
+            <Button Classes="transparent" x:Name="ff13" Width="155" Height="140" Tag="Final Fantasy XIII" Click="GameButton_Click" Margin="5">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                    <TextBlock Text="Final Fantasy XIII" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+                    <Image Source="avares://HasteNotes/Assets/Icons/ff13.png"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Final Fantasy XV -->
+            <Button Classes="transparent" x:Name="ff15" Width="155" Height="140" Tag="Final Fantasy XV" Click="GameButton_Click" Margin="5">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                    <TextBlock Text="Final Fantasy XV" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+                    <Image Source="avares://HasteNotes/Assets/Icons/ff15.png"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Final Fantasy XVI -->
+            <Button Classes="transparent" x:Name="ff16" Width="155" Height="140" Tag="Final Fantasy XVI" Click="GameButton_Click" Margin="5">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                    <TextBlock Text="Final Fantasy XVI" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+                    <Image Source="avares://HasteNotes/Assets/Icons/ff16.png"/>
+                </StackPanel>
+            </Button>
+
+            <!-- No Specific Game -->
+            <Button Classes="transparent" x:Name="noGame" Width="155" Height="140" Tag="Haste Notes" Click="GameButton_Click" Margin="5">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                    <TextBlock Text="Any Game" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+                    <Image Source="avares://HasteNotes/Assets/Icons/ff.png"/>
+                </StackPanel>
+            </Button>
+
+        </WrapPanel>
+    </ScrollViewer>
 
 </Window>
