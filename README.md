@@ -9,6 +9,11 @@ The whole idea of Haste Notes came from me trying to speedrun Final Fantasy IX. 
 So I wanted to create an app that would allow me to go through notes without focusing the window but just playing the game.
 It evolved from there and now there are 16 options when selecting a game with bosses from each game/and an option for no game so the app can be general for any game.
 
+So you pick a game, add notes and then you can keep the game window in focus while you press two keybinds to navigate through the notes
+Default:
+ * Previous: O
+ * Next: P
+
 ## Features
 
 * Add/Edit notes
