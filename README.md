@@ -10,7 +10,8 @@ So I wanted to create an app that would allow me to go through notes without foc
 It evolved from there and now there are 16 options when selecting a game with bosses from each game/and an option for no game so the app can be general for any game.
 
 So you pick a game, add notes and then you can keep the game window in focus while you press two keybinds to navigate through the notes
-Default:
+
+Default keybinds:
  * Previous: O
  * Next: P
 
@@ -79,8 +80,8 @@ Notes List (you can drag and drop these)
 
 I gathered the data for the boss information through different wikis and guides so not sure what versions everything is for (especially pre FF7)
 
-This app will also only work on Windows as it uses MouseKeyHook 5.7.1 to let you navigate notes without focusing the window
-It might run fine on other OS's but without th keybinds working but not entirely sure
+This app will also only work on Windows as it uses MouseKeyHook 5.7.1 to let you navigate notes without focusing the window.
+It might run fine on other OS's but without the keybinds working but not entirely sure
 
 ## Features to add
 
