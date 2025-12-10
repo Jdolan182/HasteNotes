@@ -24,5 +24,9 @@ namespace HasteNotes.Views
                 };
             }
         }
+
+        private void MarkdownScrollViewer_ActualThemeVariantChanged(object? sender, EventArgs e)
+        {
+        }
     }
 }
