@@ -91,5 +91,7 @@ It might run fine on other OS's but without the keybinds working but not entirel
 
 ## Version History
 
+* 1.0.1
+    * Add/Edit notes UI tweaks
 * 1.0
     * Initial Release
