@@ -94,7 +94,7 @@
                 <!-- Steals -->
                 <StackPanel Grid.Column="1" Spacing="4">
                     <TextBlock Text="Steals" FontWeight="Bold"/>
-                    <ItemsControl ItemsSource="{Binding CurrentSteals}">
+                    <ItemsControl ItemsSource="{Binding EditingSteals}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" Spacing="6">
@@ -109,7 +109,7 @@
                 <!-- Dropped -->
                 <StackPanel Grid.Column="2" Spacing="4">
                     <TextBlock Text="Items" FontWeight="Bold"/>
-                    <ItemsControl ItemsSource="{Binding CurrentDropped}">
+                    <ItemsControl ItemsSource="{Binding EditingItems}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" Spacing="6">

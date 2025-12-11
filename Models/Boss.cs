@@ -45,10 +45,16 @@ public class Boss : ObservableObject, IJsonOnDeserialized
             RefreshVisibleLoot(VisibleItems, Items);
         }
     }
-    private static void RefreshVisibleLoot(ObservableCollection<Loot> visible, ObservableCollection<Loot> source)
+    private void RefreshVisibleLoot(ObservableCollection<Loot> visible, ObservableCollection<Loot> source)
     {
         visible.Clear();
         foreach (var loot in source.Where(l => l.IsVisible))
             visible.Add(loot);
+
+        // Notify that the property itself changed
+        if (visible == VisibleSteals)
+            OnPropertyChanged(nameof(VisibleSteals));
+        else if (visible == VisibleItems)
+            OnPropertyChanged(nameof(VisibleItems));
     }
 }

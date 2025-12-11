@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Input;
@@ -16,7 +17,8 @@ namespace HasteNotes.Views
     public partial class Notes : Window
     {
         private NotesViewModel? _lastVm;
-        private bool _isForceClosing;
+        private bool _openGameSelectionAfterClose = false;
+        private bool _isClosingAfterPrompt = false;
 
         public Notes()
         {
@@ -116,14 +118,12 @@ namespace HasteNotes.Views
             if (DataContext is not NotesViewModel mainVm) return;
             if (mainVm.SelectedNote is not Note selectedNote) return;
 
+            // Pass the original note to the ViewModel
             var dlg = new AddNoteWindow
             {
-                DataContext = new AddNoteViewModel(mainVm.Bosses)
+                DataContext = new AddNoteViewModel(mainVm.Bosses, selectedNote)
                 {
-                    Title = selectedNote.Title,
-                    Content = selectedNote.Content,
-                    IsBossNote = selectedNote.IsBossNote,
-                    SelectedBoss = selectedNote.SelectedBoss
+                    SelectedBoss = selectedNote.SelectedBoss // use the original instance
                 }
             };
 
@@ -132,13 +132,10 @@ namespace HasteNotes.Views
             {
                 dlg.Close(r);
                 mainVm.IsEditing = false;
+
                 if (r == true)
                 {
-                    selectedNote.Title = dialogVm.Title;
-                    selectedNote.Content = dialogVm.Content;
-                    selectedNote.IsBossNote = dialogVm.IsBossNote;
-                    selectedNote.SelectedBoss = dialogVm.SelectedBoss;
-
+                    // Changes are already applied inside the ViewModel OnSave
                     mainVm.RefreshSelectedNote();
                     mainVm.MarkDirty();
                 }
@@ -148,7 +145,6 @@ namespace HasteNotes.Views
             {
                 mainVm.IsEditing = false;
             };
-
 
             dlg.ShowDialog<bool?>(this);
         }
@@ -196,53 +192,70 @@ namespace HasteNotes.Views
 
         private void GameSelection_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
-            var viewModel = new MainWindow();
-            viewModel.Show();
+            _openGameSelectionAfterClose = true;
             this.Close();
         }
-        protected override async void OnClosing(WindowClosingEventArgs e)
-        {
-            // If we're already closing intentionally skip logic
-            if (_isForceClosing)
-                return;
 
+        protected override void OnClosing(WindowClosingEventArgs e)
+        {
             base.OnClosing(e);
+
+            if (_isClosingAfterPrompt)
+                return; // Already handled prompt, allow close
 
             if (DataContext is not NotesViewModel mainVm)
                 return;
 
             if (!mainVm.HasUnsavedChanges)
             {
-                ShutdownApp();
+                // No unsaved changes, allow close normally
                 return;
             }
 
-            // Cancel close until user chooses
+            // Unsaved changes: cancel closing and handle prompt
             e.Cancel = true;
+            HandleUnsavedChanges(mainVm);
+        }
 
+        private async void HandleUnsavedChanges(NotesViewModel mainVm)
+        {
             var result = await ShowSavePromptAsync();
 
             switch (result)
             {
                 case ButtonResult.Yes:
-                    bool saved = await mainVm.SaveAsync();
-                    if (saved)
-                        ShutdownApp(); // only shutdown after save completes
+                    if (await mainVm.SaveAsync())
+                    {
+                        _isClosingAfterPrompt = true;
+                        Close(); // now close without triggering prompt again
+                    }
                     break;
 
                 case ButtonResult.No:
-                    ShutdownApp();
+                    _isClosingAfterPrompt = true;
+                    Close(); // close without saving
                     break;
 
                 case ButtonResult.Cancel:
+                    // do nothing, leave window open
                     break;
             }
         }
 
-        private void ShutdownApp()
+        protected override void OnClosed(EventArgs e)
         {
-            _isForceClosing = true;  // prevents recursion
-            Close();
+            base.OnClosed(e);
+
+            if (_openGameSelectionAfterClose)
+            {
+                _openGameSelectionAfterClose = false;
+                var gameSelectionWindow = new MainWindow();
+                gameSelectionWindow.Show();
+            }
+            else
+            {
+                Environment.Exit(0);
+            }
         }
 
         private static async Task<ButtonResult> ShowSavePromptAsync()

@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Input;
 using Avalonia.Controls;
+using Avalonia.Input;
+using Avalonia.VisualTree;
 using Avalonia.Platform.Storage;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -55,6 +57,13 @@ public partial class NotesViewModel : ObservableObject
        ? Notes[PageIndex]
        : null;
     public bool IsBossNoteVisible => SelectedNote?.IsBossNote ?? false;
+
+    private bool _isChecklistTextBoxFocused;
+    public bool IsChecklistTextBoxFocused
+    {
+        get => _isChecklistTextBoxFocused;
+        set => SetProperty(ref _isChecklistTextBoxFocused, value);
+    }
 
     [ObservableProperty] private string notesText = "";
     [ObservableProperty] private int pageIndex = 0;
@@ -201,7 +210,7 @@ public partial class NotesViewModel : ObservableObject
     [RelayCommand]
     private void Next()
     {
-        if (IsEditing) return;
+        if (IsEditing || IsChecklistTextBoxFocused) return;
         if (PageIndex < Notes.Count - 1)
         {
             PageIndex++;
@@ -213,7 +222,7 @@ public partial class NotesViewModel : ObservableObject
     [RelayCommand]
     private void Prev()
     {
-        if (IsEditing) return;
+        if (IsEditing || IsChecklistTextBoxFocused) return;
         if (PageIndex > 0)
         {
             PageIndex--;

@@ -91,6 +91,11 @@ It might run fine on other OS's but without the keybinds working but not entirel
 
 ## Version History
 
+* 1.0.2
+    * Better flow when closing windows
+    * Won't navigate notes if you're typing into checklist
+    * Have a clone of items/steals so the notes window doesn't update when editing a note until saved
+    * UI tweaks
 * 1.0.1
     * Add/Edit notes UI tweaks
 * 1.0

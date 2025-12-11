@@ -12,4 +12,11 @@ public partial class Loot : ObservableObject
     public string Display => string.IsNullOrWhiteSpace(Chance)
         ? ItemName
         : $"{ItemName} ({Chance})";
+
+    public Loot Clone() => new Loot
+    {
+        ItemName = this.ItemName,
+        Chance = this.Chance,
+        IsVisible = this.IsVisible
+    };
 }
