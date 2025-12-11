@@ -13,7 +13,7 @@ public partial class Loot : ObservableObject
         ? ItemName
         : $"{ItemName} ({Chance})";
 
-    public Loot Clone() => new Loot
+    public Loot Clone() => new()
     {
         ItemName = this.ItemName,
         Chance = this.Chance,
